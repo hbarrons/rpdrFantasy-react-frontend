@@ -2,7 +2,6 @@ import { useState } from "react"
 
 const JoinLeague = (props) => {
   const [formData, setFormData] = useState({
-    leagueName: '',
     leagueNo: ''
   })
 
@@ -26,9 +25,6 @@ const JoinLeague = (props) => {
       onSubmit={handleSubmit}
       className="create-league-form"
       >
-        <label htmlFor="leagueName">League Name:</label>
-        <input type="text" autoComplete="off" id="legueName" name="leagueName"
-        onChange={handleChange}/>
         <label htmlFor="leagueNo">League Number:</label>
         <input type="text" autoComplete="off" id="legueNo" name="leagueNo"
         onChange={handleChange}/>
