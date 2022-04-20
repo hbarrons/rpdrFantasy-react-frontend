@@ -7,6 +7,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
+import CreateLeague from './pages/CreateLeague/CreateLeague'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -35,6 +36,7 @@ const App = () => {
           path="/login"
           element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
         />
+        <Route path="/createleague" element={<CreateLeague user={user}/>}/>
         <Route
           path="/profiles"
           element={user ? <Profiles /> : <Navigate to="/login" />}
