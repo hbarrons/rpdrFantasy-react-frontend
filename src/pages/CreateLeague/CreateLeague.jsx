@@ -19,16 +19,14 @@ const CreateLeague = ({ user }) => {
   let leagueNo = 0
 
   function createLeagueNo () {
-    leagueNo = Math.floor(Math.random() * 100000)
+    leagueNo = Math.floor(Math.random() * 10000000)
   } 
 
-  console.log(Math.floor(Math.random() * 1000000))
-
   const handleSubmit = async evt => {
-    evt.preventDefault()
     createLeagueNo()
+    evt.preventDefault()
     try {
-      await profileService.createLeague(formData, leagueNo, user._id)
+      await profileService.createLeague(formData.leagueName, leagueNo, user._id)
       // navigate('/')
     } catch (err) {
       console.log(err)
