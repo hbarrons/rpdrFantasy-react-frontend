@@ -10,9 +10,6 @@ export async function getAllProfiles() {
 }
 
 export async function createLeague(leagueName, leagueNo, userId) {
-  // console.log("leagueName: ", leagueName)
-  // console.log("leagueNo: ", leagueNo)
-  // console.log("userId: ", userId)
   return await fetch (`${BASE_URL}/createleague/${userId}`, {
     method: 'POST',
     headers: {

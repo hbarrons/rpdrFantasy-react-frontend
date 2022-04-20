@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
@@ -7,12 +7,19 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
+import * as profileService from './services/profileService'
 import CreateLeague from './pages/CreateLeague/CreateLeague'
 import JoinLeague from './pages/JoinLeague/JoineLeague'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
+  const [profiles, setProfiles] = useState([])
+
+  useEffect(()=> {
+    profileService.getAllProfiles()
+    .then(profiles => setProfiles(profiles))
+  }, [])
 
   const handleLogout = () => {
     authService.logout()
@@ -41,7 +48,7 @@ const App = () => {
         <Route path="/joinleague" element={<JoinLeague user={user}/>}/>
         <Route
           path="/profiles"
-          element={user ? <Profiles /> : <Navigate to="/login" />}
+          element={user ? <Profiles profiles={profiles}/> : <Navigate to="/login" />}
         />
         <Route
           path="/changePassword"

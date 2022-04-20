@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react'
 import * as profileService from '../../services/profileService'
 
-const Profiles = () => {
-  const [profiles, setProfiles] = useState([])
+const Profiles = ({ profiles }) => {
 
-  useEffect(()=> {
-    profileService.getAllProfiles()
-    .then(profiles => setProfiles(profiles))
-  }, [])
 
   return (
     <>

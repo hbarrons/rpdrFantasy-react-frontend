@@ -26,7 +26,7 @@ const CreateLeague = ({ user }) => {
     createLeagueNo()
     evt.preventDefault()
     try {
-      await profileService.createLeague(formData.leagueName, leagueNo, user._id)
+      await profileService.createLeague(formData.leagueName, leagueNo, user.profile)
       // navigate('/')
     } catch (err) {
       console.log(err)
