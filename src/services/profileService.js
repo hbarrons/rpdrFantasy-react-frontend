@@ -21,4 +21,18 @@ export async function createLeague(leagueName, leagueNo, userId) {
   .then(res => res.json())
 }
 
+export async function joinLeague(leagueInfo, userId) {
+  console.log("leagueInfo: ", leagueInfo)
+  console.log("userId: ", userId)
+  return await fetch (`${BASE_URL}/joinleague`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify({leagueInfo, userId})
+  })
+  .then(res => res.json())
+}
+
 
