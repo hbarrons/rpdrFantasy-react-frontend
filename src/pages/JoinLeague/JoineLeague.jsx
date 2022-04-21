@@ -19,15 +19,17 @@ const JoinLeague = (props) => {
   return ( 
     <>
       <h1>Join League Here*</h1>
-      <p>*You will need the League Number from the admin in order to join an existing league</p>
+      <p>*You will need the League Number and Password from the admin in order to join an existing league</p>
       <form
       autoComplete="off"
       onSubmit={handleSubmit}
       className="create-league-form"
       >
-        <label htmlFor="leagueNo">League Number:</label>
+        <label htmlFor="leagueNo">League Number: </label>
         <input type="text" autoComplete="off" id="legueNo" name="leagueNo"
-        onChange={handleChange}/>
+        onChange={handleChange}/><br/>
+        <label htmlFor="leaguePassword">Password: </label>
+        <input type="text" autoComplete="off" id="leaguePassword" name="leaguePassword" onChange={handleChange}/>
       </form>
     </>
    );
