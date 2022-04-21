@@ -10,6 +10,7 @@ import * as authService from './services/authService'
 import * as profileService from './services/profileService'
 import CreateLeague from './pages/CreateLeague/CreateLeague'
 import JoinLeague from './pages/JoinLeague/JoineLeague'
+import MyLeague from './pages/MyLeagues/MyLeagues'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -35,7 +36,7 @@ const App = () => {
     <>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
+        <Route path="/" element={<Landing user={user} profiles={profiles}/>} />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
@@ -46,6 +47,7 @@ const App = () => {
         />
         <Route path="/createleague" element={<CreateLeague user={user}/>}/>
         <Route path="/joinleague" element={<JoinLeague user={user}/>}/>
+        <Route path="/myleague" element={<MyLeague profiles={profiles} user={user}/>}/>
         <Route
           path="/profiles"
           element={user ? <Profiles profiles={profiles}/> : <Navigate to="/login" />}
