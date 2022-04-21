@@ -8,7 +8,7 @@ const MyLeague = ({ profiles, user }) => {
       {console.log(profiles)}
       {console.log(user.profile)}
       {profiles.map(profile => {
-        return <LeagueCard profile={profile}/>
+        return <LeagueCard profile={profile} user={user}/>
       })}
 
     </>
