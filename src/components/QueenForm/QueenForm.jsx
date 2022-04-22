@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import * as queenService from '../../services/queenService'
 
 
 const QueenForm = ({ profile, user}) => {
-  const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    leagueName: '',
+    queen: '',
   })
 
   const handleChange = evt => {
@@ -18,6 +16,12 @@ const QueenForm = ({ profile, user}) => {
 
   const handleSubmit = async evt => {
     console.log("sanity")
+    evt.preventDefault()
+    try {
+      await queenService.createQueen(formData.queen)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return ( 
@@ -30,7 +34,7 @@ const QueenForm = ({ profile, user}) => {
               <form
                 autoComplete="off"
                 onSubmit={handleSubmit}
-                className="create-league-form"
+                className="add-queen-form"
                 >
                   <label htmlFor="queen">Queen Name:</label>
                   <input type="text" autoComplete="off" id="queen" name="queen"
