@@ -12,3 +12,10 @@ export async function createQueen (queen) {
   })
   .then(res => res.json())
 }
+
+export async function getAllQueens (){
+  const res = await fetch(BASE_URL, {
+    headers: { Authorization: `Bearer ${tokenService.getToken()}` },
+  })
+  return await res.json()
+}
