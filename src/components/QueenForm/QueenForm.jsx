@@ -15,10 +15,9 @@ const QueenForm = ({ profile, user}) => {
   }
 
   const handleSubmit = async evt => {
-    console.log("sanity")
     evt.preventDefault()
     try {
-      await queenService.createQueen(formData.queen)
+      await queenService.createQueen(formData)
     } catch (err) {
       console.log(err)
     }
