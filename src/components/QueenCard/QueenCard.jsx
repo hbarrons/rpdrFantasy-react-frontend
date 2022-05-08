@@ -1,6 +1,11 @@
+import * as queenService from '../../services/queenService'
+import { useState, useEffect } from 'react'
 
 
-const QueenCard = ({ profile, queen, user }) => {
+const QueenCard = ({ profile, queen, user, handleDelete }) => {
+
+  
+
   return ( 
     <>{profile._id === user.profile ? 
       <>
@@ -9,7 +14,7 @@ const QueenCard = ({ profile, queen, user }) => {
             <li>{queen.name} {queen.elminiated ? 
               "(Eliminated)" : ""}</li>
             <button>Add to Roster</button>
-            <button>Delete</button>
+            <button onClick={() => handleDelete(queen._id)}>Delete</button>
           </>
         :
           <>

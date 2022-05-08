@@ -9,8 +9,22 @@ const Queens = ({ profiles, user }) => {
 
   useEffect(() => {
     queenService.getAllQueens()
-    .then(queens => setQueens(queens))
+    .then(queens => {
+      console.log("useEffect: ", queens)
+      setQueens(queens)
+    })
   }, [])
+
+  const handleDelete = async (queen) => {
+    try {
+      const data = await queenService.deleteQueen(queen)
+      console.log("response data: ", data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  console.log(queens)
 
   return ( 
     <>
@@ -21,14 +35,19 @@ const Queens = ({ profiles, user }) => {
       </div>
       <div>
         <h1>Queens:</h1>
-        {profiles.map(profile => {
+        {queens.length ? 
+          <>
+            {profiles.map(profile => {
           return <>
-            {queens.map(queen => {
-              return <QueenCard queen={queen} profile={profile} user={user} key={queen._id}/>
+            {queens?.map(queen => {
+              return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete}/>
             })}
           </>
         })}
-
+          </>
+          :
+          <>No Queens</>
+        }
       </div>
     </>
    );
