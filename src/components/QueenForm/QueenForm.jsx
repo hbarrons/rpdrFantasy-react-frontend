@@ -2,7 +2,7 @@ import { useState } from 'react'
 import * as queenService from '../../services/queenService'
 
 
-const QueenForm = ({ profile, user}) => {
+const QueenForm = ({ profile, user, handleSubmit}) => {
   const [formData, setFormData] = useState({
     queen: '',
   })
@@ -14,14 +14,7 @@ const QueenForm = ({ profile, user}) => {
     })
   }
 
-  const handleSubmit = async evt => {
-    evt.preventDefault()
-    try {
-      await queenService.createQueen(formData)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+
 
   return ( 
     <>
@@ -32,7 +25,7 @@ const QueenForm = ({ profile, user}) => {
               <h1>Add A Queen:</h1>
               <form
                 autoComplete="off"
-                onSubmit={handleSubmit}
+                onSubmit={() => handleSubmit(formData)}
                 className="add-queen-form"
                 >
                   <label htmlFor="queen">Queen Name:</label>

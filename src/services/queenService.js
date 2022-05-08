@@ -9,6 +9,7 @@ async function getAllQueens (){
 }
 
 async function createQueen (queen) {
+  console.log(queen)
   return await fetch(`${BASE_URL}/addqueen/${queen.queen}`, {
     method: 'POST',
     headers: {
@@ -16,10 +17,7 @@ async function createQueen (queen) {
       Authorization: `Bearer ${tokenService.getToken()}`
     }
   },)
-  .then(res => {
-    res.json()
-    console.log("create response data: ", res.json())
-  })
+  .then(res => res.json())
 }
 
 async function deleteQueen (queen) {
@@ -32,10 +30,7 @@ async function deleteQueen (queen) {
     },
     body: JSON.stringify()
   },)
-  .then(res => {
-    res.json()
-    console.log("delete response data: ", res.json())
-  })
+  .then(res => res.json())
 }
 
 export {
