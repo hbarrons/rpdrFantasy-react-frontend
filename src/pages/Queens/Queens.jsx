@@ -54,7 +54,10 @@ const Queens = ({ profiles, user }) => {
     } catch (err) {
       console.log(err)
     }
+    setFormData({queenName: ""})
   }
+
+  const { queenName } = formData
 
 
   return ( 
@@ -72,7 +75,7 @@ const Queens = ({ profiles, user }) => {
                 className="add-queen-form"
                 >
                   <label htmlFor="queen">Queen Name:</label>
-                  <input type="text" autoComplete="off" id="queen" name="queen"
+                  <input type="text" autoComplete="off" id="queen" name="queen" value={queenName}
                   onChange={handleChange}/>
                   <div>
                     <button className="create-league-btn">
