@@ -36,18 +36,26 @@ const Queens = ({ profiles, user }) => {
     }
   }
 
+  // const addQueenName (data) {
+  //   console.log("addQueenName",data)
+  // }
+
   const handleSubmit = async evt => {
     evt.preventDefault()
     try {
       const data = await queenService.createQueen(formData)
-      console.log("create response: ", data)
-      setQueens(data)
+      for (let i=0; i < data.queens.length; i++) {
+        if (data.queens[i]._id === data.queen._id) {
+          data.queens[i].name = data.queen.name
+        }
+      }
+      console.log("create response: ", data.queens)
+      setQueens(data.queens)
     } catch (err) {
       console.log(err)
     }
   }
 
-  console.log(queens)
 
   return ( 
     <>
