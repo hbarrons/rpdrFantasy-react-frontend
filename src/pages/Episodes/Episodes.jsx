@@ -42,14 +42,14 @@ const Episodes = ({ profiles, user }) => {
     })
   }
 
-  const handleDelete = async (queen) => {
-    // try {
-    //   const data = await queenService.deleteQueen(queen)
-    //   console.log("delete response: ", data)
-    //   setQueens(data)
-    // } catch (err) {
-    //   console.log(err)
-    // }
+  const handleDelete = async (episode) => {
+    try {
+      const data = await episodeService.deleteEpisode(episode)
+      console.log("delete ep response: ", data)
+      setEpisodes(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const handleSubmit = async evt => {

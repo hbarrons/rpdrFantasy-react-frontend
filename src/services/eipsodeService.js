@@ -22,8 +22,22 @@ async function createEpisode (episode) {
   .then(res => res.json())
 }
 
+async function deleteEpisode (episode) {
+  console.log(episode)
+  return await fetch(`${BASE_URL}/deleteepisode/${episode._id}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify() 
+  },)
+  .then(res => res.json())
+}
+
 
 export {
   getAllEpisodes,
-  createEpisode
+  createEpisode,
+  deleteEpisode
 }

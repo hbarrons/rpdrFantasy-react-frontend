@@ -7,6 +7,7 @@ const EpisodeCard = ({ episode, user, handleDelete }) => {
       <h5>Loser: {episode.loser}</h5>
       <h5>Tops: {episode.tops[0]}, {episode.tops[1]}, {episode.tops[2]}</h5>
       <h5>Bottoms: {episode.bottoms[0]}, {episode.bottoms[1]}, {episode.bottoms[2]}</h5>
+      <button onClick={() => handleDelete(episode)}>Delete</button>
     </>
    );
 }
