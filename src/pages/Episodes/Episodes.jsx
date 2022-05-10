@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as episodeService from '../../services/eipsodeService.js'
 import * as queenService from '../../services/queenService'
+import EpisodeCard from '../../components/EpisodeCard/EpisodeCard.jsx'
 
 const Episodes = ({ profiles, user }) => {
   const [episodes, setEpisodes] = useState([])
@@ -56,7 +57,7 @@ const Episodes = ({ profiles, user }) => {
     try {
       const data = await episodeService.createEpisode(formData)
       console.log("create ep response: ", data)
-      //setEpisode here
+      setEpisodes(data)
     } catch (err) {
       console.log(err)
     }
@@ -201,6 +202,15 @@ const Episodes = ({ profiles, user }) => {
     </>
       <div>
         <p>Episode List Here</p>
+      </div>
+      <div>
+        {episodes?.map(episode => {
+          return <>
+          <EpisodeCard episode={episode} key={episode.number} user={user} handleDelete={handleDelete}/>
+          </>
+
+        })}
+
       </div>
     </>
     </>
