@@ -53,18 +53,13 @@ const Episodes = ({ profiles, user }) => {
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    // try {
-    //   const data = await queenService.createQueen(formData)
-    //   for (let i=0; i < data.queens.length; i++) {
-    //     if (data.queens[i]._id === data.queen._id) {
-    //       data.queens[i].name = data.queen.name
-    //     }
-    //   }
-    //   console.log("create response: ", data.queens)
-    //   setQueens(data.queens)
-    // } catch (err) {
-    //   console.log(err)
-    // }
+    try {
+      const data = await episodeService.createEpisode(formData)
+      console.log("create ep response: ", data)
+      //setEpisode here
+    } catch (err) {
+      console.log(err)
+    }
     // setFormData({queenName: ""})
   }
 
@@ -188,11 +183,8 @@ const Episodes = ({ profiles, user }) => {
                       }
                     })}
                   </select>
-
-                
-
                   <div>
-                    <button className="create-league-btn">
+                    <button className="addepisode-btn">
                     Add Episode
                     </button>
                   </div>

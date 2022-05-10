@@ -77,7 +77,7 @@ const Queens = ({ profiles, user }) => {
                   <input type="text" autoComplete="off" id="queen" name="queen" value={queenName}
                   onChange={handleChange}/>
                   <div>
-                    <button className="create-league-btn">
+                    <button className="addqueen-btn">
                     Add Queen
                     </button>
                   </div>

@@ -1,5 +1,5 @@
 import * as tokenService from './tokenService'
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/eipsodes`
+const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/episodes`
 
 async function getAllEpisodes (){
   console.log("sanity check")
@@ -11,14 +11,15 @@ async function getAllEpisodes (){
 
 async function createEpisode (episode) {
   console.log(episode)
-  // return await fetch(`${BASE_URL}/addepisode/${episode}`, {
-  //   method: 'POST',
-  //   headers: {
-  //     'content-type': 'application/json',
-  //     Authorization: `Bearer ${tokenService.getToken()}`
-  //   }
-  // },)
-  // .then(res => res.json())
+  return await fetch(`${BASE_URL}/addepisode/${episode.episodeNum}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify(episode) 
+  },)
+  .then(res => res.json())
 }
 
 
