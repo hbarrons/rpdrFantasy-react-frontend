@@ -4,25 +4,54 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ?
-        <nav>
-          <ul>
-            <li>Welcome, {user.name}</li>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/myleague">My League</Link></li>
-            <li><Link to="/queens">Queens</Link></li>
-            <li><Link to="/episodes">Episodes</Link></li>
-            <li><Link to="/profiles">Profiles</Link></li>
-            <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
-            <li><Link to="/changePassword">Change Password</Link></li>
-          </ul>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <div className='container-fluid'>
+              <ul className='navbar-nav'>
+                <li nav-item="true"><Link to="/" className='nav-link active'>Home</Link></li>
+                <li nav-item="true"><Link to="/myleague" className='nav-link active'>My League</Link></li>
+                <li nav-item="true"><Link to="/queens" className='nav-link active'>Queens</Link></li>
+                <li nav-item="true"><Link to="/episodes" className='nav-link active'>Episodes</Link></li>
+                <li nav-item="true"><Link to="/profiles" className='nav-link active'>Profiles</Link></li>
+                <li nav-item="true"><Link to="" onClick={handleLogout} className='nav-link active'>LOG OUT</Link></li>
+                <li nav-item="true"><Link to="/changePassword" className='nav-link active'>Change Password</Link></li>
+              </ul>
+            </div>
+          </div>
         </nav>
       :
-        <nav>
-          <ul>
-            <li><Link to="/login">Log In</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
+      <nav className='navbar navbar-fixed-top navbar-expand-lg navbar-dark navbar-custom'>
+      <button
+        className="navbar-toggler login-toggle-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <div className='container-fluid'>
+          <ul className='navbar-nav'>
+            <li nav-item="true"><Link to="/login" className='nav-link active'>Log In</Link></li>
+            <li nav-item="true"><Link to="/signup" className='nav-link active'>Sign Up</Link></li>
           </ul>
-        </nav>
+        </div>
+      </div>
+    </nav>
       }
     </>
   )
