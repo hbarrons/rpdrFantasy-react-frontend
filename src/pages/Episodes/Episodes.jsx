@@ -46,7 +46,7 @@ const Episodes = ({ profiles, user }) => {
     try {
       const data = await episodeService.deleteEpisode(episode)
       console.log("delete ep response: ", data)
-      setEpisodes(data.episodes)
+      setEpisodes(data)
     } catch (err) {
       console.log(err)
     }
@@ -60,6 +60,7 @@ const Episodes = ({ profiles, user }) => {
         if (data.episodes[i]._id === data.episode._id) {
           data.episodes[i].number = data.episode.number
           data.episodes[i].winner = data.episode.winner
+          data.episodes[i].loser = data.episode.loser
           data.episodes[i].tops = data.episode.tops
           data.episodes[i].bottoms = data.episode.bottoms
         }
