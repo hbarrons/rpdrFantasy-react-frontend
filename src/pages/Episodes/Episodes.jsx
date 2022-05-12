@@ -46,7 +46,7 @@ const Episodes = ({ profiles, user }) => {
     try {
       const data = await episodeService.deleteEpisode(episode)
       console.log("delete ep response: ", data)
-      setEpisodes(data)
+      setEpisodes(data.episodes)
     } catch (err) {
       console.log(err)
     }
@@ -56,8 +56,16 @@ const Episodes = ({ profiles, user }) => {
     evt.preventDefault()
     try {
       const data = await episodeService.createEpisode(formData)
+      for (let i=0; i < data.episodes.length; i++) {
+        if (data.episodes[i]._id === data.episode._id) {
+          data.episodes[i].number = data.episode.number
+          data.episodes[i].winner = data.episode.winner
+          data.episodes[i].tops = data.episode.tops
+          data.episodes[i].bottoms = data.episode.bottoms
+        }
+      }
       console.log("create ep response: ", data)
-      setEpisodes(data)
+      setEpisodes(data.episodes)
     } catch (err) {
       console.log(err)
     }
@@ -204,12 +212,19 @@ const Episodes = ({ profiles, user }) => {
         <p>Episode List Here</p>
       </div>
       <div>
-        {episodes?.map(episode => {
-          return <>
-          <EpisodeCard episode={episode} key={episode.number} user={user} handleDelete={handleDelete}/>
+        {console.log("episodes: ", episodes)}
+        {episodes?.length ? 
+          <>
+            {episodes?.map(episode => {
+            return <>
+            <EpisodeCard episode={episode} key={episode.number} user={user} handleDelete={handleDelete}/>
+            </>
+           })}
           </>
+          :
+          <>No Episodes</>
+        }
 
-        })}
 
       </div>
     </>
