@@ -8,9 +8,9 @@ async function getAllQueens (){
   return await res.json()
 }
 
-async function createQueen (queen) {
-  console.log(queen)
-  return await fetch(`${BASE_URL}/addqueen/${queen.queen}`, {
+async function createQueen (queen, leagueNo) {
+  console.log("service fun:",leagueNo)
+  return await fetch(`${BASE_URL}/addqueen/${queen.queen}/${leagueNo}`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

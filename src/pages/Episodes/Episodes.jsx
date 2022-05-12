@@ -52,8 +52,10 @@ const Episodes = ({ profiles, user }) => {
     }
   }
 
+  console.log("profiles: ", profiles)
+
   const handleSubmit = async evt => {
-    evt.preventDefault()
+    console.log("hit")
     try {
       const data = await episodeService.createEpisode(formData)
       for (let i=0; i < data.episodes.length; i++) {

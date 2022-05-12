@@ -7,10 +7,16 @@ const MyLeague = ({ profiles, user }) => {
       <h1>My League Info</h1>
       {console.log(profiles)}
       {console.log(user.profile)}
-      {profiles.map(profile => {
-        return <LeagueCard profile={profile} user={user}/>
-      })}
-
+      {profiles.length ?
+        <>
+          {profiles.map(profile => {
+          return <LeagueCard profile={profile} user={user}/>
+          })}
+        </>
+        :
+        <>
+        </>
+      }
     </>
    );
 }

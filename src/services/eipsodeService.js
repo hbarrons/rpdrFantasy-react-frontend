@@ -9,9 +9,9 @@ async function getAllEpisodes (){
   return await res.json()
 }
 
-async function createEpisode (episode) {
+async function createEpisode (episode, leagueNo) {
   console.log(episode)
-  return await fetch(`${BASE_URL}/addepisode/${episode.episodeNum}`, {
+  return await fetch(`${BASE_URL}/addepisode/${episode.episodeNum}/${leagueNo}`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

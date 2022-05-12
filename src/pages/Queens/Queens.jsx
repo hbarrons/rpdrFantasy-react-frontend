@@ -38,11 +38,26 @@ const Queens = ({ profiles, user }) => {
   // const addQueenName (data) {
   //   console.log("addQueenName",data)
   // }
+  let leagueNumber = 0
+  function getLeagueNumber (user, profile) {
+    if (user.user.profile === profile._id) {
+      console.log("function profile: ", profile._id)
+      console.log("function user: ", user.user.profile)
+      leagueNumber = profile.league[0].leagueNo
+      console.log("function leagueNumber",leagueNumber)
+    }
+  }
+  console.log("leagueNumber: ", leagueNumber)
+
+  profiles.forEach(profile => {
+    getLeagueNumber({user}, profile)
+  })
 
   const handleSubmit = async evt => {
+    console.log("submit leagueNumber",leagueNumber)
     evt.preventDefault()
     try {
-      const data = await queenService.createQueen(formData)
+      const data = await queenService.createQueen(formData, leagueNumber)
       for (let i=0; i < data.queens.length; i++) {
         if (data.queens[i]._id === data.queen._id) {
           data.queens[i].name = data.queen.name
