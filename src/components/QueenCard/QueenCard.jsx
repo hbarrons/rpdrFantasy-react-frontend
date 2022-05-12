@@ -13,8 +13,8 @@ const QueenCard = ({ profile, queen, user, handleDelete }) => {
           <>
             <li>{queen.name} {queen.elminiated ? 
               "(Eliminated)" : ""}</li>
-            <button>Add to Roster</button>
-            <button onClick={() => handleDelete(queen._id)}>Delete</button>
+            <button type="button" className="btn btn-primary" >Add to Roster</button>  
+            <button type="button" className="btn btn-danger" onClick={() => handleDelete(queen._id)}>Delete</button>
           </>
         :
           <>

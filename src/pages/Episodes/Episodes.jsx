@@ -194,7 +194,7 @@ const Episodes = ({ profiles, user }) => {
                     })}
                   </select>
                   <div>
-                    <button className="addepisode-btn">
+                    <button type="button" className="btn btn-primary">
                     Add Episode
                     </button>
                   </div>
