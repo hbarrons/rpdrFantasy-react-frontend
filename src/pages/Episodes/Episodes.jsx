@@ -43,10 +43,12 @@ const Episodes = ({ profiles, user }) => {
   }
 
   let leagueNumber = 0
+  // let profileNum = ""
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
       console.log("function profile: ", profile._id)
       console.log("function user: ", user.user.profile)
+      // profileNum = profile.
       leagueNumber = profile.league[0].leagueNo
       console.log("function leagueNumber",leagueNumber)
     }
@@ -235,8 +237,11 @@ const Episodes = ({ profiles, user }) => {
         {episodes?.length ? 
           <>
             {episodes?.map(episode => {
+              console.log(episode.leagueNo)
+              console.log()
+              if (episode.leagueNo === leagueNumber)
             return <>
-            <EpisodeCard episode={episode} key={episode.number} user={user} handleDelete={handleDelete}/>
+            <EpisodeCard leagueNumber={leagueNumber} episode={episode} key={episode.number} user={user} handleDelete={handleDelete}/>
             </>
            })}
           </>

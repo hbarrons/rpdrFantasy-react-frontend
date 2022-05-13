@@ -1,5 +1,5 @@
 
-const EpisodeCard = ({ episode, user, handleDelete }) => {
+const EpisodeCard = ({ episode, user, handleDelete, leagueNumber }) => {
   return ( 
     <>
       <h3>Episode {episode.number}</h3>
