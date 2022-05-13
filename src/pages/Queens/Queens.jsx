@@ -112,6 +112,7 @@ const Queens = ({ profiles, user }) => {
             {profiles?.map(profile => {
           return <>
             {queens?.map(queen => {
+              if (queen.leagueNo === leagueNumber)
               return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete}/>
             })}
           </>

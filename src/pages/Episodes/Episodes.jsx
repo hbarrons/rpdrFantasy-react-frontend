@@ -237,12 +237,10 @@ const Episodes = ({ profiles, user }) => {
         {episodes?.length ? 
           <>
             {episodes?.map(episode => {
-              console.log(episode.leagueNo)
-              console.log()
               if (episode.leagueNo === leagueNumber)
-            return <>
-            <EpisodeCard leagueNumber={leagueNumber} episode={episode} key={episode.number} user={user} handleDelete={handleDelete}/>
-            </>
+                return <>
+                  <EpisodeCard episode={episode} key={episode.number} user={user} handleDelete={handleDelete}/>
+                </>
            })}
           </>
           :
