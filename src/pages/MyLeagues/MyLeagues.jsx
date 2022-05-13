@@ -53,6 +53,19 @@ const MyLeague = ({ profiles, user }) => {
       }
       <div>
         <h3>My Roster</h3>
+        {profiles?.length ?
+        <>{profiles?.map(profile => {
+          if (user.profile === profile._id) {
+            console.log(profile.roster)
+           return profile.roster.map(queen => {
+            //   console.log("queen roster:", queen.queen)
+              return <li>{queen.queen}</li>
+            })
+          }
+        })}</>
+        :
+        <></>
+        }
       </div>
       <div>
         <h3>Last Weeks Episode Results:</h3>
