@@ -36,15 +36,15 @@ async function deleteQueen (queen) {
 
 async function eliminateQueen (queen, leagueNo) {
   console.log("eliminated queen: ", queen, leagueNo)
-  // return await fetch(`${BASE_URL}/deletequeen/${queen}`, {
-  //   method: 'DELETE',
-  //   headers: {
-  //     'content-type': 'application/json',
-  //     Authorization: `Bearer ${tokenService.getToken()}`
-  //   },
-  //   body: JSON.stringify()
-  // },)
-  // .then(res => res.json())
+  return await fetch(`${BASE_URL}/eliminatequeen/${queen}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
 }
 
 
