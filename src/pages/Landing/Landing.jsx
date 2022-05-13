@@ -25,7 +25,7 @@ const Landing = ({ user, profiles }) => {
          })}
         </>
         :
-        <>No Profiles</>
+        <></>
       }
       
       <Rules />

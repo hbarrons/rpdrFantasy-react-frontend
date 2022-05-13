@@ -90,7 +90,7 @@ const Queens = ({ profiles, user }) => {
                   <input type="text" autoComplete="off" id="queen" name="queen" value={queenName}
                   onChange={handleChange}/>
                   <div>
-                    <button className="addqueen-btn">
+                    <button className="btn btn-primary">
                     Add Queen
                     </button>
                   </div>

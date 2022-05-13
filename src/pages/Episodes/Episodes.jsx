@@ -43,18 +43,14 @@ const Episodes = ({ profiles, user }) => {
   }
 
   let leagueNumber = 0
-  // let profileNum = ""
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
       console.log("function profile: ", profile._id)
       console.log("function user: ", user.user.profile)
-      // profileNum = profile.
       leagueNumber = profile.league[0].leagueNo
       console.log("function leagueNumber",leagueNumber)
     }
   }
-  console.log("leagueNumber: ", leagueNumber)
-
   profiles.forEach(profile => {
     getLeagueNumber({user}, profile)
   })
