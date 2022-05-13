@@ -33,8 +33,24 @@ async function deleteQueen (queen) {
   .then(res => res.json())
 }
 
+
+async function eliminateQueen (queen, leagueNo) {
+  console.log("eliminated queen: ", queen, leagueNo)
+  // return await fetch(`${BASE_URL}/deletequeen/${queen}`, {
+  //   method: 'DELETE',
+  //   headers: {
+  //     'content-type': 'application/json',
+  //     Authorization: `Bearer ${tokenService.getToken()}`
+  //   },
+  //   body: JSON.stringify()
+  // },)
+  // .then(res => res.json())
+}
+
+
 export {
   getAllQueens,
   createQueen,
-  deleteQueen
+  deleteQueen,
+  eliminateQueen,
 }

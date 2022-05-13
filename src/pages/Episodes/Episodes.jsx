@@ -10,7 +10,6 @@ const Episodes = ({ profiles, user }) => {
   useEffect(() => {
     queenService.getAllQueens()
     .then(queens => {
-      console.log("useEffect: ", queens)
       setQueens(queens)
     })
   }, [])
@@ -18,7 +17,6 @@ const Episodes = ({ profiles, user }) => {
   useEffect(() => {
     episodeService.getAllEpisodes()
     .then(episodes => {
-      console.log("useEffect: ", episodes)
       setEpisodes(episodes)
     })
   }, [])
@@ -45,10 +43,7 @@ const Episodes = ({ profiles, user }) => {
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
-      console.log("function profile: ", profile._id)
-      console.log("function user: ", user.user.profile)
       leagueNumber = profile.league[0].leagueNo
-      console.log("function leagueNumber",leagueNumber)
     }
   }
   profiles.forEach(profile => {
@@ -65,12 +60,25 @@ const Episodes = ({ profiles, user }) => {
     }
   }
 
-  console.log("profiles: ", profiles)
+
+  let eliminatedQueen = ""
+  function getEliminatedQueen (elimQueen) {
+    queens.map(queen => {
+      if (queen.leagueNo === leagueNumber && queen.name === elimQueen) {
+        console.log("function queen",elimQueen)
+        console.log("function queen", queen)
+        eliminatedQueen = queen._id
+      }
+    })
+  }
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    console.log("hit")
-    console.log("submit leagueNumber: ", leagueNumber)
+    console.log("formData.loser",formData.loser)
+
+    getEliminatedQueen(formData.loser)
+
+
     try {
       const data = await episodeService.createEpisode(formData, leagueNumber)
       for (let i=0; i < data.episodes.length; i++) {
@@ -83,6 +91,13 @@ const Episodes = ({ profiles, user }) => {
         }
       }
       console.log("create ep response: ", data)
+      setEpisodes(data.episodes)
+    } catch (err) {
+      console.log(err)
+    }
+    try {
+      const data = await queenService.eliminateQueen(eliminatedQueen, leagueNumber)
+      console.log("elim queen response: ", data)
       setEpisodes(data.episodes)
     } catch (err) {
       console.log(err)
