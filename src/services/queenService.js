@@ -66,4 +66,5 @@ export {
   createQueen,
   deleteQueen,
   eliminateQueen,
+  addToRoster
 }

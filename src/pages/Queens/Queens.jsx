@@ -69,6 +69,16 @@ const Queens = ({ profiles, user }) => {
     setFormData({queenName: ""})
   }
 
+  const addToRoster = async (queen) => {
+    console.log("queen: ", queen)
+    try {
+      const data = await queenService.addToRoster(queen)
+      console.log("create response: ", data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const { queenName } = formData
 
 
@@ -113,7 +123,7 @@ const Queens = ({ profiles, user }) => {
           return <>
             {queens?.map(queen => {
               if (queen.leagueNo === leagueNumber)
-              return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete}/>
+              return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster}/>
             })}
           </>
         })}

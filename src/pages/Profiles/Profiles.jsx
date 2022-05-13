@@ -9,9 +9,12 @@ const Profiles = ({ profiles, user }) => {
       leagueNumber = profile.league[0].leagueNo
     }
   }
-  profiles.forEach(profile => {
+  profiles.length ?
+  profiles?.forEach(profile => {
     getLeagueNumber({user}, profile)
   })
+  :
+  console.log(profiles)
   
   
   return (
@@ -19,14 +22,14 @@ const Profiles = ({ profiles, user }) => {
       <h1>Hello. This is a list of all the profiles.</h1>
       {profiles.length ? 
         <>
-          {profiles.map(profile=>
+          {profiles?.map(profile=>
             {if (profile.league[0].leagueNo === leagueNumber) {
               return <p key={profile._id}>{profile.name}</p>
             }}
           )}
         </>
       :
-        <p>No profiles yet</p>
+        <p></p>
       }
     </>
   )

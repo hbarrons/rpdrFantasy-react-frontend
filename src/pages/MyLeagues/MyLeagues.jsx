@@ -52,6 +52,9 @@ const MyLeague = ({ profiles, user }) => {
         </>
       }
       <div>
+        <h3>My Roster</h3>
+      </div>
+      <div>
         <h3>Last Weeks Episode Results:</h3>
         {episodes.length ?
           <>
