@@ -96,7 +96,7 @@ const Episodes = ({ profiles, user }) => {
       console.log(err)
     }
     try {
-      const data = await queenService.eliminateQueen(eliminatedQueen, leagueNumber)
+      const data = await queenService.eliminateQueen(eliminatedQueen)
       console.log("elim queen response: ", data)
       setEpisodes(data.episodes)
     } catch (err) {

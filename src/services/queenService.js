@@ -34,9 +34,22 @@ async function deleteQueen (queen) {
 }
 
 
-async function eliminateQueen (queen, leagueNo) {
-  console.log("eliminated queen: ", queen, leagueNo)
+async function eliminateQueen (queen) {
+  console.log("eliminated queen: ", queen)
   return await fetch(`${BASE_URL}/eliminatequeen/${queen}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}
+
+async function addToRoster (queen) {
+  console.log("rostered queen: ", queen)
+  return await fetch(`${BASE_URL}/addtoroster/${queen}`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

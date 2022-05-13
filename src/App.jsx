@@ -54,7 +54,7 @@ const App = () => {
         <Route path="/episodes" element={<Episodes profiles={profiles} user={user}/>}>Episodes</Route>
         <Route
           path="/profiles"
-          element={user ? <Profiles profiles={profiles}/> : <Navigate to="/login" />}
+          element={user ? <Profiles profiles={profiles} user={user}/> : <Navigate to="/login" />}
         />
         <Route
           path="/changePassword"
