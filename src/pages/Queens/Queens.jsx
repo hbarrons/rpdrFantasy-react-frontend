@@ -35,9 +35,7 @@ const Queens = ({ profiles, user }) => {
     }
   }
 
-  // const addQueenName (data) {
-  //   console.log("addQueenName",data)
-  // }
+
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {

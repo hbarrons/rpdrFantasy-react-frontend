@@ -42,6 +42,21 @@ const Episodes = ({ profiles, user }) => {
     })
   }
 
+  let leagueNumber = 0
+  function getLeagueNumber (user, profile) {
+    if (user.user.profile === profile._id) {
+      console.log("function profile: ", profile._id)
+      console.log("function user: ", user.user.profile)
+      leagueNumber = profile.league[0].leagueNo
+      console.log("function leagueNumber",leagueNumber)
+    }
+  }
+  console.log("leagueNumber: ", leagueNumber)
+
+  profiles.forEach(profile => {
+    getLeagueNumber({user}, profile)
+  })
+
   const handleDelete = async (episode) => {
     try {
       const data = await episodeService.deleteEpisode(episode)
@@ -55,9 +70,11 @@ const Episodes = ({ profiles, user }) => {
   console.log("profiles: ", profiles)
 
   const handleSubmit = async evt => {
+    evt.preventDefault()
     console.log("hit")
+    console.log("submit leagueNumber: ", leagueNumber)
     try {
-      const data = await episodeService.createEpisode(formData)
+      const data = await episodeService.createEpisode(formData, leagueNumber)
       for (let i=0; i < data.episodes.length; i++) {
         if (data.episodes[i]._id === data.episode._id) {
           data.episodes[i].number = data.episode.number
@@ -72,7 +89,6 @@ const Episodes = ({ profiles, user }) => {
     } catch (err) {
       console.log(err)
     }
-    // setFormData({queenName: ""})
   }
 
   const { episodeNum } = formData
@@ -85,7 +101,7 @@ const Episodes = ({ profiles, user }) => {
   const { bottom2 } = formData
   const { bottom3 } = formData
 
-
+  
 
 
   return ( 
@@ -196,7 +212,7 @@ const Episodes = ({ profiles, user }) => {
                     })}
                   </select>
                   <div>
-                    <button type="button" className="btn btn-primary">
+                    <button className="btn btn-primary">
                     Add Episode
                     </button>
                   </div>
