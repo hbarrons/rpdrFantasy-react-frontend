@@ -47,18 +47,7 @@ async function eliminateQueen (queen) {
   .then(res => res.json())
 }
 
-async function addToRoster (queen) {
-  console.log("rostered queen: ", queen)
-  return await fetch(`${BASE_URL}/addtoroster/${queen}`, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: `Bearer ${tokenService.getToken()}`
-    },
-    body: JSON.stringify()
-  },)
-  .then(res => res.json())
-}
+
 
 
 export {
@@ -66,5 +55,4 @@ export {
   createQueen,
   deleteQueen,
   eliminateQueen,
-  addToRoster
 }

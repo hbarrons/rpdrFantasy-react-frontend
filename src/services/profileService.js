@@ -35,4 +35,18 @@ export async function joinLeague(leagueInfo, userId) {
   .then(res => res.json())
 }
 
+export async function addToRoster (queen, user) {
+  console.log("rostered queen: ", queen)
+  console.log("user: ", user)
+  return await fetch(`${BASE_URL}/addtoroster/${user}/${queen}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}
+
 

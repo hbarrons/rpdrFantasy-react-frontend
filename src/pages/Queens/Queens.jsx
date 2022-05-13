@@ -1,6 +1,7 @@
 import QueenCard from "../../components/QueenCard/QueenCard";
 import { useState, useEffect } from 'react'
 import * as queenService from '../../services/queenService'
+import * as profileService from '../../services/profileService'
 
 
 const Queens = ({ profiles, user }) => {
@@ -69,10 +70,10 @@ const Queens = ({ profiles, user }) => {
     setFormData({queenName: ""})
   }
 
-  const addToRoster = async (queen) => {
-    console.log("queen: ", queen)
+  const addToRoster = async (queen, user) => {
+    console.log("user: ", user)
     try {
-      const data = await queenService.addToRoster(queen)
+      const data = await profileService.addToRoster(queen, user)
       console.log("create response: ", data)
     } catch (err) {
       console.log(err)
