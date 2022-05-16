@@ -49,4 +49,18 @@ export async function addToRoster (queen, user) {
   .then(res => res.json())
 }
 
+export async function removeFromRoster (queen, user) {
+  console.log("rostered queen: ", queen)
+  console.log("user: ", user)
+  return await fetch(`${BASE_URL}/removefromroster/${user}/${queen}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}
+
 

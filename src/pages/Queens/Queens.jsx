@@ -80,6 +80,16 @@ const Queens = ({ profiles, user }) => {
     }
   }
 
+  const removeFromRoster = async (queen, user) => {
+    console.log("sanity")
+    try {
+      const data = await profileService.removeFromRoster(queen, user)
+      console.log("create response: ", data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const { queenName } = formData
 
 
@@ -124,7 +134,7 @@ const Queens = ({ profiles, user }) => {
           return <>
             {queens?.map(queen => {
               if (queen.leagueNo === leagueNumber)
-              return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster}/>
+              return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/>
             })}
           </>
         })}

@@ -43,7 +43,7 @@ const MyLeague = ({ profiles, user }) => {
       <h1>My League Info</h1>
       {profiles.length ?
         <>
-          {profiles.map(profile => {
+          {profiles?.map(profile => {
           return <LeagueCard profile={profile} user={user}/>
           })}
         </>
@@ -59,7 +59,10 @@ const MyLeague = ({ profiles, user }) => {
             console.log(profile.roster)
            return profile.roster.map(queen => {
             //   console.log("queen roster:", queen.queen)
-              return <li>{queen.queen}</li>
+              return <>
+                <li>{queen.queen}</li>
+                <button className="btn btn-danger">Remove</button>
+              </>
             })
           }
         })}</>
