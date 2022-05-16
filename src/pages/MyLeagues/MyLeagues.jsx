@@ -37,6 +37,8 @@ const MyLeague = ({ profiles, user }) => {
     getLeagueNumber({user}, profile)
   })
 
+  
+
 
   return ( 
     <>

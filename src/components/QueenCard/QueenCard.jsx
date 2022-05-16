@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFromRoster }) => {
 
   
-  console.log(user)
   return ( 
     <>{profile._id === user.profile ? 
       <>
