@@ -143,7 +143,7 @@ const Episodes = ({ profiles, user }) => {
                     <option value="default">-Select Queen-</option>
                     {console.log(profile)}
                     {queens?.map(queen => {
-                      if (queen.eliminated === false  && queen.leagueNo === profile.league[0].leagueNo) {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                         return <option value={queen.name}>{queen.name}</option>
                       }
                     })}
@@ -154,7 +154,7 @@ const Episodes = ({ profiles, user }) => {
                   onChange={handleChange}>
                     <option value="default">-Select Queen-</option>
                     {queens?.map(queen => {
-                      if (queen.eliminated === false) {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                         return <option value={queen.name}>{queen.name}</option>
                       }
                     })}
@@ -165,7 +165,7 @@ const Episodes = ({ profiles, user }) => {
                   onChange={handleChange}>
                     <option value="default">-Select Queen-</option>
                     {queens?.map(queen => {
-                      if (queen.eliminated === false) {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                         return <option value={queen.name}>{queen.name}</option>
                       }
                     })}
@@ -176,7 +176,7 @@ const Episodes = ({ profiles, user }) => {
                   onChange={handleChange}>
                     <option value="default">-Select Queen-</option>
                     {queens?.map(queen => {
-                      if (queen.eliminated === false) {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                         return <option value={queen.name}>{queen.name}</option>
                       }
                     })}
@@ -187,7 +187,7 @@ const Episodes = ({ profiles, user }) => {
                   onChange={handleChange}>
                     <option value="default">-Select Queen-</option>
                     {queens?.map(queen => {
-                      if (queen.eliminated === false) {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                         return <option value={queen.name}>{queen.name}</option>
                       }
                     })}
@@ -198,7 +198,7 @@ const Episodes = ({ profiles, user }) => {
                   onChange={handleChange}>
                     <option value="default">-Select Queen-</option>
                     {queens?.map(queen => {
-                      if (queen.eliminated === false) {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                         return <option value={queen.name}>{queen.name}</option>
                       }
                     })}
@@ -209,7 +209,7 @@ const Episodes = ({ profiles, user }) => {
                   onChange={handleChange}>
                     <option value="default">-Select Queen-</option>
                     {queens?.map(queen => {
-                      if (queen.eliminated === false) {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                         return <option value={queen.name}>{queen.name}</option>
                       }
                     })}
@@ -220,7 +220,7 @@ const Episodes = ({ profiles, user }) => {
                   onChange={handleChange}>
                     <option value="default">-Select Queen-</option>
                     {queens?.map(queen => {
-                      if (queen.eliminated === false) {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                         return <option value={queen.name}>{queen.name}</option>
                       }
                     })}
