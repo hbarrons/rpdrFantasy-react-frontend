@@ -54,8 +54,8 @@ const Episodes = ({ profiles, user }) => {
   function getEliminatedQueen (elimQueen) {
     queens.map(queen => {
       if (queen.leagueNo === leagueNumber && queen.name === elimQueen) {
-        console.log("function queen",elimQueen)
-        console.log("function queen", queen)
+        console.log("input queen",elimQueen)
+        console.log("lookup queen", queen)
         eliminatedQueen = queen._id
       }
     })
@@ -93,7 +93,8 @@ const Episodes = ({ profiles, user }) => {
   }
 
   const handleDelete = async (episode) => {
-
+    console.log("episode.loser: ", episode.loser)
+    getEliminatedQueen(episode.loser)
 
     try {
       const data = await episodeService.deleteEpisode(episode)
@@ -104,7 +105,7 @@ const Episodes = ({ profiles, user }) => {
     }
 
     try {
-      const data = await queenService.undoElim(episode)
+      const data = await queenService.undoElim(eliminatedQueen)
       console.log("undo elim response: ", data)
     } catch (err) {
       console.log(err)
@@ -258,7 +259,7 @@ const Episodes = ({ profiles, user }) => {
             {episodes?.map(episode => {
               if (episode.leagueNo === leagueNumber)
                 return <>
-                  <EpisodeCard episode={episode} key={episode.number} user={user} handleDelete={handleDelete}/>
+                  <EpisodeCard episode={episode} key={episode.number} user={user} handleDelete={handleDelete} getEliminatedQueen={getEliminatedQueen}/>
                 </>
            })}
           </>
