@@ -46,7 +46,7 @@ const Episodes = ({ profiles, user }) => {
       leagueNumber = profile.league[0].leagueNo
     }
   }
-  profiles.forEach(profile => {
+  profiles?.forEach(profile => {
     getLeagueNumber({user}, profile)
   })
 

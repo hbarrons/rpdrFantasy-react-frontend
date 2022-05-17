@@ -48,9 +48,12 @@ const Queens = ({ profiles, user }) => {
   }
   console.log("leagueNumber: ", leagueNumber)
 
-  profiles.forEach(profile => {
-    getLeagueNumber({user}, profile)
-  })
+  profiles.length ?
+    profiles.forEach(profile => {
+      getLeagueNumber({user}, profile)
+    })
+    :
+    console.log("")
 
   const handleSubmit = async evt => {
     console.log("submit leagueNumber",leagueNumber)
@@ -96,48 +99,60 @@ const Queens = ({ profiles, user }) => {
   return ( 
     <>
      <>
-      {profiles?.map(profile => 
-        profile._id === user.profile ? 
-        <>
-          {profile.league[0]?.isAdmin ? 
-            <>
-              <h1>Add A Queen:</h1>
-              <form
-                autoComplete="off"
-                onSubmit={handleSubmit}
-                className="add-queen-form"
-                >
-                  <label htmlFor="queen">Queen Name:</label>
-                  <input type="text" autoComplete="off" id="queen" name="queen" value={queenName}
-                  onChange={handleChange}/>
-                  <div>
-                    <button className="btn btn-primary">
-                    Add Queen
-                    </button>
-                  </div>
-                </form>
-            </>
+     {profiles.length ? 
+      <>
+        {profiles?.map(profile => 
+          profile._id === user.profile ? 
+          <>
+            {profile.league[0]?.isAdmin ? 
+              <>
+                <h1>Add A Queen:</h1>
+                <form
+                  autoComplete="off"
+                  onSubmit={handleSubmit}
+                  className="add-queen-form"
+                  >
+                    <label htmlFor="queen">Queen Name:</label>
+                    <input type="text" autoComplete="off" id="queen" name="queen" value={queenName}
+                    onChange={handleChange}/>
+                    <div>
+                      <button className="btn btn-primary">
+                      Add Queen
+                      </button>
+                    </div>
+                  </form>
+              </>
+            :
+              <></>
+            }
+            
+          </>
           :
-            <></>
-          }
-          
-        </>
-        :
-        <></>
-      )}
+          <></>
+        )}
+      </>
+      :
+      <></>
+      }
     </>
       <div>
         <h1>Queens:</h1>
         {queens.length ? 
           <>
-            {profiles?.map(profile => {
-          return <>
-            {queens?.map(queen => {
-              if (queen.leagueNo === leagueNumber && queen.eliminated === false)
-              return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/>
-            })}
-          </>
-        })}
+          {profiles.length ? 
+            <>
+              {profiles?.map(profile => {
+            return <>
+              {queens?.map(queen => {
+                if (queen.leagueNo === leagueNumber && queen.eliminated === false)
+                return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/>
+                 })}
+               </>
+              })}
+            </>
+            :
+            <></>
+          }
           <h3>Sashay'd Away</h3>
             {queens?.map(queen => {
               if (queen.leagueNo === leagueNumber && queen.eliminated === true)
