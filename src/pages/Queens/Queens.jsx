@@ -96,10 +96,19 @@ const Queens = ({ user }) => {
   }
 
   const removeFromRoster = async (queen, user) => {
-    console.log("sanity")
     try {
       const data = await profileService.removeFromRoster(queen, user)
       console.log("remove from roster response: ", data)
+      for (let i=0; i < data.length; i++) {
+        if (data[i]._id === user) {
+          data[i].roster.forEach((rosterQueen, idx) => {
+            if (rosterQueen.queen === queen)  {
+              data[i].roster.splice(idx, 1)
+              console.log(data[i].roster)
+            }
+          })
+        }
+      }
       setProfiles(data)
     } catch (err) {
       console.log(err)
