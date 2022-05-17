@@ -47,6 +47,19 @@ async function eliminateQueen (queen) {
   .then(res => res.json())
 }
 
+async function undoElim (queen) {
+  console.log("eliminated queen: ", queen)
+  return await fetch(`${BASE_URL}/undoelim/${queen}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}
+
 
 
 
@@ -55,4 +68,5 @@ export {
   createQueen,
   deleteQueen,
   eliminateQueen,
+  undoElim
 }

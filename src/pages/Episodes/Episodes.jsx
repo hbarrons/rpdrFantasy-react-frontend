@@ -50,17 +50,6 @@ const Episodes = ({ profiles, user }) => {
     getLeagueNumber({user}, profile)
   })
 
-  const handleDelete = async (episode) => {
-    try {
-      const data = await episodeService.deleteEpisode(episode)
-      console.log("delete ep response: ", data)
-      setEpisodes(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-
   let eliminatedQueen = ""
   function getEliminatedQueen (elimQueen) {
     queens.map(queen => {
@@ -77,7 +66,6 @@ const Episodes = ({ profiles, user }) => {
     console.log("formData.loser",formData.loser)
 
     getEliminatedQueen(formData.loser)
-
 
     try {
       const data = await episodeService.createEpisode(formData, leagueNumber)
@@ -99,6 +87,25 @@ const Episodes = ({ profiles, user }) => {
       const data = await queenService.eliminateQueen(eliminatedQueen)
       console.log("elim queen response: ", data)
       setEpisodes(data.episodes)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleDelete = async (episode) => {
+
+
+    try {
+      const data = await episodeService.deleteEpisode(episode)
+      console.log("delete ep response: ", data)
+      setEpisodes(data)
+    } catch (err) {
+      console.log(err)
+    }
+
+    try {
+      const data = await queenService.undoElim(episode)
+      console.log("undo elim response: ", data)
     } catch (err) {
       console.log(err)
     }

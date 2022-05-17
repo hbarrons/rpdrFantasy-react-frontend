@@ -133,11 +133,18 @@ const Queens = ({ profiles, user }) => {
             {profiles?.map(profile => {
           return <>
             {queens?.map(queen => {
-              if (queen.leagueNo === leagueNumber)
+              if (queen.leagueNo === leagueNumber && queen.eliminated === false)
               return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/>
             })}
           </>
         })}
+          <h3>Sashay'd Away</h3>
+            {queens?.map(queen => {
+              if (queen.leagueNo === leagueNumber && queen.eliminated === true)
+              return <>
+                <li>{queen.name}</li>
+              </>
+            })}
           </>
           :
           <>No Queens</>
