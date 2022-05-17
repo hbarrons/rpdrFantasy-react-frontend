@@ -47,55 +47,64 @@ const MyLeague = ({ user }) => {
     getLeagueNumber({user}, profile)
   })
 
-  const addToRoster = async (queen, user) => {
-    console.log("user: ", user)
-    try {
-      const data = await profileService.addToRoster(queen, user)
-      console.log("add to roster response: ", data)
-      setProfiles(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
   const removeFromRoster = async (queen, user) => {
-    console.log("sanity")
     try {
       const data = await profileService.removeFromRoster(queen, user)
       console.log("remove from roster response: ", data)
+      for (let i=0; i < data.length; i++) {
+        if (data[i]._id === user) {
+          data[i].roster.forEach((rosterQueen, idx) => {
+            if (rosterQueen.queen === queen)  {
+              data[i].roster.splice(idx, 1)
+              console.log(data[i].roster)
+            }
+          })
+        }
+      }
       setProfiles(data)
     } catch (err) {
       console.log(err)
     }
   }
   
-
+  let leagueEpisodes = []
+  episodes.length ?
+    episodes.map(episode => {
+    if (episode.leagueNo === leagueNumber) {
+      leagueEpisodes.push(episode)
+    }})
+    :
+    console.log(leagueEpisodes)
   
+
+  console.log("leagueEpisodes: ", leagueEpisodes)
 
 
   return ( 
     <>
       <h1>My League Info</h1>
-      {profiles.length ?
-        <>
-          {profiles?.map(profile => {
-          return <LeagueCard profile={profile} user={user}/>
-          })}
-        </>
-        :
-        <>
-        </>
-      }
-      <div>
+      <div className="league-info">
+        {profiles.length ?
+          <>
+            {profiles?.map(profile => {
+            return <LeagueCard profile={profile} user={user}/>
+            })}
+          </>
+          :
+          <>
+          </>
+        }
+      </div>
+      <div className="rules">
         <Rules />
       </div>
-      <div>
+      <div className="myroster">
         <h3>My Roster</h3>
         {profiles?.length ?
         <>{profiles?.map(profile => {
           if (user.profile === profile._id) {
             return profile.roster.map(queen => {
-              return <><QueenCard profile={profile} user={user} queen={queen} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/></>
+              return <><QueenCard profile={profile} user={user} queen={queen} removeFromRoster={removeFromRoster}/></>
             })
           }
         })}</>
@@ -104,26 +113,15 @@ const MyLeague = ({ user }) => {
         }
       </div>
       <div>
-        <h3>Episode Results:</h3>
-        {episodes.length ?
-          <>
-          {episodes.map(episode => {
-            if (episode.leagueNo === leagueNumber) {
-              return <>
-                {console.log(episode)}
-                <h3>Episode {episode.number} </h3>
-                <h5>Winner: {episode.winner} (10 points)</h5>
-                <h5>Loser: {episode.loser} (-3 points)</h5>
-                <h5>Tops: {episode.tops[0]}, {episode.tops[1]}, {episode.tops[2]} (5 points)</h5>
-                <h5>Bottoms: {episode.bottoms[0]}, {episode.bottoms[1]}, {episode.bottoms[2]} (-2 points)</h5>
-              </>
-            }
-          })}
+        <h3>Last Week's Results:</h3>
+        <>
 
-          </>
-          :
-          <></>
-        }
+                <h3>Episode {leagueEpisodes[leagueEpisodes.length -1]?.number} </h3>
+                <h5>Winner: {leagueEpisodes[leagueEpisodes.length -1]?.winner} (10 points)</h5>
+                <h5>Loser: {leagueEpisodes[leagueEpisodes.length -1]?.loser} (-3 points)</h5>
+                <h5>Tops: {leagueEpisodes[leagueEpisodes.length -1]?.tops[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[2]} (5 points)</h5>
+                <h5>Bottoms: {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[2]} (-2 points)</h5>
+              </>
       </div>
       <div>
         <h3>Remaining Queens:</h3>

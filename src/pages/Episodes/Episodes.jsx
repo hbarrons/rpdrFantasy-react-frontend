@@ -124,7 +124,7 @@ const Episodes = ({ profiles, user }) => {
   return ( 
     <>
     <>
-      <h1>Episode Info Here</h1>
+    <h1>Episode's</h1>
      <>
       {profiles?.map(profile => 
         profile._id === user.profile ? 
@@ -246,7 +246,6 @@ const Episodes = ({ profiles, user }) => {
       )}
     </>
       <div>
-        <p>Episode List Here</p>
       </div>
       <div>
         {console.log("episodes: ", episodes)}

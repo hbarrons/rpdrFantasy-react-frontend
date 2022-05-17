@@ -19,12 +19,21 @@ const Profiles = ({ profiles, user }) => {
   
   return (
     <>
-      <h1>Hello. This is a list of all the profiles.</h1>
+      <h1>Players</h1>
       {profiles.length ? 
         <>
           {profiles?.map(profile=>
-            {if (profile.league[0].leagueNo === leagueNumber) {
-              return <p key={profile._id}>{profile.name}</p>
+            {if (profile.league[0]?.leagueNo === leagueNumber) {
+              console.log(profile)
+              return <>
+                <h2>{profile.name} (score here)</h2>
+                <h5>Roster:</h5>
+                {profile.roster.map(queen => {
+                  return <><li>{queen.queen}</li>
+                  </>
+                })}
+              
+              </>
             }}
           )}
         </>
