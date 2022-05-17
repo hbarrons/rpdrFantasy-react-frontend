@@ -2,11 +2,18 @@ import LeagueCard from "../../components/LeagueCard/LeagueCard"
 import { useState, useEffect } from 'react'
 import * as episodeService from '../../services/eipsodeService.js'
 import * as queenService from '../../services/queenService'
+import * as profileService from '../../services/profileService'
 
 
-const MyLeague = ({ profiles, user }) => {
+const MyLeague = ({ user }) => {
   const [episodes, setEpisodes] = useState([])
   const [queens, setQueens] = useState([])
+  const [profiles, setProfiles] = useState([])
+
+  useEffect(()=> {
+    profileService.getAllProfiles()
+    .then(profiles => setProfiles(profiles))
+  }, [])
 
   useEffect(() => {
     queenService.getAllQueens()
@@ -36,6 +43,8 @@ const MyLeague = ({ profiles, user }) => {
   profiles.forEach(profile => {
     getLeagueNumber({user}, profile)
   })
+
+  
 
   
 
