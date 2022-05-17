@@ -2,8 +2,14 @@ import { Link, useNavigate, Navigate  } from 'react-router-dom'
 
 import './NavBar.css'
 
-const NavBar = ({ user, handleLogout }) => {
-
+const NavBar = ({ user, profiles, handleLogout }) => {
+  // let userProfile = {}
+  // profiles?.forEach(profile => {
+  //   if (profile._id === user.profile) {
+  //     return userProfile = profile
+  //   }
+  // })
+  // console.log("userProfile: ", userProfile)
   return (
     <>
       {user ?

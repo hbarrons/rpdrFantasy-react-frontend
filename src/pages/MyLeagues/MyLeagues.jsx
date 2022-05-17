@@ -4,6 +4,8 @@ import * as episodeService from '../../services/eipsodeService.js'
 import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
 import QueenCard from "../../components/QueenCard/QueenCard"
+import Rules from "../../components/Rules/Rules"
+import { Link } from "react-router-dom"
 
 
 const MyLeague = ({ user }) => {
@@ -84,6 +86,9 @@ const MyLeague = ({ user }) => {
         <>
         </>
       }
+      <div>
+        <Rules />
+      </div>
       <div>
         <h3>My Roster</h3>
         {profiles?.length ?

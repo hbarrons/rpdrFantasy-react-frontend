@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Rules from '../../components/Rules/Rules'
 import LeagueCard from '../../components/LeagueCard/LeagueCard'
 import Leaguecard from '../../components/LeagueCard/LeagueCard'
+import RuPaul from '../../pages/Landing/RuPaul.png'
 
 const Landing = ({ user, profiles }) => {
   return (
@@ -23,12 +24,16 @@ const Landing = ({ user, profiles }) => {
           }
         }
          })}
+         <h2>Start Your Engines</h2>
+         <img src={RuPaul} alt="RuPaul's Face" />
+         <h2>and may the Best Guesser, Win!</h2>
         </>
         :
-        <></>
+        <>
+          <img src={RuPaul} alt="RuPaul's Face" />
+        </>
       }
       
-      <Rules />
     </main>
   )
 }
