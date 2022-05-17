@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import * as episodeService from '../../services/eipsodeService.js'
 import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
+import QueenCard from "../../components/QueenCard/QueenCard"
 
 
 const MyLeague = ({ user }) => {
@@ -67,13 +68,8 @@ const MyLeague = ({ user }) => {
         {profiles?.length ?
         <>{profiles?.map(profile => {
           if (user.profile === profile._id) {
-            console.log(profile.roster)
-           return profile.roster.map(queen => {
-            //   console.log("queen roster:", queen.queen)
-              return <>
-                <li>{queen.queen}</li>
-                <button className="btn btn-danger">Remove</button>
-              </>
+            return profile.roster.map(queen => {
+              return <><QueenCard profile={profile} user={user} queen={queen}/></>
             })
           }
         })}</>

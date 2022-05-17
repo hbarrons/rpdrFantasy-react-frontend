@@ -4,8 +4,11 @@ import { useState, useEffect } from 'react'
 
 const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFromRoster }) => {
 
-  
-  console.log(profile.roster.some(rosteredQueen => rosteredQueen.queen === queen.name))
+  queen.name = queen.name || queen.queen
+  if (queen.eleminated === undefined) {
+    queen.eleminated = false
+  }
+  console.log(queen._id)
   return ( 
     <>{profile._id === user.profile ? 
       <>
