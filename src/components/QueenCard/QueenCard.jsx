@@ -28,8 +28,11 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
           <>
             <li>{queen.name} {queen.elminiated ? 
               "(Eliminated)" : ""}</li>
-            <button className="btn btn-primary" onClick={() => addToRoster(queen.name, user.profile)}>Add to Roster</button>
-            <button className="btn btn-primary" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button>
+              {profile.roster.some(rosteredQueen => rosteredQueen.queen === queen.name) ? 
+              <><button className="btn btn-warning" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button></>
+              :
+              <><button type="button" className="btn btn-primary" onClick={() => addToRoster(queen.name, user.profile)}>Add to Roster</button></>
+              }
           </>
         }
         
