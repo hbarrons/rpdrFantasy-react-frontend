@@ -15,6 +15,8 @@ const Profiles = ({ profiles, user }) => {
   })
   :
   console.log(profiles)
+
+  
   
   
   return (

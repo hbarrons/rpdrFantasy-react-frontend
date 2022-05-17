@@ -100,6 +100,7 @@ const MyLeague = ({ user }) => {
       </div>
       <div className="myroster">
         <h3>My Roster</h3>
+        <p><Link to="/mypicks">Make Weekly Picks</Link></p>
         {profiles?.length ?
         <>{profiles?.map(profile => {
           if (user.profile === profile._id) {
@@ -112,34 +113,33 @@ const MyLeague = ({ user }) => {
         <></>
         }
       </div>
-      <div>
+      <div className="recent-episode">
         <h3>Last Week's Results:</h3>
-        <>
-
-                <h3>Episode {leagueEpisodes[leagueEpisodes.length -1]?.number} </h3>
-                <h5>Winner: {leagueEpisodes[leagueEpisodes.length -1]?.winner} (10 points)</h5>
-                <h5>Loser: {leagueEpisodes[leagueEpisodes.length -1]?.loser} (-3 points)</h5>
-                <h5>Tops: {leagueEpisodes[leagueEpisodes.length -1]?.tops[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[2]} (5 points)</h5>
-                <h5>Bottoms: {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[2]} (-2 points)</h5>
-              </>
+        <h3>Episode {leagueEpisodes[leagueEpisodes.length -1]?.number} </h3>
+        <h5>Winner: {leagueEpisodes[leagueEpisodes.length -1]?.winner} (10 points)</h5>
+        <h5>Loser: {leagueEpisodes[leagueEpisodes.length -1]?.loser} (-3 points)</h5>
+        <h5>Tops: {leagueEpisodes[leagueEpisodes.length -1]?.tops[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[2]} (5 points)</h5>
+        <h5>Bottoms: {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[2]} (-2 points)</h5>
       </div>
-      <div>
-        <h3>Remaining Queens:</h3>
-        {queens.map(queen => {
-          console.log(queen.eliminated)
-          if (queen.eliminated === false && queen.leagueNo === leagueNumber) {
-            return <li>{queen.name}</li>
-          }
-        })}
-      </div>
-      <div>
-        <h3>Eliminated Queens:</h3>
-        {queens.map(queen => {
-          console.log(queen.eliminated)
-          if (queen.eliminated === true && queen.leagueNo === leagueNumber) {
-            return <li>{queen.name}</li>
-          }
-        })}
+      <div className="allqueens">
+        <div>
+          <h3 className="remaining-queens">Remaining Queens:</h3>
+          {queens.map(queen => {
+            console.log(queen.eliminated)
+            if (queen.eliminated === false && queen.leagueNo === leagueNumber) {
+              return <li>{queen.name}</li>
+            }
+          })}
+        </div>
+        <div className="elim-queens">
+          <h3>Eliminated Queens:</h3>
+          {queens.map(queen => {
+            console.log(queen.eliminated)
+            if (queen.eliminated === true && queen.leagueNo === leagueNumber) {
+              return <li>{queen.name}</li>
+            }
+          })}
+        </div>
       </div>
     </>
    );

@@ -13,6 +13,7 @@ import JoinLeague from './pages/JoinLeague/JoineLeague'
 import MyLeague from './pages/MyLeagues/MyLeagues'
 import Queens from './pages/Queens/Queens'
 import Episodes from './pages/Episodes/Episodes'
+import MyPicks from './pages/MyPicks/MyPicks'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/createleague" element={<CreateLeague user={user}/>}/>
         <Route path="/joinleague" element={<JoinLeague user={user}/>}/>
         <Route path="/myleague" element={<MyLeague user={user}/>}/>
+        <Route path="/mypicks" element={<MyPicks user={user}/>} />
         <Route path="/queens" element={<Queens profiles={profiles} user={user}/>}/>
         <Route path="/episodes" element={<Episodes profiles={profiles} user={user}/>}>Episodes</Route>
         <Route
