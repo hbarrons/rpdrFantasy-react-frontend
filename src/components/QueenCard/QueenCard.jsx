@@ -8,7 +8,7 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
   if (queen.eleminated === undefined) {
     queen.eleminated = false
   }
-  console.log(queen._id)
+  
   return ( 
     <>{profile._id === user.profile ? 
       <>

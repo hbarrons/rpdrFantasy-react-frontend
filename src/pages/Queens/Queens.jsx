@@ -4,8 +4,14 @@ import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
 
 
-const Queens = ({ profiles, user }) => {
+const Queens = ({ user }) => {
   const [queens, setQueens] = useState([])
+  const [profiles, setProfiles] = useState([])
+
+  useEffect(()=> {
+    profileService.getAllProfiles()
+    .then(profiles => setProfiles(profiles))
+  }, [])
 
   useEffect(() => {
     queenService.getAllQueens()
@@ -77,7 +83,13 @@ const Queens = ({ profiles, user }) => {
     console.log("user: ", user)
     try {
       const data = await profileService.addToRoster(queen, user)
-      console.log("create response: ", data)
+      console.log("add to roster response: ", data)
+      for (let i=0; i < data.length; i++) {
+        if (data[i]._id === user) {
+          data[i].roster.push({queen: queen})
+        }
+      }
+      setProfiles(data)
     } catch (err) {
       console.log(err)
     }
@@ -87,7 +99,8 @@ const Queens = ({ profiles, user }) => {
     console.log("sanity")
     try {
       const data = await profileService.removeFromRoster(queen, user)
-      console.log("create response: ", data)
+      console.log("remove from roster response: ", data)
+      setProfiles(data)
     } catch (err) {
       console.log(err)
     }

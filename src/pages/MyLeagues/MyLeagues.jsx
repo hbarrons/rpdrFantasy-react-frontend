@@ -45,6 +45,27 @@ const MyLeague = ({ user }) => {
     getLeagueNumber({user}, profile)
   })
 
+  const addToRoster = async (queen, user) => {
+    console.log("user: ", user)
+    try {
+      const data = await profileService.addToRoster(queen, user)
+      console.log("add to roster response: ", data)
+      setProfiles(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const removeFromRoster = async (queen, user) => {
+    console.log("sanity")
+    try {
+      const data = await profileService.removeFromRoster(queen, user)
+      console.log("remove from roster response: ", data)
+      setProfiles(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   
 
   
@@ -69,7 +90,7 @@ const MyLeague = ({ user }) => {
         <>{profiles?.map(profile => {
           if (user.profile === profile._id) {
             return profile.roster.map(queen => {
-              return <><QueenCard profile={profile} user={user} queen={queen}/></>
+              return <><QueenCard profile={profile} user={user} queen={queen} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/></>
             })
           }
         })}</>
