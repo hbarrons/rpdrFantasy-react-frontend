@@ -73,15 +73,22 @@ const MyLeague = ({ profiles, user }) => {
         }
       </div>
       <div>
-        <h3>Last Weeks Episode Results:</h3>
+        <h3>Episode Results:</h3>
         {episodes.length ?
           <>
-            {console.log("newest episode: ",episodes[episodes.length - 1])}
-            <h3>Episode {episodes[episodes.length - 1].number} </h3>
-            <h5>Winner: {episodes[episodes.length - 1].winner} (10 points)</h5>
-            <h5>Loser: {episodes[episodes.length - 1].loser} (-3 points)</h5>
-            <h5>Tops: {episodes[episodes.length - 1].tops[0]}, {episodes[episodes.length - 1].tops[1]}, {episodes[episodes.length - 1].tops[2]} (5 points each)</h5>
-            <h5>Bottoms: {episodes[episodes.length - 1].bottoms[0]}, {episodes[episodes.length - 1].bottoms[1]}, {episodes[episodes.length - 1].bottoms[2]} (-2 points)</h5>
+          {episodes.map(episode => {
+            if (episode.leagueNo === leagueNumber) {
+              return <>
+                {console.log(episode)}
+                <h3>Episode {episode.number} </h3>
+                <h5>Winner: {episode.winner} (10 points)</h5>
+                <h5>Loser: {episode.loser} (-3 points)</h5>
+                <h5>Tops: {episode.tops[0]}, {episode.tops[1]}, {episode.tops[2]} (5 points)</h5>
+                <h5>Bottoms: {episode.bottoms[0]}, {episode.bottoms[1]}, {episode.bottoms[2]} (-2 points)</h5>
+              </>
+            }
+          })}
+
           </>
           :
           <></>

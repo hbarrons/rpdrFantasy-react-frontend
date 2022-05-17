@@ -63,10 +63,7 @@ const Episodes = ({ profiles, user }) => {
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    console.log("formData.loser",formData.loser)
-
     getEliminatedQueen(formData.loser)
-
     try {
       const data = await episodeService.createEpisode(formData, leagueNumber)
       for (let i=0; i < data.episodes.length; i++) {
@@ -86,7 +83,6 @@ const Episodes = ({ profiles, user }) => {
     try {
       const data = await queenService.eliminateQueen(eliminatedQueen)
       console.log("elim queen response: ", data)
-      setEpisodes(data.episodes)
     } catch (err) {
       console.log(err)
     }
