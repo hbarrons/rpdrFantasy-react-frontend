@@ -60,8 +60,13 @@ const MyPicks = ({ user }) => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     formData.episodeNum = leagueEpisodes.length + 1
-    console.log("hit", leagueEpisodes.length + 1)
-    console.log(formData)
+    try {
+      const data = await profileService.makeGuess(formData, user.profile)
+      console.log("add to roster response: ", data)
+      // setProfiles(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
 

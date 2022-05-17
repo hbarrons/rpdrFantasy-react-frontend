@@ -63,4 +63,16 @@ export async function removeFromRoster (queen, user) {
   .then(res => res.json())
 }
 
+export async function makeGuess (guessInfo, user) {
+  console.log("guessInfo: ", guessInfo)
+  return await fetch(`${BASE_URL}/makeguess/${user}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify(guessInfo)
+  },)
+  .then(res => res.json())
+}
 
