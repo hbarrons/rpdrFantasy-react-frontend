@@ -79,6 +79,29 @@ const MyPicks = ({ user }) => {
     }
   }
 
+  const updateGuess = async evt => {
+    console.log(formData)
+    evt.preventDefault()
+    formData.episodeNum = leagueEpisodes.length + 1
+    try {
+      const data = await profileService.updateGuess(formData, user.profile)
+      console.log("add to roster response: ", data)
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]._id === user.profile) {
+          data[i].guessEpisode.push({
+            queen1: formData.queen1,
+            queen2: formData.queen2,
+            episode: leagueEpisodes.length + 1
+          })
+          console.log("data[i]: ", data[i])
+        }
+      }
+      setProfiles(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const { queen1 } = formData
   const { queen2 } = formData
   const { episodeNum } = formData
@@ -100,7 +123,7 @@ const MyPicks = ({ user }) => {
   } 
   console.log("guessInactive: ", guessInactive)
 
-
+  
   return ( 
     <>
       <div className="myroster">
@@ -122,11 +145,20 @@ const MyPicks = ({ user }) => {
           </select>
           <label htmlFor="queen2" display="none" hidden="true">Episode:</label>
           <input type="text" autoComplete="off" id="episodeNum" name="episodeNum" display="none" hidden="true" value={episodeNum} onChange={handleChange}/><br/>
-          <button disabled={guessInactive}>Add Picks</button>
+          {guessInactive ? ""
+          :           
+          <>
+            <button className="btn btn-primary" disabled={guessInactive}>Add Picks</button>
+          </>}
         </form>
+        {guessInactive ? 
+          <>
+          <button className="btn btn-warning" onClick={updateGuess}>Change Current Picks</button>
+          <p>Next Guess will be available once the League Admin adds the most recent episode results!</p>
+          </>
+          : ""}
       </div>
       <div>
-        {guessInactive ? <p>Next Guess will be available once the League Admin adds the most recent episode results!</p> : ""}
       </div>
       <div className="make-guess">
         <h1 class="table-title">Weekly Guesses</h1>

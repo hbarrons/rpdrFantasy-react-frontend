@@ -17,6 +17,7 @@ const NavBar = ({ user, profiles, handleLogout }) => {
           <button
             className="navbar-toggler"
             type="button"
+            data-toggle="collapse"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
@@ -34,7 +35,7 @@ const NavBar = ({ user, profiles, handleLogout }) => {
                 <li nav-item="true"><Link to="/episodes" className='nav-link active'>Episodes</Link></li>
                 <li nav-item="true"><Link to="/profiles" className='nav-link active'>Scoreboard</Link></li>
                 <li nav-item="true"><Link to="" onClick={handleLogout} className='nav-link active'>LOG OUT</Link></li>
-                <li nav-item="true"><Link to="/changePassword" className='nav-link active'>Change Password</Link></li>
+                {/* <li nav-item="true"><Link to="/changePassword" className='nav-link active'>Change Password</Link></li> */}
               </ul>
             </div>
           </div>

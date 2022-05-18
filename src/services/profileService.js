@@ -76,3 +76,16 @@ export async function makeGuess (guessInfo, user) {
   .then(res => res.json())
 }
 
+export async function updateGuess (guessInfo, user) {
+  console.log("guessInfo: ", guessInfo)
+  return await fetch(`${BASE_URL}/updateguess/${user}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify(guessInfo)
+  },)
+  .then(res => res.json())
+}
+
