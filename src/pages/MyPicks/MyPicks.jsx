@@ -63,19 +63,25 @@ const MyPicks = ({ user }) => {
     try {
       const data = await profileService.makeGuess(formData, user.profile)
       console.log("add to roster response: ", data)
-      // setProfiles(data)
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]._id === user.profile) {
+          data[i].guessEpisode.push({
+            queen1: formData.queen1,
+            queen2: formData.queen2,
+            episode: leagueEpisodes.length + 1
+          })
+          console.log("data[i]: ", data[i])
+        }
+      }
+      setProfiles(data)
     } catch (err) {
       console.log(err)
     }
   }
 
-
-  console.log("leagueEpisodes: ", leagueEpisodes)
-
-
-    const { queen1 } = formData
-    const { queen2 } = formData
-    const { episodeNum } = formData
+  const { queen1 } = formData
+  const { queen2 } = formData
+  const { episodeNum } = formData
 
   let userProfile = {}
   profiles.length ?
@@ -87,6 +93,13 @@ const MyPicks = ({ user }) => {
   :
   userProfile = {}
   console.log("userProfile: ", userProfile)
+
+  let guessInactive = false
+  if (userProfile?.guessEpisode?.length === leagueEpisodes?.length + 1) {
+    guessInactive = true
+  } 
+  console.log("guessInactive: ", guessInactive)
+
 
   return ( 
     <>
@@ -109,35 +122,34 @@ const MyPicks = ({ user }) => {
           </select>
           <label htmlFor="queen2" display="none" hidden="true">Episode:</label>
           <input type="text" autoComplete="off" id="episodeNum" name="episodeNum" display="none" hidden="true" value={episodeNum} onChange={handleChange}/><br/>
-          <button>Add Picks</button>
+          <button disabled={guessInactive}>Add Picks</button>
         </form>
+      </div>
+      <div>
+        {guessInactive ? <p>Next Guess will be available once the League Admin adds the most recent episode results!</p> : ""}
       </div>
       <div className="make-guess">
         <h1 class="table-title">Weekly Guesses</h1>
-
-            {userProfile?.guessEpisode?.map(guess => {
-              return <>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Episode</th>
-                      <th>Queen</th>
-                      <th>Queen</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{guess.episode}</td>
-                      <td>{guess.queen1}</td>
-                      <td>{guess.queen2}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            })}
-
-
-
+        <table>
+          <thead>
+            <tr>
+              <th>Episode</th>
+              <th>Queen</th>
+              <th>Queen</th>
+            </tr>
+          </thead>
+          {userProfile?.guessEpisode?.map(guess => {
+            return <>
+              <tbody>
+                <tr>
+                  <td>{guess.episode}</td>
+                  <td>{guess.queen1}</td>
+                  <td>{guess.queen2}</td>
+                </tr>
+              </tbody>
+            </>
+          })}
+        </table>
       </div>
     </>
    );

@@ -2,6 +2,7 @@ import QueenCard from "../../components/QueenCard/QueenCard";
 import { useState, useEffect } from 'react'
 import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
+import { Link } from "react-router-dom";
 
 
 const Queens = ({ user }) => {
@@ -158,6 +159,7 @@ const Queens = ({ user }) => {
       }
     </>
       <div>
+      <p><Link to="/mypicks">Make Weekly Picks</Link></p>
         <h1>Queens:</h1>
         {queens.length ? 
           <>

@@ -30,7 +30,9 @@ const Landing = ({ user, profiles }) => {
         </>
         :
         <>
-          <img src={RuPaul} alt="RuPaul's Face" />
+         <h2>Start Your Engines</h2>
+         <img src={RuPaul} alt="RuPaul's Face" />
+         <h2>and may the Best Guesser, Win!</h2>
         </>
       }
       
