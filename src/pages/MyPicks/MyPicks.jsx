@@ -113,8 +113,30 @@ const MyPicks = ({ user }) => {
         </form>
       </div>
       <div className="make-guess">
-        <h3>This Week's Picks</h3>
-        <p>Episode: {leagueEpisodes.length + 1}</p>
+        <h1 class="table-title">Weekly Guesses</h1>
+
+            {userProfile?.guessEpisode?.map(guess => {
+              return <>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Episode</th>
+                      <th>Queen</th>
+                      <th>Queen</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{guess.episode}</td>
+                      <td>{guess.queen1}</td>
+                      <td>{guess.queen2}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </>
+            })}
+
+
 
       </div>
     </>
