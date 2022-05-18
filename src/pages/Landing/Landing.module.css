@@ -7,3 +7,8 @@
 img {
   height: 600px;
 }
+
+body {
+  font-family: 'Racing Sans One';
+  color: rgb(252, 230, 187);
+}

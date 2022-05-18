@@ -88,11 +88,11 @@ const MyPicks = ({ user }) => {
       console.log("add to roster response: ", data)
       for (let i = 0; i < data.length; i++) {
         if (data[i]._id === user.profile) {
-          data[i].guessEpisode.push({
+          data[i].guessEpisode[data[i].guessEpisode.length - 1] = {
             queen1: formData.queen1,
             queen2: formData.queen2,
             episode: leagueEpisodes.length + 1
-          })
+          }
           console.log("data[i]: ", data[i])
         }
       }

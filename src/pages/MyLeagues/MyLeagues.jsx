@@ -7,6 +7,8 @@ import QueenCard from "../../components/QueenCard/QueenCard"
 import Rules from "../../components/Rules/Rules"
 import { Link } from "react-router-dom"
 
+import './MyLeagues.css'
+
 
 const MyLeague = ({ user }) => {
   const [episodes, setEpisodes] = useState([])
