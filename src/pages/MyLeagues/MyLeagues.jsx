@@ -84,7 +84,8 @@ const MyLeague = ({ user }) => {
 
   return ( 
     <>
-      <h1>My League Info</h1>
+    <h1 className="myleague-title">My League Info</h1>
+    <main className="myleague-main">
       <div className="league-info">
         {profiles.length ?
           <>
@@ -118,14 +119,13 @@ const MyLeague = ({ user }) => {
       <div className="recent-episode">
         <h3>Last Week's Results:</h3>
         <h3>Episode {leagueEpisodes[leagueEpisodes.length -1]?.number} </h3>
-        <h5>Winner: {leagueEpisodes[leagueEpisodes.length -1]?.winner} (10 points)</h5>
-        <h5>Loser: {leagueEpisodes[leagueEpisodes.length -1]?.loser} (-3 points)</h5>
-        <h5>Tops: {leagueEpisodes[leagueEpisodes.length -1]?.tops[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[2]} (5 points)</h5>
-        <h5>Bottoms: {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[2]} (-2 points)</h5>
+        <h5>Winner:</h5> <p> {leagueEpisodes[leagueEpisodes.length -1]?.winner} (10 points)</p>
+        <h5>Loser: </h5><p> {leagueEpisodes[leagueEpisodes.length -1]?.loser} (-3 points)</p>
+        <h5>Tops: </h5><p> {leagueEpisodes[leagueEpisodes.length -1]?.tops[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[2]} (5 points)</p>
+        <h5>Bottoms:</h5> <p> {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[2]} (-2 points)</p>
       </div>
-      <div className="allqueens">
-        <div>
-          <h3 className="remaining-queens">Remaining Queens:</h3>
+        <div className="remaining-queens">
+          <h3>Remaining Queens:</h3>
           {queens.map(queen => {
             console.log(queen.eliminated)
             if (queen.eliminated === false && queen.leagueNo === leagueNumber) {
@@ -142,7 +142,7 @@ const MyLeague = ({ user }) => {
             }
           })}
         </div>
-      </div>
+    </main>
     </>
    );
 }

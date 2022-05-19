@@ -5,8 +5,9 @@ const LeagueCard = ({ profile, user }) => {
     <>
       {profile._id === user.profile ? 
         <>
-          <h3>League Name: {profile.league[0]?.name}</h3>
-          <h3>League Number: {profile.league[0]?.leagueNo}</h3>
+          <h5 className="leagueName">League Name:</h5> <p className="name">{profile.league[0]?.name}</p>
+          <br />
+          <h5 className="leagueNumber">League Number:</h5> <p className="number">{profile.league[0]?.leagueNo}</p>
         </>
         :
         <></>
