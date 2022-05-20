@@ -14,8 +14,7 @@ const Landing = ({ user, profiles }) => {
       {profiles?.length ? 
         <>
         {profiles?.map(profile => {
-        if (profile?._id === user.profile) {
-          console.log("this is user", profile)
+        if (profile?._id === user?.profile) {
           if (profile?.league.length === 0) {
            return <>
               <Link to="/createleague" >Create a Fantasy League</Link>
