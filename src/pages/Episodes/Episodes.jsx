@@ -121,9 +121,55 @@ const Episodes = ({ profiles, user }) => {
   const { bottom2 } = formData
   const { bottom3 } = formData
 
-  function getScore (profile, episode) {
-
+  let leagueScores = {}
+  let score = 0
+  function getScore (profiles, episode) {
+    profiles?.map(profile => {
+      if (profile.league[0]?.leagueNo === leagueNumber) {
+        for (let i = 0; i < profile.guessEpisode.length; i++) {
+          if (profile.guessEpisode[i].episode === episode.number) {
+            console.log(profile.guessEpisode[i], episode)
+            // WINNER SCORE
+            if (profile.guessEpisode[i].queen1 === episode.winner || profile.guessEpisode[i].queen2 === episode.winner) {
+              score += 10
+              console.log("winner", score)
+            }
+            // TOPS SCORE (if both guesses topped)
+            if (episode.tops.includes(profile.guessEpisode[i].queen1) && episode.tops.includes(profile.guessEpisode[i].queen2)) {
+              score += 10
+              console.log("2 tops", score)
+            }
+            // TOPS SCORE (if one 1 guess in top)
+            if (episode.tops.includes(profile.guessEpisode[i].queen1) || episode.tops.includes(profile.guessEpisode[i].queen2)) {
+              score += 5
+              console.log("1 top", score)
+            }
+            // LOSER SCORE
+            if (profile.guessEpisode[i].queen1 === episode.loser || profile.guessEpisode[i].queen2 === episode.loser) {
+              score -= 3
+              console.log("loser", score)
+            }
+            // BOTTOMS SCORE (if both guesses bottomed)
+            if (episode.tops.includes(profile.guessEpisode[i].queen1) && episode.tops.includes(profile.guessEpisode[i].queen2)) {
+              score -= 4
+              console.log("2 bottom", score)
+            }
+            // BOTTOMS SCORE (if one 1 guess in bottom)
+            if (episode.bottoms.includes(profile.guessEpisode[i].queen1) || episode.bottoms.includes(profile.guessEpisode[i].queen2)) {
+              score -= 2
+              console.log("1 bottom", score)
+            }
+          }
+        }
+      }
+    })
   }
+  
+  episodes?.map(episode => {
+    if (episode.leagueNo === leagueNumber) {
+      getScore(profiles, episode)
+    }
+  })
 
 
   return ( 
@@ -152,7 +198,6 @@ const Episodes = ({ profiles, user }) => {
                 <select type="text" autoComplete="off" id="winner" name="winner" value={winner}
                 onChange={handleChange}>
                   <option value="default">-Select Queen-</option>
-                  {console.log(profile)}
                   {queens?.map(queen => {
                     if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
                       return <option value={queen.name}>{queen.name}</option>
@@ -259,7 +304,6 @@ const Episodes = ({ profiles, user }) => {
       <div>
       </div>
       <div>
-        {console.log("episodes: ", episodes)}
         {episodes?.length ? 
           <>
             {episodes?.map(episode => {

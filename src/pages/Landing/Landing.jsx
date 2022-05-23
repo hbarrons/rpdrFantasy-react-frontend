@@ -1,7 +1,6 @@
 import styles from './Landing.module.css'
 import { Link } from 'react-router-dom'
 import Rules from '../../components/Rules/Rules'
-import LeagueCard from '../../components/LeagueCard/LeagueCard'
 import Leaguecard from '../../components/LeagueCard/LeagueCard'
 import RuPaul from '../../pages/Landing/RuPaul.png'
 
