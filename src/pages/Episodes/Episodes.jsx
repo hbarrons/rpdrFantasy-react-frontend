@@ -121,11 +121,12 @@ const Episodes = ({ profiles, user }) => {
   const { bottom2 } = formData
   const { bottom3 } = formData
 
-  let leagueScores = {}
+  let leagueScores = []
   let score = 0
   function getScore (profiles, episode) {
-    profiles?.map(profile => {
+    profiles?.forEach(profile => {
       if (profile.league[0]?.leagueNo === leagueNumber) {
+        console.log(profile)
         for (let i = 0; i < profile.guessEpisode.length; i++) {
           if (profile.guessEpisode[i].episode === episode.number) {
             console.log(profile.guessEpisode[i], episode)
@@ -134,31 +135,34 @@ const Episodes = ({ profiles, user }) => {
               score += 10
               console.log("winner", score)
             }
-            // TOPS SCORE (if both guesses topped)
-            if (episode.tops.includes(profile.guessEpisode[i].queen1) && episode.tops.includes(profile.guessEpisode[i].queen2)) {
-              score += 10
-              console.log("2 tops", score)
-            }
-            // TOPS SCORE (if one 1 guess in top)
-            if (episode.tops.includes(profile.guessEpisode[i].queen1) || episode.tops.includes(profile.guessEpisode[i].queen2)) {
+            // TOPS SCORE QUEEN1
+            if (episode.tops.includes(profile.guessEpisode[i].queen1)) {
               score += 5
-              console.log("1 top", score)
+              console.log("queen1 top", score)
+            }
+            // TOPS SCORE QUEEN2
+            if (episode.tops.includes(profile.guessEpisode[i].queen2)) {
+              score += 5
+              console.log("queen2 top", score)
             }
             // LOSER SCORE
             if (profile.guessEpisode[i].queen1 === episode.loser || profile.guessEpisode[i].queen2 === episode.loser) {
               score -= 3
               console.log("loser", score)
             }
-            // BOTTOMS SCORE (if both guesses bottomed)
-            if (episode.tops.includes(profile.guessEpisode[i].queen1) && episode.tops.includes(profile.guessEpisode[i].queen2)) {
-              score -= 4
+            // BOTTOMS SCORE QUEEN1
+            if (episode.bottoms.includes(profile.guessEpisode[i].queen1)) {
+              score -= 2
               console.log("2 bottom", score)
             }
-            // BOTTOMS SCORE (if one 1 guess in bottom)
-            if (episode.bottoms.includes(profile.guessEpisode[i].queen1) || episode.bottoms.includes(profile.guessEpisode[i].queen2)) {
+            // BOTTOMS SCORE QUEEN2
+            if (episode.bottoms.includes(profile.guessEpisode[i].queen2)) {
               score -= 2
               console.log("1 bottom", score)
             }
+            leagueScores.push({profile: profile._id, weeklyScore: score})
+            console.log("leagueScores: ", leagueScores)
+            score = 0
           }
         }
       }
