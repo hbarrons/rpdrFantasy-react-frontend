@@ -121,6 +121,7 @@ const Episodes = ({ profiles, user }) => {
   const { bottom2 } = formData
   const { bottom3 } = formData
 
+  let safeQueens = []
   let leagueScores = []
   let score = 0
   function getScore (profiles, episode) {
@@ -133,33 +134,44 @@ const Episodes = ({ profiles, user }) => {
             // WINNER SCORE
             if (profile.guessEpisode[i].queen1 === episode.winner || profile.guessEpisode[i].queen2 === episode.winner) {
               score += 10
-              console.log("winner", score)
+              // console.log("winner", score)
             }
             // TOPS SCORE QUEEN1
             if (episode.tops.includes(profile.guessEpisode[i].queen1)) {
               score += 5
-              console.log("queen1 top", score)
+              // console.log("queen1 top", score)
             }
             // TOPS SCORE QUEEN2
             if (episode.tops.includes(profile.guessEpisode[i].queen2)) {
               score += 5
-              console.log("queen2 top", score)
+              // console.log("queen2 top", score)
             }
             // LOSER SCORE
             if (profile.guessEpisode[i].queen1 === episode.loser || profile.guessEpisode[i].queen2 === episode.loser) {
               score -= 3
-              console.log("loser", score)
+              // console.log("loser", score)
+            }
+            // SAFE QUEEN1
+            if (safeQueens.includes(profile.guessEpisode[i].queen1)) {
+              score += 3
+              // console.log("queen1 safe", score)
+            }
+            // SAFE QUEEN2
+            if (safeQueens.includes(profile.guessEpisode[i].queen2)) {
+              score += 3
+              // console.log("queen2 safe", score)
             }
             // BOTTOMS SCORE QUEEN1
             if (episode.bottoms.includes(profile.guessEpisode[i].queen1)) {
               score -= 2
-              console.log("2 bottom", score)
+              // console.log("queen1 bottom", score)
             }
             // BOTTOMS SCORE QUEEN2
             if (episode.bottoms.includes(profile.guessEpisode[i].queen2)) {
               score -= 2
-              console.log("1 bottom", score)
+              // console.log("queen2 bottom", score)
             }
+            console.log(profile.name, score)
             leagueScores.push({profile: profile._id, weeklyScore: score})
             console.log("leagueScores: ", leagueScores)
             score = 0
@@ -171,7 +183,18 @@ const Episodes = ({ profiles, user }) => {
   
   episodes?.map(episode => {
     if (episode.leagueNo === leagueNumber) {
+      console.log("episode: ", episode, queens)
+      queens.map(queen => {
+        if (queen.leagueNo === leagueNumber) {
+          // console.log("queen: ", queen.name)
+          if (episode.winner !== queen.name && episode.loser !== queen.name && episode.bottoms.includes(queen.name) === false && episode.tops.includes(queen.name) === false) {
+            safeQueens.push(queen.name)
+          }
+        }
+      })
+      console.log("safeQueens: ", safeQueens)
       getScore(profiles, episode)
+      safeQueens = []
     }
   })
 
