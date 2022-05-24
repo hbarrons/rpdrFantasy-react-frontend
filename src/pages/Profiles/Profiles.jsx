@@ -34,7 +34,7 @@ const Profiles = ({ profiles, user }) => {
                   return <><li>{queen.queen}</li>
                   </>
                 })}
-                <h5>Weekly Pikcs:</h5>
+                <h5>Weekly Picks: Episode {profile.guessEpisode.length}</h5>
                 <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen1}</li>
                 <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen2}</li>
               </>

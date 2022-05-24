@@ -89,3 +89,16 @@ export async function updateGuess (guessInfo, user) {
   .then(res => res.json())
 }
 
+export async function submitScores (scores, episodeNum) {
+  console.log("service: ", scores, episodeNum)
+  return await fetch(`${BASE_URL}/submitscores/${episodeNum}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify(scores)
+  },)
+  .then(res => res.json())
+}
+

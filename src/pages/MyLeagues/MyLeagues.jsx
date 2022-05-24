@@ -129,7 +129,7 @@ const MyLeague = ({ user }) => {
           {queens.map(queen => {
             console.log(queen.eliminated)
             if (queen.eliminated === false && queen.leagueNo === leagueNumber) {
-              return <li>{queen.name}</li>
+              return <li key={queen.name}>{queen.name}</li>
             }
           })}
         </div>
@@ -138,7 +138,7 @@ const MyLeague = ({ user }) => {
           {queens.map(queen => {
             console.log(queen.eliminated)
             if (queen.eliminated === true && queen.leagueNo === leagueNumber) {
-              return <li>{queen.name}</li>
+              return <li key={queen.name}>{queen.name}</li>
             }
           })}
         </div>

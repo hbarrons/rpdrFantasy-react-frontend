@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as episodeService from '../../services/eipsodeService.js'
 import * as queenService from '../../services/queenService'
+import * as profileService from '../../services/profileService'
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard.jsx'
 
 const Episodes = ({ profiles, user }) => {
@@ -57,8 +58,6 @@ const Episodes = ({ profiles, user }) => {
   function getEliminatedQueen (elimQueen) {
     queens.map(queen => {
       if (queen.leagueNo === leagueNumber && queen.name === elimQueen) {
-        console.log("input queen",elimQueen)
-        console.log("lookup queen", queen)
         eliminatedQueen = queen._id
       }
     })
@@ -80,6 +79,7 @@ const Episodes = ({ profiles, user }) => {
       }
       console.log("create ep response: ", data)
       setEpisodes(data.episodes)
+      getScoreInfo(data.episodes)
     } catch (err) {
       console.log(err)
     }
@@ -111,6 +111,29 @@ const Episodes = ({ profiles, user }) => {
     }
   }
 
+  const submitScores = async (scores, episodeNum) => {
+
+    console.log("submitScores", episodeNum)
+
+    let episodeCount = 0
+    episodes.map(episode => {
+      console.log(leagueNumber, episode)
+      if (episode.leagueNo === leagueNumber) {
+        episodeCount += 1
+      }
+    })
+    console.log("episodeCount: ", episodeCount)
+    if (episodeCount + 1 === episodeNum) {
+      try {
+        const data = await profileService.submitScores(scores, episodeNum)
+        console.log("delete ep response: ", data)
+        setEpisodes(data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
   const { episodeNum } = formData
   const { winner } = formData
   const { loser } = formData
@@ -120,6 +143,28 @@ const Episodes = ({ profiles, user }) => {
   const { bottom1 } = formData
   const { bottom2 } = formData
   const { bottom3 } = formData
+
+  let leagueEpisodes = []
+  function getScoreInfo (episodeData) {
+    episodeData?.map(episode => {
+      if (episode.leagueNo === leagueNumber) {
+        leagueEpisodes.push(episode)
+        queens.map(queen => {
+          if (queen.leagueNo === leagueNumber) {
+            // console.log("queen: ", queen.name)
+            if (episode.winner !== queen.name && episode.loser !== queen.name && episode.bottoms.includes(queen.name) === false && episode.tops.includes(queen.name) === false) {
+              safeQueens.push(queen.name)
+            }
+          }
+        })
+        getScore(profiles, episode)
+        console.log("map leagueScores: ", leagueScores, episode.number)
+        safeQueens = []
+        leagueScores = []
+      }
+    })
+    leagueEpisodes = []
+  }
 
   let safeQueens = []
   let leagueScores = []
@@ -173,30 +218,15 @@ const Episodes = ({ profiles, user }) => {
             }
             console.log(profile.name, score)
             leagueScores.push({profile: profile._id, weeklyScore: score})
-            console.log("leagueScores: ", leagueScores)
             score = 0
           }
         }
       }
     })
+    submitScores(leagueScores, episode.number)
   }
   
-  episodes?.map(episode => {
-    if (episode.leagueNo === leagueNumber) {
-      console.log("episode: ", episode, queens)
-      queens.map(queen => {
-        if (queen.leagueNo === leagueNumber) {
-          // console.log("queen: ", queen.name)
-          if (episode.winner !== queen.name && episode.loser !== queen.name && episode.bottoms.includes(queen.name) === false && episode.tops.includes(queen.name) === false) {
-            safeQueens.push(queen.name)
-          }
-        }
-      })
-      console.log("safeQueens: ", safeQueens)
-      getScore(profiles, episode)
-      safeQueens = []
-    }
-  })
+
 
 
   return ( 
