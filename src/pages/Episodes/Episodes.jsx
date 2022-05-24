@@ -126,7 +126,7 @@ const Episodes = ({ profiles, user }) => {
     if (episodeCount + 1 === episodeNum) {
       try {
         const data = await profileService.submitScores(scores, episodeNum)
-        console.log("delete ep response: ", data)
+        console.log("submitScores response: ", data)
         setEpisodes(data)
       } catch (err) {
         console.log(err)
@@ -257,7 +257,7 @@ const Episodes = ({ profiles, user }) => {
                   <option value="default">-Select Queen-</option>
                   {queens?.map(queen => {
                     if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option value={queen.name}>{queen.name}</option>
+                      return <option key={queen._id} value={queen.name}>{queen.name}</option>
                     }
                   })}
                 </select>
@@ -268,7 +268,7 @@ const Episodes = ({ profiles, user }) => {
                   <option value="default">-Select Queen-</option>
                   {queens?.map(queen => {
                     if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option value={queen.name}>{queen.name}</option>
+                      return <option key={queen._id} value={queen.name}>{queen.name}</option>
                     }
                   })}
                 </select>
@@ -279,7 +279,7 @@ const Episodes = ({ profiles, user }) => {
                   <option value="default">-Select Queen-</option>
                   {queens?.map(queen => {
                     if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option value={queen.name}>{queen.name}</option>
+                      return <option key={queen._id} value={queen.name}>{queen.name}</option>
                     }
                   })}
                 </select>
