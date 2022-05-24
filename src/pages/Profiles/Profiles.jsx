@@ -1,7 +1,17 @@
 import { useState, useEffect } from 'react'
 import * as profileService from '../../services/profileService'
+import * as episodeService from '../../services/eipsodeService.js'
 
 const Profiles = ({ profiles, user }) => {
+  const [episodes, setEpisodes] = useState([])
+
+
+  useEffect(() => {
+    episodeService.getAllEpisodes()
+    .then(episodes => {
+      setEpisodes(episodes)
+    })
+  }, [])
 
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
@@ -44,7 +54,36 @@ const Profiles = ({ profiles, user }) => {
       :
         <p></p>
       }
+      <div>
+        <h1>Scoreboard</h1>
+        <table>
+          <tr>
+            <th>Player</th>
+              {episodes.map(episode => {
+                if (episode.leagueNo === leagueNumber) {
+                  console.log(episode)
+                  return <th>Episode {episode.number}</th>
+                }
+              })}
+          </tr>
+        {profiles.map(profile => {
+          console.log(profile)
+          if (profile.league[0]?.leagueNo === leagueNumber) {
+            return <>
+              <tr>
+                <td>{profile.name}</td>
+                {profile.score.map(weeklyScore => {
+                  return <td>{weeklyScore.score}</td>
+                })}
+              </tr>
+            </>
+          }
+        })}
+        </table>
+
+      </div>
     </>
+
   )
 }
  

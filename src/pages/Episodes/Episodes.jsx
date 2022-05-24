@@ -127,7 +127,7 @@ const Episodes = ({ profiles, user }) => {
       try {
         const data = await profileService.submitScores(scores, episodeNum)
         console.log("submitScores response: ", data)
-        setEpisodes(data)
+        // setEpisodes(data)
       } catch (err) {
         console.log(err)
       }

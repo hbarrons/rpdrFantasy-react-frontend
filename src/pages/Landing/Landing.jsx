@@ -33,6 +33,7 @@ const Landing = ({ user, profiles }) => {
          <h2>and may the Best Guesser, Win!</h2>
         </>
       }
+
       
     </main>
   )
