@@ -42,12 +42,14 @@ const Queens = ({ user }) => {
 
 
   let episodeNumber = 0
-  function getEpisodeNumber (user, profile) {
-    if (user.user.profile === profile._id) {
-      console.log("profile.score: ", profile.score[profile.score.length - 1].episodeNum)
-      episodeNumber = profile.score[profile.score.length - 1].episodeNum
-      console.log("function episodeNumber",episodeNumber)
-    }
+  function getEpisodeNumber (user) {
+    console.log("user: ", user)
+    profiles.map(profile => {
+      if (user === profile._id) {
+        episodeNumber = profile.score[profile.score.length - 1].episodeNum
+        console.log("function episodeNumber",episodeNumber)
+      }
+    })
   }
 
 
@@ -75,8 +77,8 @@ const Queens = ({ user }) => {
 
   profiles.length ?
     profiles.forEach(profile => {
+      // console.log({user})
       getLeagueNumber({user}, profile)
-      getEpisodeNumber({user}, profile)
     })
     :
     console.log("")
@@ -99,7 +101,13 @@ const Queens = ({ user }) => {
     setFormData({queenName: ""})
   }
 
+
+
+  let transactionCount = 0
   const addToRoster = async (queen, user) => {
+    getEpisodeNumber(user)
+    console.log({user})
+    transactionCount += 1
     console.log("user: ", user)
     try {
       const data = await profileService.addToRoster(queen, user)
@@ -114,8 +122,11 @@ const Queens = ({ user }) => {
       console.log(err)
     }
   }
+  console.log("transactionCount: ", transactionCount)
 
   const removeFromRoster = async (queen, user) => {
+    console.log({user})
+    transactionCount -= 1
     try {
       const data = await profileService.removeFromRoster(queen, user)
       console.log("remove from roster response: ", data)
