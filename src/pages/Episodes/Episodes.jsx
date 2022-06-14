@@ -8,6 +8,8 @@ const Episodes = ({ profiles, user }) => {
   const [episodes, setEpisodes] = useState([])
   const [queens, setQueens] = useState([])
 
+
+  //IT WOULD CLEAN THE APP UP SIGNIFICANTLY IF I FILTERED OUT QUEENS/PROFILES/EPISODES FOR EACH SPECIFIC LEAGUE IN THE HOOK, RATHER THAN CONDITIONALLY IN THE JSX
   useEffect(() => {
     queenService.getAllQueens()
     .then(queens => {

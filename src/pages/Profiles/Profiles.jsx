@@ -63,7 +63,7 @@ const Profiles = ({ profiles, user }) => {
                   return <th>Episode {episode.number}</th>
                 }
               })}
-            {/* <th>Total</th>   */}
+            <th>Total</th>  
           </tr>
         {profiles.map(profile => {
           if (profile.league[0]?.leagueNo === leagueNumber) {
@@ -75,7 +75,7 @@ const Profiles = ({ profiles, user }) => {
                     <td>{weeklyScore.score}</td>
                   </>
                 })}
-                {/* <td>{profile.totalScore}</td> */}
+                <td>{profile.totalScore}</td>
               </tr>
             </>
           }

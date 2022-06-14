@@ -2,25 +2,54 @@ import QueenCard from "../../components/QueenCard/QueenCard";
 import { useState, useEffect } from 'react'
 import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
+import * as episodeService from '../../services/eipsodeService.js'
 import { Link } from "react-router-dom";
 
 
 const Queens = ({ user }) => {
   const [queens, setQueens] = useState([])
   const [profiles, setProfiles] = useState([])
+  const [episodes, setEpisodes] = useState([])
 
   useEffect(()=> {
     profileService.getAllProfiles()
     .then(profiles => setProfiles(profiles))
   }, [])
 
+  //IT WOULD CLEAN THE APP UP SIGNIFICANTLY IF I FILTERED OUT QUEENS/PROFILES/EPISODES FOR EACH SPECIFIC LEAGUE IN THE HOOK, RATHER THAN CONDITIONALLY IN THE JSX
   useEffect(() => {
     queenService.getAllQueens()
     .then(queens => {
-      console.log("useEffect: ", queens)
+      console.log("useEffect Queens: ", queens)
       setQueens(queens)
     })
   }, [])
+
+  let leagueNumber = 0
+  function getLeagueNumber (user, profile) {
+    if (user.user.profile === profile._id) {
+      leagueNumber = profile.league[0].leagueNo
+      // console.log("function leagueNumber",leagueNumber)
+    }
+  }
+
+  useEffect(() => {
+    episodeService.getAllEpisodes()
+    .then(episodes => {
+      setEpisodes(episodes)
+    })
+  }, [])
+
+
+  let episodeNumber = 0
+  function getEpisodeNumber (user, profile) {
+    if (user.user.profile === profile._id) {
+      console.log("profile.score: ", profile.score[profile.score.length - 1].episodeNum)
+      episodeNumber = profile.score[profile.score.length - 1].episodeNum
+      console.log("function episodeNumber",episodeNumber)
+    }
+  }
+
 
   const [formData, setFormData] = useState({
     queen: '',
@@ -44,20 +73,10 @@ const Queens = ({ user }) => {
   }
 
 
-  let leagueNumber = 0
-  function getLeagueNumber (user, profile) {
-    if (user.user.profile === profile._id) {
-      console.log("function profile: ", profile._id)
-      console.log("function user: ", user.user.profile)
-      leagueNumber = profile.league[0].leagueNo
-      console.log("function leagueNumber",leagueNumber)
-    }
-  }
-  console.log("leagueNumber: ", leagueNumber)
-
   profiles.length ?
     profiles.forEach(profile => {
       getLeagueNumber({user}, profile)
+      getEpisodeNumber({user}, profile)
     })
     :
     console.log("")
