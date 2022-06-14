@@ -102,7 +102,7 @@ export async function submitScores (scores, episodeNum) {
   .then(res => res.json())
 }
 
-export async function deleteScores (episodeNum, leagueNum) {
+export async function deleteScores (episodeNum, leagueNum, scores) {
   console.log("delete scores service: ", episodeNum)
   return await fetch(`${BASE_URL}/deletescores/${episodeNum}/${leagueNum}`, {
     method: 'DELETE',
@@ -110,7 +110,7 @@ export async function deleteScores (episodeNum, leagueNum) {
       'content-type': 'application/json',
       Authorization: `Bearer ${tokenService.getToken()}`
     },
-    body: JSON.stringify()
+    body: JSON.stringify(scores)
   },)
   .then(res => res.json())
 }
