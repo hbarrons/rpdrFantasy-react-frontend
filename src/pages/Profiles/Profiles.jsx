@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as profileService from '../../services/profileService'
 import * as episodeService from '../../services/eipsodeService.js'
+import styles from './profiles.css'
 
 const Profiles = ({ profiles, user }) => {
   const [episodes, setEpisodes] = useState([])
@@ -31,30 +32,8 @@ const Profiles = ({ profiles, user }) => {
   
   return (
     <>
-      <h1>Players</h1>
-      {profiles.length ? 
-        <>
-          {profiles?.map(profile=>
-            {if (profile.league[0]?.leagueNo === leagueNumber) {
-              return <>
-                <h2>{profile.name} (score here)</h2>
-                <h5>Roster:</h5>
-                {profile.roster.map(queen => {
-                  return <><li>{queen.queen}</li>
-                  </>
-                })}
-                <h5>Weekly Picks: Episode {profile.guessEpisode.length}</h5>
-                <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen1}</li>
-                <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen2}</li>
-              </>
-            }}
-          )}
-        </>
-      :
-        <p></p>
-      }
-      <div>
-        <h1>Scoreboard</h1>
+    <h1 className='title'>Scoreboard</h1>
+    <div className='scoreboard'>
         <table>
           <tr>
             <th>Player</th>
@@ -63,7 +42,7 @@ const Profiles = ({ profiles, user }) => {
                   return <th>Episode {episode.number}</th>
                 }
               })}
-            <th>Total</th>  
+            <th className='total-score'>Total</th>  
           </tr>
         {profiles.map(profile => {
           if (profile.league[0]?.leagueNo === leagueNumber) {
@@ -75,14 +54,44 @@ const Profiles = ({ profiles, user }) => {
                     <td>{weeklyScore.score}</td>
                   </>
                 })}
-                <td>{profile.totalScore}</td>
+                <td className='total-score'>{profile.totalScore}</td>
               </tr>
             </>
           }
         })}
         </table>
-
       </div>
+
+      <h1 className='title'>Players</h1>
+      {profiles.length ? 
+        <>
+        <div className='players'>
+          {profiles?.map(profile=>
+            {if (profile.league[0]?.leagueNo === leagueNumber) {
+              return <>
+              <div className='player-card'>
+                <div>
+                  <h2>{profile.name}</h2>
+                  <h6>{profile.totalScore}</h6>
+                </div>
+                <h5>Roster:</h5>
+                {profile.roster.map(queen => {
+                  return <><li>{queen.queen}</li>
+                  </>
+                })}
+                <h5>Weekly Picks: Episode {profile.guessEpisode.length}</h5>
+                <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen1}</li>
+                <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen2}</li>
+              </div>
+              </>
+            }}
+          )}
+        </div>
+        </>
+      :
+        <p></p>
+      }
+      
     </>
 
   )

@@ -1,0 +1,38 @@
+.title {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.scoreboard {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+table {
+  border: 1px solid rgb(252, 230, 187);
+  margin: 10px;
+  text-align: center;
+  width: 80vh;
+}
+
+th, td {
+  border: 3px solid rgb(252, 230, 187);
+  margin: 10px;
+  text-align: center;
+}
+
+.total-score {
+  font-weight: bold;
+}
+
+.players {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.player-card {
+  margin: 20px;
+}
