@@ -79,7 +79,7 @@ const Episodes = ({ profiles, user }) => {
       }
       console.log("create ep response: ", data)
       setEpisodes(data.episodes)
-      getScoreInfo(data.episodes)
+      getScoreInfo(data.episodes, "submitScore")
     } catch (err) {
       console.log(err)
     }
@@ -99,6 +99,7 @@ const Episodes = ({ profiles, user }) => {
       const data = await episodeService.deleteEpisode(episode)
       console.log("delete ep response: ", data)
       setEpisodes(data)
+      getScoreInfo(data, "deleteScore")
     } catch (err) {
       console.log(err)
     }
@@ -110,6 +111,7 @@ const Episodes = ({ profiles, user }) => {
       console.log(err)
     }
   }
+
 
   const submitScores = async (scores, episodeNum) => {
 
@@ -134,6 +136,27 @@ const Episodes = ({ profiles, user }) => {
     }
   }
 
+  const deleteScores = async (scores, episodeNum) => {
+    console.log("deleteScores", episodeNum)
+    console.log("deleteScores", scores)
+
+    let episodeCount = 0
+    episodes.map(episode => {
+      if (episode.leagueNo === leagueNumber) {
+        episodeCount += 1
+      }
+    })
+    console.log("episodeCount: ", episodeCount)
+    if (episodeCount === episodeNum + 1) {
+      try {
+        const data = await profileService.deleteScores(episodeNum, leagueNumber)
+        console.log("delete score response: ", data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
   const { episodeNum } = formData
   const { winner } = formData
   const { loser } = formData
@@ -145,7 +168,7 @@ const Episodes = ({ profiles, user }) => {
   const { bottom3 } = formData
 
   let leagueEpisodes = []
-  function getScoreInfo (episodeData) {
+  function getScoreInfo (episodeData, deleteOrSubmit) {
     episodeData?.map(episode => {
       if (episode.leagueNo === leagueNumber) {
         leagueEpisodes.push(episode)
@@ -157,7 +180,7 @@ const Episodes = ({ profiles, user }) => {
             }
           }
         })
-        getScore(profiles, episode)
+        getScore(profiles, episode, deleteOrSubmit)
         console.log("map leagueScores: ", leagueScores, episode.number)
         safeQueens = []
         leagueScores = []
@@ -169,7 +192,7 @@ const Episodes = ({ profiles, user }) => {
   let safeQueens = []
   let leagueScores = []
   let score = 0
-  function getScore (profiles, episode) {
+  function getScore (profiles, episode, deleteOrSubmit) {
     profiles?.forEach(profile => {
       if (profile.league[0]?.leagueNo === leagueNumber) {
         console.log(profile)
@@ -223,7 +246,12 @@ const Episodes = ({ profiles, user }) => {
         }
       }
     })
-    submitScores(leagueScores, episode.number)
+    console.log("deleteOrSubmit: ", deleteOrSubmit)
+    if (deleteOrSubmit === "submitScore") {
+      submitScores(leagueScores, episode.number)
+    } else if (deleteOrSubmit === "deleteScore") {
+      deleteScores(leagueScores, episode.number)
+    }
   }
   
 

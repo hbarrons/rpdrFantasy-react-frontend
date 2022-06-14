@@ -36,7 +36,6 @@ const Profiles = ({ profiles, user }) => {
         <>
           {profiles?.map(profile=>
             {if (profile.league[0]?.leagueNo === leagueNumber) {
-              console.log(profile)
               return <>
                 <h2>{profile.name} (score here)</h2>
                 <h5>Roster:</h5>
@@ -61,20 +60,22 @@ const Profiles = ({ profiles, user }) => {
             <th>Player</th>
               {episodes.map(episode => {
                 if (episode.leagueNo === leagueNumber) {
-                  console.log(episode)
                   return <th>Episode {episode.number}</th>
                 }
               })}
+            {/* <th>Total</th>   */}
           </tr>
         {profiles.map(profile => {
-          console.log(profile)
           if (profile.league[0]?.leagueNo === leagueNumber) {
             return <>
               <tr>
                 <td>{profile.name}</td>
                 {profile.score.map(weeklyScore => {
-                  return <td>{weeklyScore.score}</td>
+                  return <>
+                    <td>{weeklyScore.score}</td>
+                  </>
                 })}
+                {/* <td>{profile.totalScore}</td> */}
               </tr>
             </>
           }
