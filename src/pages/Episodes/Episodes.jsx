@@ -149,7 +149,7 @@ const Episodes = ({ profiles, user }) => {
     console.log("episodeCount: ", episodeCount)
     if (episodeCount === episodeNum + 1) {
       try {
-        const data = await profileService.deleteScores(episodeNum, leagueNumber)
+        const data = await profileService.deleteScores(episodeCount, leagueNumber)
         console.log("delete score response: ", data)
       } catch (err) {
         console.log(err)
