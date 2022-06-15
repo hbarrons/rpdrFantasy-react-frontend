@@ -4,3 +4,27 @@
   align-items: center;
   flex-flow: wrap;
 }
+
+.add-queen {
+  display: inline;
+  text-align: center;
+  flex-flow: wrap;
+  margin: 0;
+}
+
+.weekly-picks-link {
+  font-size: 20px;
+  display: inline;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  text-decoration: underline;
+  margin: 20px;
+}
+
+.sashay {
+  display: inline;
+  text-align: center;
+}

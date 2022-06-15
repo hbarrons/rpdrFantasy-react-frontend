@@ -160,21 +160,24 @@ const Queens = ({ user }) => {
           <>
             {profile.league[0]?.isAdmin ? 
               <>
-                <h1>Add A Queen:</h1>
-                <form
-                  autoComplete="off"
-                  onSubmit={handleSubmit}
-                  className="add-queen-form"
-                  >
-                    <label htmlFor="queen">Queen Name:</label>
-                    <input type="text" autoComplete="off" id="queen" name="queen" value={queenName}
-                    onChange={handleChange}/>
-                    <div>
-                      <button className="btn btn-primary">
-                      Add Queen
-                      </button>
-                    </div>
-                  </form>
+              <div className="add-queen">
+                <h2>Admin Feature</h2>
+                  <h3>Add A Queen</h3>
+                  <form
+                    autoComplete="off"
+                    onSubmit={handleSubmit}
+                    className="add-queen-form"
+                    >
+                      <label htmlFor="queen">Queen Name:</label>
+                      <input type="text" autoComplete="off" id="queen" name="queen" value={queenName}
+                      onChange={handleChange}/>
+                      <div>
+                        <button className="btn btn-primary">
+                        Add Queen
+                        </button>
+                      </div>
+                    </form>
+              </div>
               </>
             :
               <></>
@@ -191,7 +194,7 @@ const Queens = ({ user }) => {
     </>
       <div>
       <p><Link to="/mypicks" className="weekly-picks-link">Make Weekly Picks</Link></p>
-        <h1>Queens:</h1>
+        <h1 className="title">Queens</h1>
         {queens.length ? 
           <>
           {profiles.length ? 
@@ -210,13 +213,16 @@ const Queens = ({ user }) => {
             :
             <></>
           }
-          <h3>Sashay'd Away</h3>
-            {queens?.map(queen => {
-              if (queen.leagueNo === leagueNumber && queen.eliminated === true)
-              return <>
-                <li>{queen.name}</li>
-              </>
-            })}
+          <div className="sashay">
+            <h3 className="title">Sashay'd Away</h3>
+              {queens?.map(queen => {
+                if (queen.leagueNo === leagueNumber && queen.eliminated === true)
+                return <>
+                  <li>{queen.name}</li>
+                </>
+              })}
+
+          </div>
           </>
           :
           <>No Queens</>
