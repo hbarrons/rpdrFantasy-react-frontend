@@ -72,7 +72,7 @@ const Episodes = ({ user }) => {
   }
 
   const handleSubmit = async evt => {
-    
+    console.log("handle submit sanity check")
     //default no guess to last weeks guess
     profiles.map(profile => {
       console.log("HIT", profile.guessEpisode.length + 1, formData.episodeNum)
@@ -97,7 +97,7 @@ const Episodes = ({ user }) => {
       }
       console.log("create ep response: ", data)
       setEpisodes(data.episodes)
-      getScoreInfo(data.episodes, "submitScore")
+      defaultGuessScoreHelper(data.episodes, "submitScore")
     } catch (err) {
       console.log(err)
     }
@@ -107,6 +107,10 @@ const Episodes = ({ user }) => {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  function defaultGuessScoreHelper (episodes, deleteOrSubmit) {
+    getScoreInfo(episodes, deleteOrSubmit)
   }
 
   const handleDelete = async (episode) => {
@@ -234,9 +238,8 @@ const Episodes = ({ user }) => {
   const defaultGuessAPI = async (guessData, profileId) => {
     try {
       const data = await profileService.makeGuess(guessData, profileId)
-      console.log("default roster response: ", data)
       for (let i = 0; i < data.length; i++) {
-        if (data[i]._id === user.profile) {
+        if (data[i]._id === profileId) {
           data[i].guessEpisode.push({
             queen1: guessData.queen1,
             queen2: guessData.queen2,
@@ -244,9 +247,13 @@ const Episodes = ({ user }) => {
           })
         }
       }
+      console.log("default roster response: ", data)
       setProfiles(data)
 
       //is there a way to call getScoreInfo here?
+      console.log("EPISODES TO CALC SCORE", episodes)
+      getScoreInfo(episodes, "submitScore")
+
 
     } catch (err) {
       console.log(err)
