@@ -5,10 +5,15 @@ import * as profileService from '../../services/profileService'
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard.jsx'
 import styles from './Episodes.css'
 
-const Episodes = ({ profiles, user }) => {
+const Episodes = ({ user }) => {
   const [episodes, setEpisodes] = useState([])
   const [queens, setQueens] = useState([])
+  const [profiles, setProfiles] = useState([])
 
+  useEffect(()=> {
+    profileService.getAllProfiles()
+    .then(profiles => setProfiles(profiles))
+  }, [])
 
   //IT WOULD CLEAN THE APP UP SIGNIFICANTLY IF I FILTERED OUT QUEENS/PROFILES/EPISODES FOR EACH SPECIFIC LEAGUE IN THE HOOK, RATHER THAN CONDITIONALLY IN THE JSX
   useEffect(() => {
@@ -55,7 +60,7 @@ const Episodes = ({ profiles, user }) => {
     getLeagueNumber({user}, profile)
   })
   :
-  console.log("no profiles")
+  console.log()
 
   let eliminatedQueen = ""
   function getEliminatedQueen (elimQueen) {
@@ -122,7 +127,7 @@ const Episodes = ({ profiles, user }) => {
 
     let episodeCount = 0
     episodes.map(episode => {
-      console.log(leagueNumber, episode)
+      // console.log(leagueNumber, episode)
       if (episode.leagueNo === leagueNumber) {
         episodeCount += 1
       }
@@ -197,7 +202,6 @@ const Episodes = ({ profiles, user }) => {
 
 
   const defaultNoGuessQueens = async (profiles, episodeNum) => {
-
     let defaultData = {
       episodeNum: "",
       queen1: "",
@@ -214,13 +218,16 @@ const Episodes = ({ profiles, user }) => {
           queen2: profile.guessEpisode[profile.guessEpisode.length - 1].queen2
         }
         console.log("defaultData: ", defaultData)
+        defaultGuessAPI(defaultData, profile._id)
       }
     })
-    
+  }
+
+  const defaultGuessAPI = async (guessData, profileId) => {
     try {
-      const data = await profileService.makeGuess(defaultData, user.profile)
+      const data = await profileService.makeGuess(guessData, profileId)
       console.log("default roster response: ", data)
-      // setProfiles(data)
+      setProfiles(data)
     } catch (err) {
       console.log(err)
     }
@@ -232,9 +239,11 @@ const Episodes = ({ profiles, user }) => {
 
         // if player did not make a guess for this week, this calls the defaultGuess function to populate with their previous week guess
         if (profile.guessEpisode.length + 1 === episode.number) {
+          console.log("EPISODE: ", episode.number, profile.guessEpisode)
           defaultNoGuessQueens(profiles, episode.number)
         }
 
+      
         for (let i = 0; i < profile.guessEpisode.length; i++) {
           if (profile.guessEpisode[i].episode === episode.number) {
             // WINNER SCORE
@@ -283,12 +292,12 @@ const Episodes = ({ profiles, user }) => {
         }
       }
     })
-    console.log("deleteOrSubmit: ", deleteOrSubmit)
     if (deleteOrSubmit === "submitScore") {
       submitScores(leagueScores, episode.number)
     } else if (deleteOrSubmit === "deleteScore") {
       deleteScores(leagueScores, episode.number)
     }
+    console.log("deleteOrSubmit: ", deleteOrSubmit)
   }
 
   
@@ -307,7 +316,7 @@ const Episodes = ({ profiles, user }) => {
         {profile.league[0]?.isAdmin ? 
           <>
           <h2 className='title'>Admin Feature</h2>
-          <p>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms. If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
+          <p>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms, and 3pts each for Safe (assigned if queen is not selected in any dropdown). If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
           <h3 className='title'>Add A Episode</h3>
           <div className='add-episode'>
             <form
@@ -424,7 +433,7 @@ const Episodes = ({ profiles, user }) => {
     )}
     </>
     :
-    console.log("no profiles")
+    ""
     }
     </>
       <div>
