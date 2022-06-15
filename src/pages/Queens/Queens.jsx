@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
 import * as episodeService from '../../services/eipsodeService.js'
+import styles from './Queens.css'
 import { Link } from "react-router-dom";
 
 
@@ -189,7 +190,7 @@ const Queens = ({ user }) => {
       }
     </>
       <div>
-      <p><Link to="/mypicks">Make Weekly Picks</Link></p>
+      <p><Link to="/mypicks" className="weekly-picks-link">Make Weekly Picks</Link></p>
         <h1>Queens:</h1>
         {queens.length ? 
           <>
@@ -197,10 +198,12 @@ const Queens = ({ user }) => {
             <>
               {profiles?.map(profile => {
             return <>
-              {queens?.map(queen => {
+              <div className="queens">
+                {queens?.map(queen => {
                 if (queen.leagueNo === leagueNumber && queen.eliminated === false)
                 return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/>
-                 })}
+                })}
+              </div>
                </>
               })}
             </>

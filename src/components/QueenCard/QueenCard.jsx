@@ -1,13 +1,12 @@
 import * as queenService from '../../services/queenService'
 import { useState, useEffect } from 'react'
+import styles from './QueenCard.css'
 
 
 const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFromRoster }) => {
 
   
-  // if (profile._id === user.profile) {
-  //   console.log("queen card: ", profile.roster.length)
-  // }
+  
 
   queen.name = queen.name || queen.queen
   if (queen.eleminated === undefined) {
@@ -19,8 +18,10 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
       <>
         {profile.league[0]?.isAdmin ? 
           <>
-            <li>{queen.name} {queen.elminiated ? 
-              "(Eliminated)" : ""}</li>
+          <div className='queen-card'>
+            <h3 className='queen-name'>{queen.name} {queen.elminiated ? 
+              "(Eliminated)" : ""}</h3>
+              <div className='roster-buttons'>
               {profile.roster.some(rosteredQueen => rosteredQueen.queen === queen.name) ? 
                 <><button className="btn btn-warning" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button></>
                 :
@@ -35,13 +36,17 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
                 }
                 </>
               }
+              </div>
                   
             <button type="button" className="btn btn-danger" onClick={() => handleDelete(queen._id)}>Delete</button>
+          </div>
           </>
         :
           <>
-            <li>{queen.name} {queen.elminiated ? 
-              "(Eliminated)" : ""}</li>
+          <div className='queen-card'>
+            <h3 className='queen-name'>{queen.name} {queen.elminiated ? 
+              "(Eliminated)" : ""}</h3>
+              <div className='roster-buttons'>
               {profile.roster.some(rosteredQueen => rosteredQueen.queen === queen.name) ? 
               <><button className="btn btn-warning" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button></>
               :
@@ -56,6 +61,8 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
                 }
               </>
               }
+              </div>
+          </div>
           </>
         }
         
