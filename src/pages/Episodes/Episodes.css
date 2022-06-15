@@ -1,0 +1,12 @@
+.add-episode {
+  display: inline;
+  text-align: center;
+}
+
+.add-queen-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  width: 1000px;
+}

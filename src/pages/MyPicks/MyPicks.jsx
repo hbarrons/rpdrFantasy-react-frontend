@@ -9,6 +9,10 @@ const MyPicks = ({ user }) => {
   const [profiles, setProfiles] = useState([])
   const [episodes, setEpisodes] = useState([])
 
+
+  // pick back up - start by working on functionality for weekly picks to default to previous week picks if no selection is made
+
+
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
@@ -60,6 +64,7 @@ const MyPicks = ({ user }) => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     formData.episodeNum = leagueEpisodes.length + 1
+    console.log("make guess data", formData)
     try {
       const data = await profileService.makeGuess(formData, user.profile)
       console.log("add to roster response: ", data)

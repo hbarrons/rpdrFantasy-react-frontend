@@ -3,6 +3,7 @@ import * as episodeService from '../../services/eipsodeService.js'
 import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard.jsx'
+import styles from './Episodes.css'
 
 const Episodes = ({ profiles, user }) => {
   const [episodes, setEpisodes] = useState([])
@@ -183,7 +184,6 @@ const Episodes = ({ profiles, user }) => {
           }
         })
         getScore(profiles, episode, deleteOrSubmit)
-        console.log("map leagueScores: ", leagueScores, episode.number)
         safeQueens = []
         leagueScores = []
       }
@@ -194,13 +194,49 @@ const Episodes = ({ profiles, user }) => {
   let safeQueens = []
   let leagueScores = []
   let score = 0
+
+
+  const defaultNoGuessQueens = async (profiles, episodeNum) => {
+
+    let defaultData = {
+      episodeNum: "",
+      queen1: "",
+      queen2: "",
+    }
+    
+    profiles?.forEach(profile => {
+      if (profile.league[0].leagueNo === leagueNumber) {
+        console.log("DEFAULT SCORE HIT")
+
+        defaultData = {
+          episodeNum: episodeNum,
+          queen1: profile.guessEpisode[profile.guessEpisode.length - 1].queen1,
+          queen2: profile.guessEpisode[profile.guessEpisode.length - 1].queen2
+        }
+        console.log("defaultData: ", defaultData)
+      }
+    })
+    
+    try {
+      const data = await profileService.makeGuess(defaultData, user.profile)
+      console.log("default roster response: ", data)
+      // setProfiles(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+ 
   function getScore (profiles, episode, deleteOrSubmit) {
     profiles?.forEach(profile => {
       if (profile.league[0]?.leagueNo === leagueNumber) {
-        console.log(profile)
+
+        // if player did not make a guess for this week, this calls the defaultGuess function to populate with their previous week guess
+        if (profile.guessEpisode.length + 1 === episode.number) {
+          defaultNoGuessQueens(profiles, episode.number)
+        }
+
         for (let i = 0; i < profile.guessEpisode.length; i++) {
           if (profile.guessEpisode[i].episode === episode.number) {
-            console.log(profile.guessEpisode[i], episode)
             // WINNER SCORE
             if (profile.guessEpisode[i].queen1 === episode.winner || profile.guessEpisode[i].queen2 === episode.winner) {
               score += 10
@@ -241,7 +277,6 @@ const Episodes = ({ profiles, user }) => {
               score -= 2
               // console.log("queen2 bottom", score)
             }
-            console.log(profile.name, score)
             leagueScores.push({profile: profile._id, weeklyScore: score})
             score = 0
           }
@@ -255,6 +290,7 @@ const Episodes = ({ profiles, user }) => {
       deleteScores(leagueScores, episode.number)
     }
   }
+
   
 
 
@@ -262,7 +298,6 @@ const Episodes = ({ profiles, user }) => {
   return ( 
     <>
     <>
-    <h1>Episode's</h1>
     <>
     {profiles?.length ?
     <>
@@ -271,7 +306,10 @@ const Episodes = ({ profiles, user }) => {
       <>
         {profile.league[0]?.isAdmin ? 
           <>
-            <h1>Add A Episode:</h1>
+          <h2 className='title'>Admin Feature</h2>
+          <p>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms. If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
+          <h3 className='title'>Add A Episode</h3>
+          <div className='add-episode'>
             <form
               autoComplete="off"
               onSubmit={handleSubmit}
@@ -374,6 +412,7 @@ const Episodes = ({ profiles, user }) => {
                   </button>
                 </div>
               </form>
+          </div>
           </>
         :
           <></>
@@ -389,6 +428,7 @@ const Episodes = ({ profiles, user }) => {
     }
     </>
       <div>
+        <h1 className='title'>Episode's</h1>
       </div>
       <div>
         {episodes?.length ? 
