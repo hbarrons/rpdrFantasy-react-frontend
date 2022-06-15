@@ -72,6 +72,16 @@ const Episodes = ({ user }) => {
   }
 
   const handleSubmit = async evt => {
+    
+    //default no guess to last weeks guess
+    profiles.map(profile => {
+      console.log("HIT", profile.guessEpisode.length + 1, formData.episodeNum)
+      if (profile.guessEpisode.length + 1 === parseInt(formData.episodeNum)) {
+        console.log("EPISODE: ", parseInt(formData.episodeNum), profile.guessEpisode.length)
+        defaultNoGuessQueens(profile, formData.episodeNum)
+      }
+    })
+
     evt.preventDefault()
     getEliminatedQueen(formData.loser)
     try {
@@ -201,14 +211,13 @@ const Episodes = ({ user }) => {
   let score = 0
 
 
-  const defaultNoGuessQueens = async (profiles, episodeNum) => {
+  const defaultNoGuessQueens = async (profile, episodeNum) => {
     let defaultData = {
       episodeNum: "",
       queen1: "",
       queen2: "",
     }
     
-    profiles?.forEach(profile => {
       if (profile.league[0].leagueNo === leagueNumber) {
         console.log("DEFAULT SCORE HIT")
 
@@ -220,14 +229,25 @@ const Episodes = ({ user }) => {
         console.log("defaultData: ", defaultData)
         defaultGuessAPI(defaultData, profile._id)
       }
-    })
   }
 
   const defaultGuessAPI = async (guessData, profileId) => {
     try {
       const data = await profileService.makeGuess(guessData, profileId)
       console.log("default roster response: ", data)
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]._id === user.profile) {
+          data[i].guessEpisode.push({
+            queen1: guessData.queen1,
+            queen2: guessData.queen2,
+            episode: guessData.episodeNum
+          })
+        }
+      }
       setProfiles(data)
+
+      //is there a way to call getScoreInfo here?
+
     } catch (err) {
       console.log(err)
     }
@@ -238,10 +258,10 @@ const Episodes = ({ user }) => {
       if (profile.league[0]?.leagueNo === leagueNumber) {
 
         // if player did not make a guess for this week, this calls the defaultGuess function to populate with their previous week guess
-        if (profile.guessEpisode.length + 1 === episode.number) {
-          console.log("EPISODE: ", episode.number, profile.guessEpisode)
-          defaultNoGuessQueens(profiles, episode.number)
-        }
+        // if (profile.guessEpisode.length + 1 === episode.number) {
+        //   console.log("EPISODE: ", episode.number, profile.guessEpisode)
+        //   defaultNoGuessQueens(profiles, episode.number)
+        // }
 
       
         for (let i = 0; i < profile.guessEpisode.length; i++) {
