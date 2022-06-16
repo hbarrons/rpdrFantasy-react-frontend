@@ -97,7 +97,7 @@ const Episodes = ({ user }) => {
       }
       console.log("create ep response: ", data)
       setEpisodes(data.episodes)
-      defaultGuessScoreHelper(data.episodes, "submitScore")
+      // defaultGuessScoreHelper(data.episodes, "submitScore")
     } catch (err) {
       console.log(err)
     }
@@ -109,9 +109,10 @@ const Episodes = ({ user }) => {
     }
   }
 
-  function defaultGuessScoreHelper (episodes, deleteOrSubmit) {
-    getScoreInfo(episodes, deleteOrSubmit)
-  }
+  // function defaultGuessScoreHelper (episodes, deleteOrSubmit) {
+  //   console.log("helper function sanity check")
+    // getScoreInfo(episodes, deleteOrSubmit)
+  // }
 
   const handleDelete = async (episode) => {
     console.log("episode.loser: ", episode.loser)
@@ -136,6 +137,8 @@ const Episodes = ({ user }) => {
 
 
   const submitScores = async (scores, episodeNum) => {
+
+    console.log("SUBMITTED SCORES", scores)
 
     console.log("submitScores", episodeNum)
 
@@ -190,7 +193,7 @@ const Episodes = ({ user }) => {
   const { bottom3 } = formData
 
   let leagueEpisodes = []
-  function getScoreInfo (episodeData, deleteOrSubmit) {
+  function getScoreInfo (episodeData, profiles, deleteOrSubmit) {
     episodeData?.map(episode => {
       if (episode.leagueNo === leagueNumber) {
         leagueEpisodes.push(episode)
@@ -202,7 +205,10 @@ const Episodes = ({ user }) => {
             }
           }
         })
-        getScore(profiles, episode, deleteOrSubmit)
+        if (episode.number === parseInt(formData.episodeNum)) {
+          console.log("getScoreInfo Profiles: ", profiles)
+          getScore(profiles, episode, deleteOrSubmit)
+        }
         safeQueens = []
         leagueScores = []
       }
@@ -214,63 +220,19 @@ const Episodes = ({ user }) => {
   let leagueScores = []
   let score = 0
 
-
-  const defaultNoGuessQueens = async (profile, episodeNum) => {
-    let defaultData = {
-      episodeNum: "",
-      queen1: "",
-      queen2: "",
-    }
-    
-      if (profile.league[0].leagueNo === leagueNumber) {
-        console.log("DEFAULT SCORE HIT")
-
-        defaultData = {
-          episodeNum: episodeNum,
-          queen1: profile.guessEpisode[profile.guessEpisode.length - 1].queen1,
-          queen2: profile.guessEpisode[profile.guessEpisode.length - 1].queen2
-        }
-        console.log("defaultData: ", defaultData)
-        defaultGuessAPI(defaultData, profile._id)
-      }
-  }
-
-  const defaultGuessAPI = async (guessData, profileId) => {
-    try {
-      const data = await profileService.makeGuess(guessData, profileId)
-      for (let i = 0; i < data.length; i++) {
-        if (data[i]._id === profileId) {
-          data[i].guessEpisode.push({
-            queen1: guessData.queen1,
-            queen2: guessData.queen2,
-            episode: guessData.episodeNum
-          })
-        }
-      }
-      console.log("default roster response: ", data)
-      setProfiles(data)
-
-      //is there a way to call getScoreInfo here?
-      console.log("EPISODES TO CALC SCORE", episodes)
-      getScoreInfo(episodes, "submitScore")
-
-
-    } catch (err) {
-      console.log(err)
-    }
-  }
  
   function getScore (profiles, episode, deleteOrSubmit) {
+    console.log("GET SCORE Profiles: ", profiles)
     profiles?.forEach(profile => {
       if (profile.league[0]?.leagueNo === leagueNumber) {
-
+        console.log("HIT HIT HIT")
         // if player did not make a guess for this week, this calls the defaultGuess function to populate with their previous week guess
         // if (profile.guessEpisode.length + 1 === episode.number) {
         //   console.log("EPISODE: ", episode.number, profile.guessEpisode)
         //   defaultNoGuessQueens(profiles, episode.number)
         // }
 
-      
+        console.log("calculate score:", profile.guessEpisode, episode.number)
         for (let i = 0; i < profile.guessEpisode.length; i++) {
           if (profile.guessEpisode[i].episode === episode.number) {
             // WINNER SCORE
@@ -327,8 +289,60 @@ const Episodes = ({ user }) => {
     console.log("deleteOrSubmit: ", deleteOrSubmit)
   }
 
-  
+  const defaultNoGuessQueens = async (profile, episodeNum) => {
+    let defaultData = {
+      episodeNum: "",
+      queen1: "",
+      queen2: "",
+    }
+    
+      if (profile.league[0].leagueNo === leagueNumber) {
+        console.log("DEFAULT SCORE HIT")
 
+        defaultData = {
+          episodeNum: episodeNum,
+          queen1: profile.guessEpisode[profile.guessEpisode.length - 1].queen1,
+          queen2: profile.guessEpisode[profile.guessEpisode.length - 1].queen2
+        }
+        console.log("defaultData: ", defaultData)
+        defaultGuessAPI(defaultData, profile._id)
+      }
+  }
+
+  const defaultGuessAPI = async (guessData, profileId) => {
+    try {
+      const data = await profileService.makeGuess(guessData, profileId)
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]._id === profileId) {
+          data[i].guessEpisode.push({
+            queen1: guessData.queen1,
+            queen2: guessData.queen2,
+            episode: guessData.episodeNum
+          })
+        }
+      }
+      console.log("default roster response: ", data)
+      setProfiles(data)
+      console.log("EPISODES: ", episodes)
+      setTimeout(console.log("TIMEOUT TEST"), 5000)
+      setTimeout(getScoreInfo(episodes, data, "submitScore"), 5000)
+
+      //is there a way to call getScoreInfo here?
+      // console.log("EPISODES TO CALC SCORE", episodes)
+      // getScoreInfo(episodes, "submitScore")
+
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  let leagueEps = []
+
+  function testScoreButton (profiles, episodes) {
+    console.log("profiles: ", profiles)
+    console.log("episodes: ", episodes)
+  }
 
 
   return ( 
@@ -343,7 +357,7 @@ const Episodes = ({ user }) => {
         {profile.league[0]?.isAdmin ? 
           <>
           <h2 className='title'>Admin Feature</h2>
-          <p>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms, and 3pts each for Safe (assigned if queen is not selected in any dropdown). If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
+
           <h3 className='title'>Add A Episode</h3>
           <div className='add-episode'>
             <form
@@ -448,6 +462,22 @@ const Episodes = ({ user }) => {
                   </button>
                 </div>
               </form>
+              {episodes.map(episode => {
+                if (episode.leagueNo === leagueNumber) {
+                  leagueEps.push(episode)
+                }})
+              }
+              {profile.score[profile.score.length-1].episodeNum !== leagueEps.length ? 
+              <>
+                <button className='btn btn-warning' onClick={() => testScoreButton(profiles, episodes)}>Calculate Scores</button>
+              </>
+              :
+              <></>
+              }
+                <>
+
+                </>
+              <p>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms, and 3pts each for Safe (assigned if queen is not selected in any dropdown). If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
           </div>
           </>
         :

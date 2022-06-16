@@ -123,7 +123,7 @@ const Queens = ({ user }) => {
       console.log(err)
     }
   }
-  console.log("transactionCount: ", transactionCount)
+
 
   const removeFromRoster = async (queen, user) => {
     console.log({user})
@@ -169,7 +169,7 @@ const Queens = ({ user }) => {
                     className="add-queen-form"
                     >
                       <label htmlFor="queen">Queen Name:</label>
-                      <input type="text" autoComplete="off" id="queen" name="queen" value={queenName}
+                      <input key={profile._id} type="text" autoComplete="off" id="queen" name="queen" value={queenName}
                       onChange={handleChange}/>
                       <div>
                         <button className="btn btn-primary">
@@ -218,7 +218,7 @@ const Queens = ({ user }) => {
               {queens?.map(queen => {
                 if (queen.leagueNo === leagueNumber && queen.eliminated === true)
                 return <>
-                  <li>{queen.name}</li>
+                  <li key={queen._id}>{queen.name}</li>
                 </>
               })}
 
