@@ -150,7 +150,7 @@ const Episodes = ({ user }) => {
       }
     })
     console.log("episodeCount: ", episodeCount)
-    if (episodeCount + 1 === episodeNum) {
+    if (episodeCount === episodeNum) {
       try {
         const data = await profileService.submitScores(scores, episodeNum)
         console.log("submitScores response: ", data)
@@ -194,6 +194,7 @@ const Episodes = ({ user }) => {
 
   let leagueEpisodes = []
   function getScoreInfo (episodeData, profiles, deleteOrSubmit) {
+    console.log("POP")
     episodeData?.map(episode => {
       if (episode.leagueNo === leagueNumber) {
         leagueEpisodes.push(episode)
@@ -205,7 +206,15 @@ const Episodes = ({ user }) => {
             }
           }
         })
-        if (episode.number === parseInt(formData.episodeNum)) {
+        let epNum = 0
+        profiles.map(profile => {
+          if (profile.league[0].leagueNo === leagueNumber) {
+            console.log(profile)
+            epNum = profile.score.length
+          }
+        })
+        console.log(episode.number, profiles)
+        if (episode.number === epNum + 1) {
           console.log("getScoreInfo Profiles: ", profiles)
           getScore(profiles, episode, deleteOrSubmit)
         }
@@ -281,7 +290,9 @@ const Episodes = ({ user }) => {
         }
       }
     })
+    console.log("deleteOrSubmit: ", deleteOrSubmit)
     if (deleteOrSubmit === "submitScore") {
+      console.log("line 295")
       submitScores(leagueScores, episode.number)
     } else if (deleteOrSubmit === "deleteScore") {
       deleteScores(leagueScores, episode.number)
@@ -340,8 +351,8 @@ const Episodes = ({ user }) => {
   let leagueEps = []
 
   function testScoreButton (profiles, episodes) {
-    console.log("profiles: ", profiles)
-    console.log("episodes: ", episodes)
+    console.log("HIT")
+    getScoreInfo(episodes, profiles, "submitScore")
   }
 
 
