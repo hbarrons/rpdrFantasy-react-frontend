@@ -10,9 +10,6 @@ const MyPicks = ({ user }) => {
   const [episodes, setEpisodes] = useState([])
 
 
-  // pick back up - start by working on functionality for weekly picks to default to previous week picks if no selection is made
-
-
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {

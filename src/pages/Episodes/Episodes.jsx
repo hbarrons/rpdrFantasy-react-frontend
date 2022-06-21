@@ -114,15 +114,16 @@ const Episodes = ({ user }) => {
     // getScoreInfo(episodes, deleteOrSubmit)
   // }
 
-  const handleDelete = async (episode) => {
+  const handleDelete = async (episode, profiles) => {
     console.log("episode.loser: ", episode.loser)
     getEliminatedQueen(episode.loser)
+
 
     try {
       const data = await episodeService.deleteEpisode(episode)
       console.log("delete ep response: ", data)
       setEpisodes(data)
-      getScoreInfo(data, "deleteScore")
+      getScoreInfo(data, profiles, "deleteScore")
     } catch (err) {
       console.log(err)
     }
@@ -164,6 +165,7 @@ const Episodes = ({ user }) => {
   const deleteScores = async (scores, episodeNum) => {
     console.log("deleteScores", episodeNum)
     console.log("deleteScores", scores)
+  
 
     let episodeCount = 0
     episodes.map(episode => {
@@ -194,7 +196,7 @@ const Episodes = ({ user }) => {
 
   let leagueEpisodes = []
   function getScoreInfo (episodeData, profiles, deleteOrSubmit) {
-    console.log("POP")
+    console.log("GETSCOREINFO: ", episodeData, profiles, deleteOrSubmit)
     episodeData?.map(episode => {
       if (episode.leagueNo === leagueNumber) {
         leagueEpisodes.push(episode)
@@ -213,8 +215,8 @@ const Episodes = ({ user }) => {
             epNum = profile.score.length
           }
         })
-        console.log(episode.number, profiles)
-        if (episode.number === epNum + 1) {
+        console.log(episode.number, epNum, profiles)
+        if (episode.number === epNum + 1 || deleteOrSubmit === "deleteScore") {
           console.log("getScoreInfo Profiles: ", profiles)
           getScore(profiles, episode, deleteOrSubmit)
         }
@@ -513,7 +515,7 @@ const Episodes = ({ user }) => {
             {episodes?.map(episode => {
               if (episode.leagueNo === leagueNumber)
                 return <>
-                  <EpisodeCard episode={episode} key={episode.number} user={user} handleDelete={handleDelete} getEliminatedQueen={getEliminatedQueen}/>
+                  <EpisodeCard episode={episode} profiles={profiles} key={episode.number} user={user} handleDelete={handleDelete} getEliminatedQueen={getEliminatedQueen}/>
                 </>
            })}
           </>
