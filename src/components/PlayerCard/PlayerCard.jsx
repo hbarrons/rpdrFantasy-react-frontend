@@ -6,7 +6,15 @@ const PlayerCard = (profile, user) => {
   return ( 
     <>
       {console.log(profile)}
-      <li>{profile.profile.name}</li>
+      {profile.profile.admin === true ? 
+      <>
+        <li>{profile.profile.name}</li>
+      </>
+      :
+      <>
+        <li>{profile.profile.name}</li>
+      </>
+      }
     </>
    );
 }

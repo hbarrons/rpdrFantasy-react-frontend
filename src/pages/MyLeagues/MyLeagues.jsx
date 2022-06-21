@@ -69,6 +69,17 @@ const MyLeague = ({ user }) => {
       console.log(err)
     }
   }
+
+  const makeAdmin = async (profileId) => {
+    console.log("makeAdmin profileId: ", profileId)
+    try {
+      const data = await profileService.makeAdmin(profileId)
+      console.log("makeAdmin response: ", data)
+      setProfiles(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   
   let leagueEpisodes = []
   episodes.length ?

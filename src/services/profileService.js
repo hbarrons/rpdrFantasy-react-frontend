@@ -115,3 +115,15 @@ export async function deleteScores (episodeNum, leagueNum, scores) {
   .then(res => res.json())
 }
 
+export async function makeAdmin (profileId) {
+  console.log("makeAdmin service: ", profileId)
+  return await fetch(`${BASE_URL}/deletescores/${profileId}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}
