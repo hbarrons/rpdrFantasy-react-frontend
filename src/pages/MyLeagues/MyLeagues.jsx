@@ -4,6 +4,7 @@ import * as episodeService from '../../services/eipsodeService.js'
 import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
 import QueenCard from "../../components/QueenCard/QueenCard"
+import PlayerCard from "../../components/PlayerCard/PlayerCard"
 import Rules from "../../components/Rules/Rules"
 import { Link } from "react-router-dom"
 
@@ -124,7 +125,8 @@ const MyLeague = ({ user }) => {
         <h5>Tops: </h5><p> {leagueEpisodes[leagueEpisodes.length -1]?.tops[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[2]} (5 points)</p>
         <h5>Bottoms:</h5> <p> {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[2]} (-2 points)</p>
       </div>
-        <div className="remaining-queens">
+      <div className="remaining-queens">
+        <div>
           <h3>Remaining Queens:</h3>
           {queens.map(queen => {
             console.log(queen.eliminated)
@@ -133,7 +135,7 @@ const MyLeague = ({ user }) => {
             }
           })}
         </div>
-        <div className="elim-queens">
+        <div>
           <h3>Eliminated Queens:</h3>
           {queens.map(queen => {
             console.log(queen.eliminated)
@@ -142,6 +144,16 @@ const MyLeague = ({ user }) => {
             }
           })}
         </div>
+      </div>
+      <div className="players">
+
+          <h3>League Members</h3>
+          {profiles.map(profile => {
+            if (profile.league[0].leagueNo === leagueNumber) {
+              return <PlayerCard profile={profile} user={user} key={profile._id}/>
+            }
+          })}
+      </div>
     </main>
     </>
    );

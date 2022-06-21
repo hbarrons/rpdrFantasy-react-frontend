@@ -45,7 +45,7 @@
   text-align: center;
 }
 
-.elim-queens {
+.players {
   grid-column: 4 / 5;
   grid-row: 3 / 4;
   display: inline;
