@@ -29,10 +29,10 @@ const NavBar = ({ user, profiles, handleLogout }) => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <div className='container-fluid'>
               <ul className='navbar-nav'>
-                <li nav-item="true"><Link to="/" className='nav-link active'>Home</Link></li>
                 <li nav-item="true"><Link to="/myleague" className='nav-link active'>My League</Link></li>
                 <li nav-item="true"><Link to="/queens" className='nav-link active'>Queens</Link></li>
                 <li nav-item="true"><Link to="/episodes" className='nav-link active'>Episodes</Link></li>
+                <li nav-item="true"><Link to="/mypicks" className='nav-link active'>Make Picks</Link></li>
                 <li nav-item="true"><Link to="/profiles" className='nav-link active'>Scoreboard</Link></li>
                 <li nav-item="true"><Link to="" onClick={handleLogout} className='nav-link active'>LOG OUT</Link></li>
                 {/* <li nav-item="true"><Link to="/changePassword" className='nav-link active'>Change Password</Link></li> */}

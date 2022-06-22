@@ -3,8 +3,8 @@ nav {
   position: fixed;
 }
 
-.navbar-custom {
-
+.li {
+  color: hotpink;
 }
 
 .navbar-toggler  {

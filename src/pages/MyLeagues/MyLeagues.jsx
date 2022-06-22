@@ -161,7 +161,7 @@ const MyLeague = ({ user }) => {
           <h3>League Members</h3>
           {profiles.map(profile => {
             if (profile.league[0].leagueNo === leagueNumber) {
-              return <PlayerCard profile={profile} user={user} key={profile._id}/>
+              return <PlayerCard profile={profile} user={user} makeAdmin={makeAdmin} key={profile._id}/>
             }
           })}
       </div>
