@@ -117,8 +117,8 @@ export async function deleteScores (episodeNum, leagueNum, scores) {
 
 export async function makeAdmin (profileId) {
   console.log("makeAdmin service: ", profileId)
-  return await fetch(`${BASE_URL}/deletescores/${profileId}`, {
-    method: 'PUT',
+  return await fetch(`${BASE_URL}/makeadmin/${profileId}`, {
+    method: 'POST',
     headers: {
       'content-type': 'application/json',
       Authorization: `Bearer ${tokenService.getToken()}`

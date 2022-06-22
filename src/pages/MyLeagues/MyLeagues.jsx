@@ -5,6 +5,7 @@ import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
 import QueenCard from "../../components/QueenCard/QueenCard"
 import PlayerCard from "../../components/PlayerCard/PlayerCard"
+import AdminPlayerCard from "../../components/AdminPlayerCard/AdminplayerCard"
 import Rules from "../../components/Rules/Rules"
 import { Link } from "react-router-dom"
 
@@ -49,6 +50,17 @@ const MyLeague = ({ user }) => {
   profiles.forEach(profile => {
     getLeagueNumber({user}, profile)
   })
+
+  let userProfile = {}
+  function getUserProfile (profiles, user) {
+    profiles.map(profile => {
+      if (user.profile === profile._id) {
+        userProfile = profile
+      }
+    })
+    console.log("userProfile: ", userProfile)
+  }
+  getUserProfile(profiles, user)
 
   const removeFromRoster = async (queen, user) => {
     try {
@@ -159,11 +171,26 @@ const MyLeague = ({ user }) => {
       <div className="players">
 
           <h3>League Members</h3>
-          {profiles.map(profile => {
+          {userProfile?.league[0]?.isAdmin === true ?
+          <>
+            {profiles.map(profile => {
             if (profile.league[0].leagueNo === leagueNumber) {
-              return <PlayerCard profile={profile} user={user} makeAdmin={makeAdmin} key={profile._id}/>
+              return <AdminPlayerCard profile={profile} user={user} makeAdmin={makeAdmin} key={profile._id}/>
             }
           })}
+          </>
+          :
+          <>
+            {profiles.map(profile => {
+            if (profile.league[0].leagueNo === leagueNumber) {
+              if (profile.league[0].isAdmin === false) {
+                return <PlayerCard profile={profile} user={user} key={profile._id}/>
+              }
+            }
+          })}
+          </>
+          }
+
       </div>
     </main>
     </>
