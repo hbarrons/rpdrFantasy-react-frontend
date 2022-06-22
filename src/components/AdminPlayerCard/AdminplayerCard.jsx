@@ -2,13 +2,19 @@ import { useState } from "react"
 
 
 const AdminPlayerCard = ({profile, user, makeAdmin}) => {
-  const [checked, setChecked] = useState(false)
+
 
 
 
   return ( 
     <>
-      <li>{profile.name} <input type="checkbox" checked={checked} onChange={() => makeAdmin(profile._id)}></input></li>
+      <li>{profile.name}
+      {profile.league[0].isAdmin === false ?
+      <><button className="btn" onClick={()=>makeAdmin(profile._id)}>Make Admin</button></>
+      :
+      <><button className="btn btn-danger">Remove Admin</button></>
+      }
+      </li>
     </>
   );
 }

@@ -49,21 +49,6 @@ const MyLeague = ({ user }) => {
     getLeagueNumber({user}, profile)
   })
 
-  // let userProfile = {}
-  // function getUserProfile (profiles, user) {
-  //   profiles.map(profile => {
-  //     if (user.profile === profile._id) {
-  //       userProfile = profile
-  //     }
-  //   })
-  //   console.log("userProfile: ", userProfile)
-  // }
-
-  // console.log("allProfiles: ", allProfiles)
-  // getUserProfile(allProfiles, user)
-  
-
-
 
   const removeFromRoster = async (queen, user) => {
     try {
