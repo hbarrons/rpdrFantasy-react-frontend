@@ -17,15 +17,17 @@ const MyLeague = ({ user }) => {
   const [queens, setQueens] = useState([])
   const [profiles, setProfiles] = useState([])
 
+
   useEffect(()=> {
     profileService.getAllProfiles()
-    .then(profiles => setProfiles(profiles))
+    .then(profiles => {
+      setProfiles(profiles)
+    })
   }, [])
 
   useEffect(() => {
     queenService.getAllQueens()
     .then(queens => {
-      console.log("queens: ", queens)
       setQueens(queens)
     })
   }, [])
@@ -33,7 +35,6 @@ const MyLeague = ({ user }) => {
   useEffect(() => {
     episodeService.getAllEpisodes()
     .then(episodes => {
-      console.log("episodes: ", episodes)
       setEpisodes(episodes)
     })
   }, [])
@@ -41,26 +42,28 @@ const MyLeague = ({ user }) => {
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
-      console.log("function profile: ", profile._id)
-      console.log("function user: ", user.user.profile)
       leagueNumber = profile.league[0].leagueNo
-      console.log("function leagueNumber",leagueNumber)
     }
   }
   profiles.forEach(profile => {
     getLeagueNumber({user}, profile)
   })
 
-  let userProfile = {}
-  function getUserProfile (profiles, user) {
-    profiles.map(profile => {
-      if (user.profile === profile._id) {
-        userProfile = profile
-      }
-    })
-    console.log("userProfile: ", userProfile)
-  }
-  getUserProfile(profiles, user)
+  // let userProfile = {}
+  // function getUserProfile (profiles, user) {
+  //   profiles.map(profile => {
+  //     if (user.profile === profile._id) {
+  //       userProfile = profile
+  //     }
+  //   })
+  //   console.log("userProfile: ", userProfile)
+  // }
+
+  // console.log("allProfiles: ", allProfiles)
+  // getUserProfile(allProfiles, user)
+  
+
+
 
   const removeFromRoster = async (queen, user) => {
     try {
@@ -100,7 +103,7 @@ const MyLeague = ({ user }) => {
       leagueEpisodes.push(episode)
     }})
     :
-    console.log(leagueEpisodes)
+    console.log()
   
 
   console.log("leagueEpisodes: ", leagueEpisodes)
@@ -152,7 +155,6 @@ const MyLeague = ({ user }) => {
         <div>
           <h3>Remaining Queens:</h3>
           {queens.map(queen => {
-            console.log(queen.eliminated)
             if (queen.eliminated === false && queen.leagueNo === leagueNumber) {
               return <li key={queen._id}>{queen.name}</li>
             }
@@ -161,7 +163,6 @@ const MyLeague = ({ user }) => {
         <div>
           <h3>Eliminated Queens:</h3>
           {queens.map(queen => {
-            console.log(queen.eliminated)
             if (queen.eliminated === true && queen.leagueNo === leagueNumber) {
               return <li key={queen._id}>{queen.name}</li>
             }
@@ -169,28 +170,29 @@ const MyLeague = ({ user }) => {
         </div>
       </div>
       <div className="players">
-
-          <h3>League Members</h3>
-          {userProfile?.league[0]?.isAdmin === true ?
-          <>
-            {profiles.map(profile => {
-            if (profile.league[0].leagueNo === leagueNumber) {
-              return <AdminPlayerCard profile={profile} user={user} makeAdmin={makeAdmin} key={profile._id}/>
-            }
-          })}
-          </>
-          :
-          <>
-            {profiles.map(profile => {
-            if (profile.league[0].leagueNo === leagueNumber) {
-              if (profile.league[0].isAdmin === false) {
-                return <PlayerCard profile={profile} user={user} key={profile._id}/>
-              }
-            }
-          })}
-          </>
+        <h3>League Members</h3>
+        {profiles?.map(profile => {
+          if (user.profile === profile._id && profile.league[0].isAdmin === true) {
+            return <>
+              {profiles.map(profile => {
+                if (profile.league[0].leagueNo === leagueNumber) {
+                  return <AdminPlayerCard profile={profile} key={profile._id} makeAdmin={makeAdmin}/>
+                }
+              })}
+            </>
           }
-
+        })}
+        {profiles?.map(profile => {
+          if (user.profile === profile._id && profile.league[0].isAdmin === false) {
+            return <>
+              {profiles.map(profile => {
+                if (profile.league[0].leagueNo === leagueNumber) {
+                  return <PlayerCard profile={profile} key={profile._id}/>
+                }
+              })}
+            </>
+          }
+        })}
       </div>
     </main>
     </>
