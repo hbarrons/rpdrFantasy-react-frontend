@@ -80,6 +80,17 @@ const MyLeague = ({ user }) => {
       console.log(err)
     }
   }
+
+  const removeAdmin = async (profileId) => {
+    console.log("removeAdmin profileId: ", profileId)
+    try {
+      const data = await profileService.removeAdmin(profileId)
+      console.log("removeAdmin response: ", data)
+      setProfiles(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   
   let leagueEpisodes = []
   episodes.length ?
@@ -161,7 +172,7 @@ const MyLeague = ({ user }) => {
             return <>
               {profiles.map(profile => {
                 if (profile.league[0].leagueNo === leagueNumber) {
-                  return <AdminPlayerCard profile={profile} key={profile._id} makeAdmin={makeAdmin}/>
+                  return <AdminPlayerCard profile={profile} key={profile._id} makeAdmin={makeAdmin} removeAdmin={removeAdmin}/>
                 }
               })}
             </>

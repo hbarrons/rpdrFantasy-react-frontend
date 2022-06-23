@@ -127,3 +127,16 @@ export async function makeAdmin (profileId) {
   },)
   .then(res => res.json())
 }
+
+export async function removeAdmin (profileId) {
+  console.log("makeAdmin service: ", profileId)
+  return await fetch(`${BASE_URL}/removeadmin/${profileId}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}
