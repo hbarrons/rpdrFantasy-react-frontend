@@ -75,6 +75,11 @@ const MyLeague = ({ user }) => {
     try {
       const data = await profileService.makeAdmin(profileId)
       console.log("makeAdmin response: ", data)
+      for (let i=0; i<data.length; i++) {
+        if (data[i]._id === profileId) {
+          data[i].league[0].isAdmin = true
+        }
+      }
       setProfiles(data)
     } catch (err) {
       console.log(err)
@@ -86,6 +91,11 @@ const MyLeague = ({ user }) => {
     try {
       const data = await profileService.removeAdmin(profileId)
       console.log("removeAdmin response: ", data)
+      for (let i=0; i<data.length; i++) {
+        if (data[i]._id === profileId) {
+          data[i].league[0].isAdmin = false
+        }
+      }
       setProfiles(data)
     } catch (err) {
       console.log(err)
