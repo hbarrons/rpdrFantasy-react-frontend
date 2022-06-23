@@ -140,10 +140,11 @@ export async function removeAdmin (profileId) {
   },)
   .then(res => res.json())
 }
-export async function updateRoster (queen) {
+
+export async function updateRoster (queen, leagueNum) {
   console.log("rostered queen: ", queen)
-  return await fetch(`${BASE_URL}/removefromroster/${queen}`, {
-    method: 'DELETE',
+  return await fetch(`${BASE_URL}/updateroster/${queen}/${leagueNum}`, {
+    method: 'POST',
     headers: {
       'content-type': 'application/json',
       Authorization: `Bearer ${tokenService.getToken()}`

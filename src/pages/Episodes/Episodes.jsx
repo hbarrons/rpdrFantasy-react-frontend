@@ -63,10 +63,12 @@ const Episodes = ({ user }) => {
   console.log()
 
   let eliminatedQueen = ""
+  let elimQueenName = ""
   function getEliminatedQueen (elimQueen) {
     queens.map(queen => {
       if (queen.leagueNo === leagueNumber && queen.name === elimQueen) {
         eliminatedQueen = queen._id
+        elimQueenName = queen.name
       }
     })
   }
@@ -110,8 +112,9 @@ const Episodes = ({ user }) => {
     }
 
     try {
-      const data = await profileService.updateRoster(eliminatedQueen)
+      const data = await profileService.updateRoster(elimQueenName, leagueNumber)
       console.log("elim queen response: ", data)
+      setProfiles(data)
     } catch (err) {
       console.log(err)
     }

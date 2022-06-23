@@ -21,7 +21,6 @@ const Queens = ({ user }) => {
   useEffect(() => {
     queenService.getAllQueens()
     .then(queens => {
-      console.log("useEffect Queens: ", queens)
       setQueens(queens)
     })
   }, [])
@@ -30,7 +29,6 @@ const Queens = ({ user }) => {
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
       leagueNumber = profile.league[0].leagueNo
-      // console.log("function leagueNumber",leagueNumber)
     }
   }
 
