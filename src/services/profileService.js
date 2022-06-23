@@ -140,3 +140,15 @@ export async function removeAdmin (profileId) {
   },)
   .then(res => res.json())
 }
+export async function updateRoster (queen) {
+  console.log("rostered queen: ", queen)
+  return await fetch(`${BASE_URL}/removefromroster/${queen}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}

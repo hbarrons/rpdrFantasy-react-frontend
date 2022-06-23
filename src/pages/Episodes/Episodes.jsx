@@ -101,18 +101,22 @@ const Episodes = ({ user }) => {
     } catch (err) {
       console.log(err)
     }
+
     try {
       const data = await queenService.eliminateQueen(eliminatedQueen)
       console.log("elim queen response: ", data)
     } catch (err) {
       console.log(err)
     }
-  }
 
-  // function defaultGuessScoreHelper (episodes, deleteOrSubmit) {
-  //   console.log("helper function sanity check")
-    // getScoreInfo(episodes, deleteOrSubmit)
-  // }
+    try {
+      const data = await profileService.updateRoster(eliminatedQueen)
+      console.log("elim queen response: ", data)
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
 
   const handleDelete = async (episode, profiles) => {
     console.log("episode.loser: ", episode.loser)
