@@ -162,7 +162,7 @@ const Episodes = ({ user }) => {
       try {
         const data = await profileService.submitScores(scores, episodeNum)
         console.log("submitScores response: ", data)
-        // setEpisodes(data)
+        setProfiles(data)
       } catch (err) {
         console.log(err)
       }
@@ -516,7 +516,7 @@ const Episodes = ({ user }) => {
       <div>
         <h1 className='title'>Episode's</h1>
       </div>
-      <div>
+      <div className='all-episodes'>
         {episodes?.length ? 
           <>
             {episodes?.map(episode => {
