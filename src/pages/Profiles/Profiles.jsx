@@ -69,7 +69,7 @@ const Profiles = ({ profiles, user }) => {
           {profiles?.map(profile=>
             {if (profile.league[0]?.leagueNo === leagueNumber) {
               return <>
-              <div className='player-card'>
+              <div className='container player-card'>
                 <div>
                   <h2>{profile.name}</h2>
                   <h6>{profile.totalScore}</h6>

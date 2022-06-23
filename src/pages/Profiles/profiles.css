@@ -34,5 +34,8 @@ th, td {
 }
 
 .player-card {
+  border: 3px solid hotpink;
   margin: 20px;
+  width: 300px;
+  background-color: rgba(237, 162, 214, 0.3);
 }

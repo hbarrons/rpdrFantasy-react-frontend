@@ -14,17 +14,21 @@
 .all-episodes {
   display: flex;
   flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .single-ep {
-  border: 1px solid hotpink;
+  border: 3px solid hotpink;
   display: grid;
   justify-content: center;
   align-items: center;
   grid-template-rows: 20% 80%;
   grid-template-columns: 20% 20% 27% 27% 10%;
-  /* height: 150px; */
   width: 800px;
+  margin: 5px;
+  text-align: center;
+  background-color: rgba(237, 162, 214, 0.3);
 }
 
 .ep-title {
@@ -33,6 +37,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin: 3px;
+  margin-top: 5px;
 }
 
 p {

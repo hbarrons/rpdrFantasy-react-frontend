@@ -185,6 +185,7 @@ const Episodes = ({ user }) => {
       try {
         const data = await profileService.deleteScores(episodeCount, leagueNumber, scores)
         console.log("delete score response: ", data)
+        setProfiles(data)
       } catch (err) {
         console.log(err)
       }
