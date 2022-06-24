@@ -14,6 +14,7 @@ import MyLeague from './pages/MyLeagues/MyLeagues'
 import Queens from './pages/Queens/Queens'
 import Episodes from './pages/Episodes/Episodes'
 import MyPicks from './pages/MyPicks/MyPicks'
+import Profile from './pages/Profile/Profile'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -58,6 +59,7 @@ const App = () => {
           path="/profiles"
           element={user ? <Profiles profiles={profiles} user={user}/> : <Navigate to="/login" />}
         />
+        <Route path="/profile/:id" element={<Profile />}/>
         <Route
           path="/changePassword"
           element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin}/> : <Navigate to="/login" />}

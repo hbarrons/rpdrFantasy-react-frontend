@@ -377,108 +377,114 @@ const Episodes = ({ user }) => {
       <>
         {profile.league[0]?.isAdmin ? 
           <>
-          <h2 className='title'>Admin Feature</h2>
-
-          <h3 className='title'>Add A Episode</h3>
+          <div className='form-title'>
+            <h2 className='title'>Admin Feature</h2>
+            <h3 className='title'>Add A Episode</h3>
+          </div>
           <div className='add-episode'>
             <form
               autoComplete="off"
               onSubmit={handleSubmit}
-              className="add-queen-form"
+              className="add-episode-form"
               >
-                <label htmlFor="episodeNum">Episode #:</label>
-                <input type="text" autoComplete="off" id="episodeNum" name="episodeNum" value={episodeNum}
-                onChange={handleChange}/>
-                <br/>
-                <label htmlFor="winner">Winner:</label>
-                <select type="text" autoComplete="off" id="winner" name="winner" value={winner}
-                onChange={handleChange}>
-                  <option value="default">-Select Queen-</option>
-                  {queens?.map(queen => {
-                    if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option key={queen._id} value={queen.name}>{queen.name}</option>
-                    }
-                  })}
-                </select>
-                <br />
-                <label htmlFor="loser">Loser:</label>
-                <select type="text" autoComplete="off" id="loser" name="loser" value={loser}
-                onChange={handleChange}>
-                  <option value="default">-Select Queen-</option>
-                  {queens?.map(queen => {
-                    if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option key={queen._id} value={queen.name}>{queen.name}</option>
-                    }
-                  })}
-                </select>
-                <br />
-                <label htmlFor="loser">Top:</label>
-                <select type="text" autoComplete="off" id="top1" name="top1" value={top1}
-                onChange={handleChange}>
-                  <option value="default">-Select Queen-</option>
-                  {queens?.map(queen => {
-                    if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option key={queen._id} value={queen.name}>{queen.name}</option>
-                    }
-                  })}
-                </select>
-                <br />
-                <label htmlFor="top2">Top:</label>
-                <select type="text" autoComplete="off" id="top2" name="top2" value={top2}
-                onChange={handleChange}>
-                  <option value="default">-Select Queen-</option>
-                  {queens?.map(queen => {
-                    if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option value={queen.name}>{queen.name}</option>
-                    }
-                  })}
-                </select>
-                <br />
-                <label htmlFor="top3">Top:</label>
-                <select type="text" autoComplete="off" id="top3" name="top3" value={top3}
-                onChange={handleChange}>
-                  <option value="default">-Select Queen-</option>
-                  {queens?.map(queen => {
-                    if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option value={queen.name}>{queen.name}</option>
-                    }
-                  })}
-                </select>
-                <br />
-                <label htmlFor="bottom1">Bottom:</label>
-                <select type="text" autoComplete="off" id="bottom1" name="bottom1" value={bottom1}
-                onChange={handleChange}>
-                  <option value="default">-Select Queen-</option>
-                  {queens?.map(queen => {
-                    if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option value={queen.name}>{queen.name}</option>
-                    }
-                  })}
-                </select>
-                <br />
-                <label htmlFor="bottom2">Bottom:</label>
-                <select type="text" autoComplete="off" id="bottom2" name="bottom2" value={bottom2}
-                onChange={handleChange}>
-                  <option value="default">-Select Queen-</option>
-                  {queens?.map(queen => {
-                    if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option value={queen.name}>{queen.name}</option>
-                    }
-                  })}
-                </select>
-                <br />
-                <label htmlFor="bottom3">Bottom:</label>
-                <select type="text" autoComplete="off" id="bottom3" name="bottom3" value={bottom3}
-                onChange={handleChange}>
-                  <option value="default">-Select Queen-</option>
-                  {queens?.map(queen => {
-                    if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
-                      return <option value={queen.name}>{queen.name}</option>
-                    }
-                  })}
-                </select>
+                  <label htmlFor="episodeNum" className='epnum-input'>Episode #:</label>
+                  <input type="text" autoComplete="off" id="episodeNum" name="episodeNum" value={episodeNum}
+                  onChange={handleChange} className='epnum-input'/>
+                  <label htmlFor="winner" className='winner-form'>Winner:</label>
+                  <select className='winner-form' type="text" autoComplete="off" id="winner" name="winner" value={winner}
+                  onChange={handleChange}>
+                    <option className='winner-form' value="default">-Select Queen-</option>
+                    {queens?.map(queen => {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
+                        return <option key={queen._id} value={queen.name}>{queen.name}</option>
+                      }
+                    })}
+                  </select>
+                  <label className='loser-form' htmlFor="loser">Loser:</label>
+                  <select className='loser-form' type="text" autoComplete="off" id="loser" name="loser" value={loser}
+                  onChange={handleChange}>
+                    <option value="default">-Select Queen-</option>
+                    {queens?.map(queen => {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
+                        return <option key={queen._id} value={queen.name}>{queen.name}</option>
+                      }
+                    })}
+                  </select>
+                <div className='top1'>
+                  <label htmlFor="loser">Top:</label>
+                  <select type="text" autoComplete="off" id="top1" name="top1" value={top1}
+                  onChange={handleChange}>
+                    <option value="default">-Select Queen-</option>
+                    {queens?.map(queen => {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
+                        return <option key={queen._id} value={queen.name}>{queen.name}</option>
+                      }
+                    })}
+                  </select>
+                </div>
+                <div className='top2'>
+                  <label htmlFor="top2">Top:</label>
+                  <select type="text" autoComplete="off" id="top2" name="top2" value={top2}
+                  onChange={handleChange}>
+                    <option value="default">-Select Queen-</option>
+                    {queens?.map(queen => {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
+                        return <option value={queen.name}>{queen.name}</option>
+                      }
+                    })}
+                  </select>
+                </div>
+                <div className='top3'>
+                  <label htmlFor="top3">Top:</label>
+                  <select type="text" autoComplete="off" id="top3" name="top3" value={top3}
+                  onChange={handleChange}>
+                    <option value="default">-Select Queen-</option>
+                    {queens?.map(queen => {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
+                        return <option value={queen.name}>{queen.name}</option>
+                      }
+                    })}
+                  </select>
+                </div>
+                <div className='bottom1'>
+                  <label htmlFor="bottom1">Bottom:</label>
+                  <select type="text" autoComplete="off" id="bottom1" name="bottom1" value={bottom1}
+                  onChange={handleChange}>
+                    <option value="default">-Select Queen-</option>
+                    {queens?.map(queen => {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
+                        return <option value={queen.name}>{queen.name}</option>
+                      }
+                    })}
+                  </select>
+                </div>
+                <div className='bottom2'>
+                  <label htmlFor="bottom2">Bottom:</label>
+                  <select type="text" autoComplete="off" id="bottom2" name="bottom2" value={bottom2}
+                  onChange={handleChange}>
+                    <option value="default">-Select Queen-</option>
+                    {queens?.map(queen => {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
+                        return <option value={queen.name}>{queen.name}</option>
+                      }
+                    })}
+                  </select>
+                </div>
+                <div className='bottom3'>
+                  <label htmlFor="bottom3">Bottom:</label>
+                  <select type="text" autoComplete="off" id="bottom3" name="bottom3" value={bottom3}
+                  onChange={handleChange}>
+                    <option value="default">-Select Queen-</option>
+                    {queens?.map(queen => {
+                      if (queen.eliminated === false && queen.leagueNo === profile.league[0].leagueNo) {
+                        return <option value={queen.name}>{queen.name}</option>
+                      }
+                    })}
+                  </select>
+
+                </div>
                 <div>
-                  <button className="btn btn-primary">
+                  <button className="btn btn-primary add-ep-btn">
                   Add Episode
                   </button>
                 </div>
@@ -498,8 +504,8 @@ const Episodes = ({ user }) => {
                 <>
 
                 </>
-              <p>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms, and 3pts each for Safe (assigned if queen is not selected in any dropdown). If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
           </div>
+          <p>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms, and 3pts each for Safe (assigned if queen is not selected in any dropdown). If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
           </>
         :
           <></>

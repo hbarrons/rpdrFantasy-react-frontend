@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import * as profileService from '../../services/profileService'
 import * as episodeService from '../../services/eipsodeService.js'
 import styles from './profiles.css'
+import ProfileDetails from '../../components/ProfileDetailsCard/ProfileDetailsCard'
 
 const Profiles = ({ profiles, user }) => {
   const [episodes, setEpisodes] = useState([])
@@ -68,22 +70,7 @@ const Profiles = ({ profiles, user }) => {
         <div className='players'>
           {profiles?.map(profile=>
             {if (profile.league[0]?.leagueNo === leagueNumber) {
-              return <>
-              <div className='container player-card'>
-                <div>
-                  <h2>{profile.name}</h2>
-                  <h6>{profile.totalScore}</h6>
-                </div>
-                <h5>Roster:</h5>
-                {profile.roster.map(queen => {
-                  return <><li>{queen.queen}</li>
-                  </>
-                })}
-                <h5>Weekly Picks: Episode {profile.guessEpisode.length}</h5>
-                <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen1}</li>
-                <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen2}</li>
-              </div>
-              </>
+              return <ProfileDetails profile={profile} />
             }}
           )}
         </div>

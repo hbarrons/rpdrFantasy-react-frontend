@@ -31,11 +31,13 @@ th, td {
   display: flex;
   flex-flow: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 .player-card {
   border: 3px solid hotpink;
-  margin: 20px;
+  margin: 10px;
   width: 300px;
   background-color: rgba(237, 162, 214, 0.3);
+  border-radius: 25px;
 }
