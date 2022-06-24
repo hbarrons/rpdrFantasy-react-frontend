@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 
 
 const PlayerCard = ({profile, user, makeAdmin}) => {
@@ -6,7 +7,9 @@ const PlayerCard = ({profile, user, makeAdmin}) => {
 
   return ( 
     <>
-      <li>{profile.name}</li>
+      <Link to={`/profile/${profile._id}`} state={profile}>
+        <li>{profile.name}</li>
+      </Link >
     </>
   );
 }
