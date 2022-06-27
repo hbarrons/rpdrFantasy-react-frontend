@@ -9,9 +9,8 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
   
 
   queen.name = queen.name || queen.queen
-  if (queen.eleminated === undefined) {
-    queen.eleminated = false
-  }
+
+
   
   return ( 
     <>{profile._id === user.profile ? 
@@ -26,11 +25,15 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
                 <><button className="btn btn-warning" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button></>
                 :
                 <>
-                {profile.roster.length >= 4 ? 
+                {profile.roster.length >= 4? 
                 ""
                 :
                 <>
-                <button type="button" className="btn btn-primary" onClick={() => addToRoster(queen.name, user.profile)}>Add to Roster</button>
+                {queen.eliminated === false ?
+                <><button type="button" className="btn btn-primary" onClick={() => addToRoster(queen.name, user.profile)}>Add to Roster</button></>
+                :
+                <></>}
+                
                 </>
                 }
                 </>
@@ -46,16 +49,20 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
             <h3 className='queen-name'>{queen.name} {queen.elminiated ? 
               "(Eliminated)" : ""}</h3>
               <div className='roster-buttons'>
-              {profile.roster.some(rosteredQueen => rosteredQueen.queen === queen.name) ? 
+              {profile.roster.some(rosteredQueen => rosteredQueen.queen === queen.name && queen.elminiated !== true) ? 
               <><button className="btn btn-warning" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button></>
               :
               <>
-                {console.log(profile.roster.length)}
                 {profile.roster.length === 4 ? 
-                console.log(true)
+                <></>
                 :
                 <>
-                <button type="button" className="btn btn-primary" onClick={() => addToRoster(queen.name, user.profile)}>Add to Roster</button>
+                {queen.eliminated === false ?
+                <><button type="button" className="btn btn-primary" onClick={() => addToRoster(queen.name, user.profile)}>Add to Roster</button></>
+                :
+                <></>
+                }
+
                 </>
                 }
               </>

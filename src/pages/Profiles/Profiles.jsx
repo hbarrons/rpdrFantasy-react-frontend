@@ -46,7 +46,7 @@ const Profiles = ({ profiles, user }) => {
               })}
             <th className='total-score'>Total</th>  
           </tr>
-        {profiles.map(profile => {
+        {profiles?.map(profile => {
           if (profile.league[0]?.leagueNo === leagueNumber) {
             return <>
               <tr>

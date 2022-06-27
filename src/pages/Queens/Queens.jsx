@@ -191,7 +191,6 @@ const Queens = ({ user }) => {
       }
     </>
       <div>
-      <p><Link to="/mypicks" className="weekly-picks-link">Make Weekly Picks</Link></p>
         <h1 className="title">Queens</h1>
         {queens.length ? 
           <>
@@ -213,11 +212,18 @@ const Queens = ({ user }) => {
           }
           <div className="sashay">
             <h3 className="title">Sashay'd Away</h3>
-              {queens?.map(queen => {
-                if (queen.leagueNo === leagueNumber && queen.eliminated === true)
+
+              {profiles.map(profile => {
                 return <>
-                  <li key={queen._id}>{queen.name}</li>
+                  <div className="queens">
+                  {queens?.map(queen => {
+                  if (queen.leagueNo === leagueNumber && queen.eliminated === true) {
+                    return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/>
+                  }
+              })}
+                  </div>
                 </>
+
               })}
 
           </div>
