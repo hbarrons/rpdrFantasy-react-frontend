@@ -124,8 +124,18 @@ const Queens = ({ user }) => {
 
 
   const removeFromRoster = async (queen, user) => {
-    console.log({user})
+    console.log("queen: ", queen, "user: ", user)
     transactionCount -= 1
+    let rosterCount = 0
+
+    profiles.map(profile => {
+      if (profile._id === user) {
+        console.log("profile.roster.length: ", profile.roster.length)
+        rosterCount = profile.roster.length
+      }
+    })
+    console.log("rosterCount: ", rosterCount)
+
     try {
       const data = await profileService.removeFromRoster(queen, user)
       console.log("remove from roster response: ", data)
@@ -143,6 +153,18 @@ const Queens = ({ user }) => {
     } catch (err) {
       console.log(err)
     }
+
+    if (rosterCount === 4) {
+      try {
+        const data = await profileService.weeklyDrop(user)
+        console.log("weeklyDrop response: ", data)
+        setProfiles(data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+
   }
 
   const { queenName } = formData

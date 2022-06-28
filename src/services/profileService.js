@@ -153,3 +153,16 @@ export async function updateRoster (queen, leagueNum) {
   },)
   .then(res => res.json())
 }
+
+export async function weeklyDrop (user) {
+  console.log("user: ", user)
+  return await fetch(`${BASE_URL}/weeklydrop/${user}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}
