@@ -32,6 +32,7 @@ th, td {
   flex-flow: wrap;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
 .player-card {
@@ -40,4 +41,8 @@ th, td {
   width: 300px;
   background-color: rgba(237, 162, 214, 0.3);
   border-radius: 25px;
+}
+
+.player-details {
+  width: 300px;
 }
