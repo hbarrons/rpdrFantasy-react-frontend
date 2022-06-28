@@ -158,6 +158,12 @@ const Queens = ({ user }) => {
       try {
         const data = await profileService.weeklyDrop(user)
         console.log("weeklyDrop response: ", data)
+        for (let i=0; i<data.length; i++) {
+          if (data[i]._id === user) {
+            console.log("data[i]: ", data[i])
+            data[i].weeklyDrop = true
+          }
+        }
         setProfiles(data)
       } catch (err) {
         console.log(err)
