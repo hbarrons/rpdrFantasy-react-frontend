@@ -67,7 +67,7 @@ const Profiles = ({ profiles, user }) => {
       <h1 className='title'>Players</h1>
       {profiles.length ? 
         <>
-        <div className='players'>
+        <div className='allplayers'>
           {profiles?.map(profile=>
             {if (profile.league[0]?.leagueNo === leagueNumber) {
               return <ProfileDetails profile={profile} />
@@ -76,7 +76,7 @@ const Profiles = ({ profiles, user }) => {
         </div>
         </>
       :
-        <p></p>
+        <></>
       }
       
     </>

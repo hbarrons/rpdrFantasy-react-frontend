@@ -136,7 +136,6 @@ const MyLeague = ({ user }) => {
       </div>
       <div className="myroster">
         <h3>My Roster</h3>
-        <p><Link to="/mypicks">Make Weekly Picks</Link></p>
         {profiles?.length ?
         <>{profiles?.map(profile => {
           if (user.profile === profile._id) {

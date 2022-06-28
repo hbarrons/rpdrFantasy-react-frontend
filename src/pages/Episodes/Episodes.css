@@ -47,11 +47,6 @@ p {
   text-align: center;
 }
 
-h5 {
-  text-align: center;
-  text-decoration: underline;
-}
-
 .add-episode {
   display: grid;
   grid-template-columns: 33% 33% 33%;
