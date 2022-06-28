@@ -1,0 +1,28 @@
+.changepicks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.make-picks-form {
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: auto;
+  border: 3px solid hotpink;
+  width: 300px;
+  border-radius: 20px;
+  background-color: rgb(255, 105, 180, 0.4);
+}
+
+
+.make-guess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: wrap;
+}

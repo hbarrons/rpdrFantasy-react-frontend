@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import * as profileService from '../../services/profileService'
 import * as episodeService from '../../services/eipsodeService.js'
+import styles from './MyPicks.css'
 
 
 const MyPicks = ({ user }) => {
@@ -129,7 +130,7 @@ const MyPicks = ({ user }) => {
   return ( 
     <>
       <div className="myroster">
-        <h3>My Roster</h3>
+        <h1 className="title">Pick Your Queens</h1>
         <form className="make-picks-form" onSubmit={handleSubmit}>
           <label htmlFor="queen1">Queen:</label>
           <select type="text" name="queen1" id="queen1" value={queen1} onChange={handleChange}>
@@ -155,16 +156,16 @@ const MyPicks = ({ user }) => {
         </form>
         {guessInactive ? 
           <>
-          <button className="btn btn-warning" onClick={updateGuess}>Change Current Picks</button>
+          <button className="changepicks btn btn-warning" onClick={updateGuess}>Change Current Picks</button>
           <p>Next Guess will be available once the League Admin adds the most recent episode results!</p>
           </>
           : ""}
       </div>
       <div>
       </div>
+      <h1 className="title table-title">Weekly Guesses</h1>
       <div className="make-guess">
-        <h1 class="table-title">Weekly Guesses</h1>
-        <table>
+        <table className="guess-table">
           <thead>
             <tr>
               <th>Episode</th>
