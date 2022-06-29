@@ -13,6 +13,11 @@ const Profile = ({ user }) => {
 
   let profile
   profile = location.state
+  profiles.map(mapProfile => {
+    if (mapProfile._id === location.state._id) {
+      profile = mapProfile
+    }
+  })
 
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
@@ -32,17 +37,20 @@ const Profile = ({ user }) => {
     console.log("unlock: ", profileId, leagueNum)
     try {
       const data = await profileService.unlockRoster(profileId, leagueNumber)
-      console.log("update weekly drop response: ", data)
+      
       for (let i=0; i<data.length; i++){
-        if (data[i].league[0].leagueNo === leagueNumber) {
-
+        if (data[i]._id === profileId) {
+          console.log("HIT", data[i])
           data[i].weeklyDrop = false
+          profile = data[i]
         }
       }
-      // setProfiles(data)
+      console.log("unlock response: ", data)
+      setProfiles(data)
     } catch (err) {
       console.log(err)
     }
+    console.log("THIS", profile)
   }
 
 
@@ -60,12 +68,17 @@ const Profile = ({ user }) => {
         })}
         {profiles.map(mapProfile => {
         if (mapProfile.league[0].leagueNo === leagueNumber && mapProfile.league[0].isAdmin === true) {
-          if (profile.weeklyDrop === true) {
-            console.log(profile._id, leagueNumber)
+          console.log(profile.weeklyDrop)
             return <>
-              <button className="btn" onClick={() => unlockRoster(profile._id, leagueNumber)}>Unlock Roster</button>
+            {profile.weeklyDrop === true ?
+            <>
+            <button className="btn" onClick={() => unlockRoster(profile._id, leagueNumber)}>Unlock Roster</button>
             </>
-          }
+            :
+            <></>
+            }
+            </>
+
         }
       })}
       </div>
