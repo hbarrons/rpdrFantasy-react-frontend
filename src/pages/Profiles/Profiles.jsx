@@ -5,9 +5,18 @@ import * as episodeService from '../../services/eipsodeService.js'
 import styles from './profiles.css'
 import ProfileDetails from '../../components/ProfileDetailsCard/ProfileDetailsCard'
 
-const Profiles = ({ profiles, user }) => {
-  const [episodes, setEpisodes] = useState([])
 
+const Profiles = ({ user }) => {
+  const [episodes, setEpisodes] = useState([])
+  const [profiles, setProfiles] = useState([])
+
+
+  useEffect(()=> {
+    profileService.getAllProfiles()
+    .then(profiles => {
+      setProfiles(profiles)
+    })
+  }, [])
 
   useEffect(() => {
     episodeService.getAllEpisodes()

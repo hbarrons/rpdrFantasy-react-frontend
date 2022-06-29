@@ -57,7 +57,7 @@ const App = () => {
         <Route path="/episodes" element={<Episodes profiles={profiles} user={user}/>}>Episodes</Route>
         <Route
           path="/profiles"
-          element={user ? <Profiles profiles={profiles} user={user}/> : <Navigate to="/login" />}
+          element={user ? <Profiles user={user}/> : <Navigate to="/login" />}
         />
         <Route path="/profile/:id" element={<Profile user={user}/>}/>
         <Route

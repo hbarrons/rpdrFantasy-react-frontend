@@ -90,7 +90,7 @@ const Episodes = ({ user }) => {
       const data = await episodeService.createEpisode(formData, leagueNumber)
       for (let i=0; i < data.episodes.length; i++) {
         if (data.episodes[i]._id === data.episode._id) {
-          data.episodes[i].number = data.episode.epNum
+          data.episodes[i].epNum = data.episode.epNum
           data.episodes[i].winner = data.episode.winner
           data.episodes[i].loser = data.episode.loser
           data.episodes[i].tops = data.episode.tops
