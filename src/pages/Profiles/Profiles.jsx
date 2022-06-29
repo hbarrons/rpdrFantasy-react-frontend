@@ -41,7 +41,7 @@ const Profiles = ({ profiles, user }) => {
             <th>Player</th>
               {episodes.map(episode => {
                 if (episode.leagueNo === leagueNumber) {
-                  return <th>Episode {episode.number}</th>
+                  return <th>Episode {episode.epNum}</th>
                 }
               })}
             <th className='total-score'>Total</th>  

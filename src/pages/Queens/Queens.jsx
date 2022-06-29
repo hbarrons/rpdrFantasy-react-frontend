@@ -45,7 +45,7 @@ const Queens = ({ user }) => {
     console.log("user: ", user)
     profiles.map(profile => {
       if (user === profile._id) {
-        episodeNumber = profile.score[profile.score.length - 1].episodeNum
+        episodeNumber = profile.score[profile.score.length - 1]?.episodeNum
         console.log("function episodeNumber",episodeNumber)
       }
     })
@@ -58,7 +58,7 @@ const Queens = ({ user }) => {
 
   const handleChange = evt => {
     setFormData({
-      ...formData,
+      // ...formData,
       [evt.target.name]: evt.target.value,
     })
   }
@@ -80,7 +80,7 @@ const Queens = ({ user }) => {
       getLeagueNumber({user}, profile)
     })
     :
-    console.log("")
+    console.log()
 
   const handleSubmit = async evt => {
     console.log("submit leagueNumber",leagueNumber)
@@ -97,7 +97,7 @@ const Queens = ({ user }) => {
     } catch (err) {
       console.log(err)
     }
-    setFormData({queenName: ""})
+    setFormData({queenName: undefined})
   }
 
   const addToRoster = async (queen, user) => {
@@ -107,11 +107,11 @@ const Queens = ({ user }) => {
     try {
       const data = await profileService.addToRoster(queen, user)
       console.log("add to roster response: ", data)
-      for (let i=0; i < data.length; i++) {
-        if (data[i]._id === user) {
-          data[i].roster.push({queen: queen})
-        }
-      }
+      // for (let i=0; i < data.length; i++) {
+      //   if (data[i]._id === user) {
+      //     data[i].roster.push({queen: queen})
+      //   }
+      // }
       setProfiles(data)
     } catch (err) {
       console.log(err)

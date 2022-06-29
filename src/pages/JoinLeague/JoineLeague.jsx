@@ -20,7 +20,7 @@ const JoinLeague = ({ user }) => {
     evt.preventDefault()
     try {
       await profileService.joinLeague(formData, user.profile)
-      // navigate('/myleague')
+      navigate('/myleague')
     } catch (err) {
       console.log(err)
     }
@@ -29,8 +29,8 @@ const JoinLeague = ({ user }) => {
 
   return ( 
     <>
-      <h1>Join League Here*</h1>
-      <p>*You will need the League Number and Name from the admin in order to join an existing league</p>
+      <h1 className="title">Join League</h1>
+      <p>Note: You will need the League Name and Number from the League Admin in order to join an existing league</p>
       <form
       autoComplete="off"
       onSubmit={handleSubmit}

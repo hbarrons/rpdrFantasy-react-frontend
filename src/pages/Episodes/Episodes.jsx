@@ -90,7 +90,7 @@ const Episodes = ({ user }) => {
       const data = await episodeService.createEpisode(formData, leagueNumber)
       for (let i=0; i < data.episodes.length; i++) {
         if (data.episodes[i]._id === data.episode._id) {
-          data.episodes[i].number = data.episode.number
+          data.episodes[i].number = data.episode.epNum
           data.episodes[i].winner = data.episode.winner
           data.episodes[i].loser = data.episode.loser
           data.episodes[i].tops = data.episode.tops
@@ -251,8 +251,8 @@ const Episodes = ({ user }) => {
             epNum = profile.score.length
           }
         })
-        console.log(episode.number, epNum, profiles)
-        if (episode.number === epNum + 1 || deleteOrSubmit === "deleteScore") {
+        console.log(episode.epNum, epNum, profiles)
+        if (episode.epNum === epNum + 1 || deleteOrSubmit === "deleteScore") {
           console.log("getScoreInfo Profiles: ", profiles)
           getScore(profiles, episode, deleteOrSubmit)
         }
@@ -274,14 +274,14 @@ const Episodes = ({ user }) => {
       if (profile.league[0]?.leagueNo === leagueNumber) {
         console.log("HIT HIT HIT")
         // if player did not make a guess for this week, this calls the defaultGuess function to populate with their previous week guess
-        // if (profile.guessEpisode.length + 1 === episode.number) {
-        //   console.log("EPISODE: ", episode.number, profile.guessEpisode)
-        //   defaultNoGuessQueens(profiles, episode.number)
+        // if (profile.guessEpisode.length + 1 === episode.epNum) {
+        //   console.log("EPISODE: ", episode.epNum, profile.guessEpisode)
+        //   defaultNoGuessQueens(profiles, episode.epNum)
         // }
 
-        console.log("calculate score:", profile.guessEpisode, episode.number)
+        console.log("calculate score:", profile.guessEpisode, episode.epNum)
         for (let i = 0; i < profile.guessEpisode.length; i++) {
-          if (profile.guessEpisode[i].episode === episode.number) {
+          if (profile.guessEpisode[i].episode === episode.epNum) {
             // WINNER SCORE
             if (profile.guessEpisode[i].queen1 === episode.winner || profile.guessEpisode[i].queen2 === episode.winner) {
               score += 10
@@ -331,9 +331,9 @@ const Episodes = ({ user }) => {
     console.log("deleteOrSubmit: ", deleteOrSubmit)
     if (deleteOrSubmit === "submitScore") {
       console.log("line 295")
-      submitScores(leagueScores, episode.number)
+      submitScores(leagueScores, episode.epNum)
     } else if (deleteOrSubmit === "deleteScore") {
-      deleteScores(leagueScores, episode.number)
+      deleteScores(leagueScores, episode.epNum)
     }
     console.log("deleteOrSubmit: ", deleteOrSubmit)
   }
@@ -563,7 +563,7 @@ const Episodes = ({ user }) => {
             {episodes?.map(episode => {
               if (episode.leagueNo === leagueNumber)
                 return <>
-                  <EpisodeCard episode={episode} profiles={profiles} key={episode.number} user={user} handleDelete={handleDelete} getEliminatedQueen={getEliminatedQueen}/>
+                  <EpisodeCard episode={episode} profiles={profiles} key={episode.epNum} user={user} handleDelete={handleDelete} getEliminatedQueen={getEliminatedQueen}/>
                 </>
            })}
           </>

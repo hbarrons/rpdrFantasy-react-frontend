@@ -7,7 +7,7 @@ const EpisodeCard = ({ episode, user, profiles, handleDelete}) => {
         return <>
           <div className="container single-ep">
             <div className="ep-title">
-              <h3>Episode {episode.number}</h3>
+              <h3>Episode {episode.epNum}</h3>
             </div>
             <div className="winner">
               <h5>Winner:</h5>
@@ -35,7 +35,7 @@ const EpisodeCard = ({ episode, user, profiles, handleDelete}) => {
         return <>
           <div className="container single-ep">
             <div className="ep-title">
-              <h3>Episode {episode.number}</h3>
+              <h3>Episode {episode.epNum}</h3>
             </div>
             <div className="winner">
               <h5>Winner:</h5>

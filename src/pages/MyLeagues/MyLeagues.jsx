@@ -198,7 +198,7 @@ const MyLeague = ({ user }) => {
           if (user.profile === profile._id && profile.league[0]?.isAdmin === false) {
             return <>
               {profiles.map(profile => {
-                if (profile.league[0].leagueNo === leagueNumber) {
+                if (profile.league[0]?.leagueNo === leagueNumber) {
                   return <PlayerCard profile={profile} key={profile._id}/>
                 }
               })}

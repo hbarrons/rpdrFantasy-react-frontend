@@ -67,7 +67,7 @@ const Profile = ({ user }) => {
           </>
         })}
         {profiles.map(mapProfile => {
-        if (mapProfile.league[0].leagueNo === leagueNumber && mapProfile.league[0].isAdmin === true) {
+        if (mapProfile.league[0]?.leagueNo === leagueNumber && mapProfile.league[0]?.isAdmin === true) {
           console.log(profile.weeklyDrop)
             return <>
             {profile.weeklyDrop === true ?
