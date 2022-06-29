@@ -59,7 +59,7 @@ const App = () => {
           path="/profiles"
           element={user ? <Profiles profiles={profiles} user={user}/> : <Navigate to="/login" />}
         />
-        <Route path="/profile/:id" element={<Profile />}/>
+        <Route path="/profile/:id" element={<Profile user={user}/>}/>
         <Route
           path="/changePassword"
           element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin}/> : <Navigate to="/login" />}

@@ -100,13 +100,9 @@ const Queens = ({ user }) => {
     setFormData({queenName: ""})
   }
 
-
-
-  let transactionCount = 0
   const addToRoster = async (queen, user) => {
     getEpisodeNumber(user)
     console.log({user})
-    transactionCount += 1
     console.log("user: ", user)
     try {
       const data = await profileService.addToRoster(queen, user)
@@ -125,7 +121,7 @@ const Queens = ({ user }) => {
 
   const removeFromRoster = async (queen, user) => {
     console.log("queen: ", queen, "user: ", user)
-    transactionCount -= 1
+
     let rosterCount = 0
 
     profiles.map(profile => {

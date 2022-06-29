@@ -179,3 +179,16 @@ export async function updateWeeklyDrop (leagueNum) {
   },)
   .then(res => res.json())
 }
+
+export async function unlockRoster (profileId, leagueNum) {
+  console.log("unlock: ", profileId, leagueNum)
+  return await fetch(`${BASE_URL}/unlockroster/${profileId}/${leagueNum}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}
