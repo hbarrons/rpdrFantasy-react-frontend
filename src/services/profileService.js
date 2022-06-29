@@ -166,3 +166,16 @@ export async function weeklyDrop (user) {
   },)
   .then(res => res.json())
 }
+
+export async function updateWeeklyDrop (leagueNum) {
+  console.log("leagueNum: ", leagueNum)
+  return await fetch(`${BASE_URL}/updateweeklydrop/${leagueNum}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify()
+  },)
+  .then(res => res.json())
+}

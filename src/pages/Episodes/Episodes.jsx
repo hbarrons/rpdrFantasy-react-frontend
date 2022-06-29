@@ -119,6 +119,20 @@ const Episodes = ({ user }) => {
       console.log(err)
     }
 
+    try {
+      const data = await profileService.updateWeeklyDrop(leagueNumber)
+      console.log("update weekly drop response: ", data)
+      for (let i=0; i<data.length; i++){
+        if (data[i].league[0].leagueNo === leagueNumber) {
+
+          data[i].weeklyDrop = false
+        }
+      }
+      setProfiles(data)
+    } catch (err) {
+      console.log(err)
+    }
+
   }
 
   const handleDelete = async (episode, profiles) => {
