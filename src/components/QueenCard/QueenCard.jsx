@@ -22,7 +22,16 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
               "(Eliminated)" : ""}</h3>
               <div className='roster-buttons'>
               {profile.roster.some(rosteredQueen => rosteredQueen.queen === queen.name) ? 
-                <><button className="btn btn-warning" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button></>
+                <>
+                {console.log("LOOK HERE", profile.weeklyDrop)}
+                {profile.weeklyDrop === true && profile.roster.length >= 4?
+                <><h6>ROSTER LOCKED</h6></>
+                :
+                <>
+                  <button className="btn btn-warning" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button>
+                </>
+                }
+                </>
                 :
                 <>
                 {profile.roster.length >= 4? 
