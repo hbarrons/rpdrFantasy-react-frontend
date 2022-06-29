@@ -522,9 +522,15 @@ const Episodes = ({ user }) => {
                   leagueEps.push(episode)
                 }})
               }
-              {profile.score[profile.score.length-1].episodeNum !== leagueEps.length ? 
+              {profile.score[profile.score.length-1]?.episodeNum !== leagueEps.length ? 
               <>
-                <button className='btn btn-warning' onClick={() => testScoreButton(profiles, episodes)}>Calculate Scores</button>
+                {leagueEps.length === 0 ?
+                <></>
+                :
+                <>
+                  <button className='btn btn-warning' onClick={() => testScoreButton(profiles, episodes)}>Calculate Scores</button>
+                </>
+                }
               </>
               :
               <></>
