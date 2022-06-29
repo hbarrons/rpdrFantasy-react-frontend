@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as profileService from '../../services/profileService'
+import styles from './CreateLeague.css'
 
 
 const CreateLeague = ({ user }) => {
@@ -35,8 +36,8 @@ const CreateLeague = ({ user }) => {
 
   return ( 
     <>
-      <h1>Create League Here*</h1>
-      <p>*You will be the admin of the new league</p>
+      <h1 className='title'>Create a League</h1>
+      <p className='createleague-info'>Note: Once you create a league, you will be the admin of the new league. Others can join your league by using the league number you will find on the "My League" page once it's created.</p>
       <form
       autoComplete="off"
       onSubmit={handleSubmit}
@@ -46,11 +47,11 @@ const CreateLeague = ({ user }) => {
         <input type="text" autoComplete="off" id="legueName" name="leagueName"
         onChange={handleChange}/>
         <div>
-          <button className="create-league-btn">
+          <button className="create-league-btn btn">
            Sign Up
           </button>
           <Link to="/">
-            <button>Cancel</button>
+            <button className='btn'>Cancel</button>
           </Link>
         </div>
       </form>
