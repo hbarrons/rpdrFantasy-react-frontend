@@ -1,10 +1,22 @@
 import styles from './Landing.module.css'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Rules from '../../components/Rules/Rules'
 import Leaguecard from '../../components/LeagueCard/LeagueCard'
 import RuPaul from '../../pages/Landing/RuPaul.png'
+import * as profileService from '../../services/profileService'
 
-const Landing = ({ user, profiles }) => {
+const Landing = ({ user }) => {
+  const [profiles, setProfiles] = useState([])
+
+
+  useEffect(()=> {
+    profileService.getAllProfiles()
+    .then(profiles => {
+      setProfiles(profiles)
+    })
+  }, [])
+
   return (
     <main className={styles.container}>
       <h1>RuPaul's Drag Race Fantasy</h1>

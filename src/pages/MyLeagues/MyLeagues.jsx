@@ -42,7 +42,7 @@ const MyLeague = ({ user }) => {
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
-      leagueNumber = profile.league[0].leagueNo
+      leagueNumber = profile.league[0]?.leagueNo
     }
   }
   profiles.forEach(profile => {
@@ -177,7 +177,7 @@ const MyLeague = ({ user }) => {
       <div className="players">
         <h3>League Members</h3>
         {profiles?.map(profile => {
-          if (user.profile === profile._id && profile.league[0].isAdmin === true) {
+          if (user.profile === profile._id && profile.league[0]?.isAdmin === true) {
             return <>
               {profiles.map(profile => {
                 if (profile.league[0].leagueNo === leagueNumber) {
@@ -188,7 +188,7 @@ const MyLeague = ({ user }) => {
           }
         })}
         {profiles?.map(profile => {
-          if (user.profile === profile._id && profile.league[0].isAdmin === false) {
+          if (user.profile === profile._id && profile.league[0]?.isAdmin === false) {
             return <>
               {profiles.map(profile => {
                 if (profile.league[0].leagueNo === leagueNumber) {

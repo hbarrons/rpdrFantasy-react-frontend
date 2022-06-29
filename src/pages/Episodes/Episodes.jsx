@@ -173,9 +173,23 @@ const Episodes = ({ user }) => {
     })
     console.log("episodeCount: ", episodeCount)
     if (episodeCount === episodeNum) {
+      console.log("SUBMIT SCORES", scores, leagueNumber)
       try {
         const data = await profileService.submitScores(scores, episodeNum)
         console.log("submitScores response: ", data)
+        for (let i=0; i<data.length; i++) {
+          if (data[i].league[0].leagueNo === leagueNumber){
+            scores.map(score => {
+              if (score.profile === data[i]._id) {
+                data[i].score.push({
+                  episodeNum: data[i].score.length + 1,
+                  score: score.weeklyScore
+                })
+              }
+            })
+          }
+        }
+        console.log("post loop: ", data)
         setProfiles(data)
       } catch (err) {
         console.log(err)
