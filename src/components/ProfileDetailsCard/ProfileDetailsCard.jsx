@@ -16,8 +16,8 @@ const ProfileDetails = ({ profile }) => {
             </>
           })}
           <h5>Weekly Picks: Episode {profile.guessEpisode.length}</h5>
-          <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen1}</li>
-          <li>{profile.guessEpisode[profile.guessEpisode.length-1].queen2}</li>
+          <li>{profile.guessEpisode[profile.guessEpisode.length-1]?.queen1}</li>
+          <li>{profile.guessEpisode[profile.guessEpisode.length-1]?.queen2}</li>
         </div>
       </Link>
     </div>
