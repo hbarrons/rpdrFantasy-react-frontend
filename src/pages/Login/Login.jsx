@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import LoginForm from '../../components/LoginForm/LoginForm'
+import RuPaul from '../../pages/Landing/RuPaul.png'
 import styles from './Login.module.css'
 
 const LoginPage = props => {
@@ -11,7 +12,8 @@ const LoginPage = props => {
 
   return (
     <main className={styles.container}>
-      <h1>Log In</h1>
+      <h1>RuPaul's Drag Race Fantasy</h1>
+      <h3>Log In</h3>
       <p>{message}</p>
       <LoginForm
         handleSignupOrLogin={props.handleSignupOrLogin}

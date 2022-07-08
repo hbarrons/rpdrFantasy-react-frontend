@@ -19,7 +19,7 @@ const NavBar = ({ user, handleLogout }) => {
     <>
       {user ?
       <>
-        {profiles.map(profile => {
+        {profiles?.map(profile => {
           if (user.profile === profile._id) {
             console.log(profile.league)
             if (profile.league.length === 0) {
