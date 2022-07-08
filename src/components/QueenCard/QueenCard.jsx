@@ -25,7 +25,7 @@ const QueenCard = ({ profile, queen, user, handleDelete, addToRoster, removeFrom
                 <>
                 {console.log("LOOK HERE", profile.weeklyDrop)}
                 {profile.weeklyDrop === true && profile.roster.length >= 4?
-                <><h6>ROSTER LOCKED</h6></>
+                <><h6 className='locked'>ROSTER LOCKED</h6></>
                 :
                 <>
                   <button className="btn btn-warning" onClick={() => removeFromRoster(queen.name, user.profile)}>Remove From Roster</button>
