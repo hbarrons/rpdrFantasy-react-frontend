@@ -12,12 +12,12 @@ const ProfileDetails = ({ profile }) => {
         </div>
           <h5>Roster:</h5>
           {profile.roster.map(queen => {
-            return <><li>{queen.queen}</li>
+            return <><li className="rosterqueen">{queen.queen}</li>
             </>
           })}
           <h5>Weekly Picks: Episode {profile.guessEpisode.length}</h5>
-          <li>{profile.guessEpisode[profile.guessEpisode.length-1]?.queen1}</li>
-          <li>{profile.guessEpisode[profile.guessEpisode.length-1]?.queen2}</li>
+          <li className="rosterqueen">{profile.guessEpisode[profile.guessEpisode.length-1]?.queen1}</li>
+          <li className="rosterqueen">{profile.guessEpisode[profile.guessEpisode.length-1]?.queen2}</li>
         </div>
       </Link>
     </div>

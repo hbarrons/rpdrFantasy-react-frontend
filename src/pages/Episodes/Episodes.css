@@ -109,3 +109,7 @@ label[for="top1"] {
   grid-row: 5/6;
   grid-column: 1/7;
 }
+
+.outcome, .note {
+  font-family: Arial, Helvetica, sans-serif;
+}

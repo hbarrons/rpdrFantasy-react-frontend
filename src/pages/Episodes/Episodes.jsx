@@ -539,7 +539,7 @@ const Episodes = ({ user }) => {
 
                 </>
           </div>
-          <p>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms, and 3pts each for Safe (assigned if queen is not selected in any dropdown). If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
+          <p className='note'>Note : The point distribution is set up as follows: 10pts for Winner, -3pts for Loser, 5pts each for Tops, -2pts each for Bottoms, and 3pts each for Safe (assigned if queen is not selected in any dropdown). If Ru does something wild (ie double shantay, no bottoms, two winners) you may need to assign category's at your own discretion in order to have the most fair outcome. If a field is left blank no queen will be assigned points for that dropdown.</p>
           </>
         :
           <></>
