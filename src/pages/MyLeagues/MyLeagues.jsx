@@ -142,7 +142,7 @@ const MyLeague = ({ user }) => {
       <div className="rules">
         <Rules />
       </div>
-      <div className="myroster">
+      {/* <div className="myroster">
         <h3>My Roster</h3>
         {profiles?.length ?
         <>{profiles?.map(profile => {
@@ -155,7 +155,7 @@ const MyLeague = ({ user }) => {
         :
         <></>
         }
-      </div>
+      </div> */}
       <div className="recent-episode">
         {leagueEpisodes.length === 0 ?
         <>

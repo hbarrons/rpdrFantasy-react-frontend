@@ -24,6 +24,10 @@ nav {
   color: #E372A3 !important;
 }
 
+#navbutton {
+  color: 1px solid #5E1334;
+}
+
 .navbar {
   display: flex;
   align-items: center;

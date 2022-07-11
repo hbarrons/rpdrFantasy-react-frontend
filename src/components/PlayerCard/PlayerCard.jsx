@@ -7,11 +7,9 @@ const PlayerCard = ({profile, user, makeAdmin}) => {
 
   return ( 
     <>
-      <div className="profile-div">
-        <Link to={`/profile/${profile._id}`} state={profile}>
-          <li className='profile-link'>{profile.name}</li>
+        <Link to={`/profile/${profile._id}`} state={profile} className="player-link">
+          <li className="playercard">{profile.name}</li>
         </Link >
-      </div>
     </>
   );
 }
