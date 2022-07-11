@@ -49,6 +49,7 @@ const Episodes = ({ user }) => {
     })
   }
 
+  //helper function to get user league num in order to get render correct league information to view
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
@@ -62,6 +63,7 @@ const Episodes = ({ user }) => {
   :
   console.log()
 
+  // helper function to extract eliminated queen from form data in order to update corresponding queen data and player rosters
   let eliminatedQueen = ""
   let elimQueenName = ""
   function getEliminatedQueen (elimQueen) {
@@ -99,7 +101,6 @@ const Episodes = ({ user }) => {
       }
       console.log("create ep response: ", data)
       setEpisodes(data.episodes)
-      // defaultGuessScoreHelper(data.episodes, "submitScore")
     } catch (err) {
       console.log(err)
     }
@@ -230,6 +231,8 @@ const Episodes = ({ user }) => {
   const { bottom2 } = formData
   const { bottom3 } = formData
 
+
+  //helper function to get data needed in order to auto calculate score when episode data is submitted
   let leagueEpisodes = []
   function getScoreInfo (episodeData, profiles, deleteOrSubmit) {
     console.log("GETSCOREINFO: ", episodeData, profiles, deleteOrSubmit)
@@ -267,17 +270,12 @@ const Episodes = ({ user }) => {
   let leagueScores = []
   let score = 0
 
- 
+  // helper function to calculate score for all league players
   function getScore (profiles, episode, deleteOrSubmit) {
-    console.log("GET SCORE Profiles: ", profiles)
     profiles?.forEach(profile => {
       if (profile.league[0]?.leagueNo === leagueNumber) {
-        console.log("HIT HIT HIT")
         // if player did not make a guess for this week, this calls the defaultGuess function to populate with their previous week guess
-        // if (profile.guessEpisode.length + 1 === episode.epNum) {
-        //   console.log("EPISODE: ", episode.epNum, profile.guessEpisode)
-        //   defaultNoGuessQueens(profiles, episode.epNum)
-        // }
+
 
         console.log("calculate score:", profile.guessEpisode, episode.epNum)
         for (let i = 0; i < profile.guessEpisode.length; i++) {
@@ -285,42 +283,34 @@ const Episodes = ({ user }) => {
             // WINNER SCORE
             if (profile.guessEpisode[i].queen1 === episode.winner || profile.guessEpisode[i].queen2 === episode.winner) {
               score += 10
-              // console.log("winner", score)
             }
             // TOPS SCORE QUEEN1
             if (episode.tops.includes(profile.guessEpisode[i].queen1)) {
               score += 5
-              // console.log("queen1 top", score)
             }
             // TOPS SCORE QUEEN2
             if (episode.tops.includes(profile.guessEpisode[i].queen2)) {
               score += 5
-              // console.log("queen2 top", score)
             }
             // LOSER SCORE
             if (profile.guessEpisode[i].queen1 === episode.loser || profile.guessEpisode[i].queen2 === episode.loser) {
               score -= 3
-              // console.log("loser", score)
             }
             // SAFE QUEEN1
             if (safeQueens.includes(profile.guessEpisode[i].queen1)) {
               score += 3
-              // console.log("queen1 safe", score)
             }
             // SAFE QUEEN2
             if (safeQueens.includes(profile.guessEpisode[i].queen2)) {
               score += 3
-              // console.log("queen2 safe", score)
             }
             // BOTTOMS SCORE QUEEN1
             if (episode.bottoms.includes(profile.guessEpisode[i].queen1)) {
               score -= 2
-              // console.log("queen1 bottom", score)
             }
             // BOTTOMS SCORE QUEEN2
             if (episode.bottoms.includes(profile.guessEpisode[i].queen2)) {
               score -= 2
-              // console.log("queen2 bottom", score)
             }
             leagueScores.push({profile: profile._id, weeklyScore: score})
             score = 0
@@ -328,16 +318,17 @@ const Episodes = ({ user }) => {
         }
       }
     })
-    console.log("deleteOrSubmit: ", deleteOrSubmit)
+
     if (deleteOrSubmit === "submitScore") {
       console.log("line 295")
       submitScores(leagueScores, episode.epNum)
     } else if (deleteOrSubmit === "deleteScore") {
       deleteScores(leagueScores, episode.epNum)
     }
-    console.log("deleteOrSubmit: ", deleteOrSubmit)
+
   }
 
+  //helper function to default a players guess to previous week's guess if no new guess was made
   const defaultNoGuessQueens = async (profile, episodeNum) => {
     let defaultData = {
       episodeNum: "",
@@ -346,7 +337,6 @@ const Episodes = ({ user }) => {
     }
     
       if (profile.league[0].leagueNo === leagueNumber) {
-        console.log("DEFAULT SCORE HIT")
 
         defaultData = {
           episodeNum: episodeNum,
@@ -370,16 +360,11 @@ const Episodes = ({ user }) => {
           })
         }
       }
+      
       console.log("default roster response: ", data)
       setProfiles(data)
-      console.log("EPISODES: ", episodes)
-      setTimeout(console.log("TIMEOUT TEST"), 5000)
+
       setTimeout(getScoreInfo(episodes, data, "submitScore"), 5000)
-
-      //is there a way to call getScoreInfo here?
-      // console.log("EPISODES TO CALC SCORE", episodes)
-      // getScoreInfo(episodes, "submitScore")
-
 
     } catch (err) {
       console.log(err)
