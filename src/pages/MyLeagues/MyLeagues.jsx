@@ -17,7 +17,9 @@ const MyLeague = ({ user }) => {
   const [queens, setQueens] = useState([])
   const [profiles, setProfiles] = useState([])
 
+  //this application can be improved significantly by refactoring these hooks to get only the data necessary for each specific league, rather than getting ALL info and filtering on the client side.
 
+  // API hook to get all profile data
   useEffect(()=> {
     profileService.getAllProfiles()
     .then(profiles => {
@@ -25,6 +27,7 @@ const MyLeague = ({ user }) => {
     })
   }, [])
 
+  // API hook to get all queen data
   useEffect(() => {
     queenService.getAllQueens()
     .then(queens => {
@@ -32,6 +35,7 @@ const MyLeague = ({ user }) => {
     })
   }, [])
 
+  // API hook to get all episode data
   useEffect(() => {
     episodeService.getAllEpisodes()
     .then(episodes => {
@@ -39,6 +43,7 @@ const MyLeague = ({ user }) => {
     })
   }, [])
 
+  //function to get user's league # in order to render correct league data
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
@@ -49,7 +54,7 @@ const MyLeague = ({ user }) => {
     getLeagueNumber({user}, profile)
   })
 
-
+  //API call to /profile to remove queen from roster
   const removeFromRoster = async (queen, user) => {
     try {
       const data = await profileService.removeFromRoster(queen, user)
@@ -70,6 +75,7 @@ const MyLeague = ({ user }) => {
     }
   }
 
+  //API call to /profile to grant admin rights
   const makeAdmin = async (profileId) => {
     console.log("makeAdmin profileId: ", profileId)
     try {
@@ -86,6 +92,7 @@ const MyLeague = ({ user }) => {
     }
   }
 
+  //API call to /profile to remove admin rights
   const removeAdmin = async (profileId) => {
     console.log("removeAdmin profileId: ", profileId)
     try {
@@ -102,6 +109,7 @@ const MyLeague = ({ user }) => {
     }
   }
   
+  //helper function to get leagueEpisode information in order to calculate scores and render episode info to view
   let leagueEpisodes = []
   episodes.length ?
     episodes.map(episode => {

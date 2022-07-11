@@ -183,8 +183,8 @@ const Queens = ({ user }) => {
             {profile.league[0]?.isAdmin ? 
               <>
               <div className="add-queen">
-                <h2>Admin Feature</h2>
-                  <h3>Add A Queen</h3>
+                <h2 className='admin-title'>Admin Feature</h2>                
+                  <h3 className='admin-title'>Add A Queen</h3>
                   <form
                     autoComplete="off"
                     onSubmit={handleSubmit}

@@ -17,6 +17,10 @@ nav {
 }
 
 #navlink {
+  color: #5E1334!important;
+}
+
+#navlink:hover {
   color: #E372A3 !important;
 }
 
@@ -25,7 +29,7 @@ nav {
   align-items: center;
   padding: 0;
   background-color: rgb(252, 230, 187);
-  border-bottom: 3px solid #E372A3;
+  border-bottom: 5px solid hotpink;
 }
 
 .nav-title {

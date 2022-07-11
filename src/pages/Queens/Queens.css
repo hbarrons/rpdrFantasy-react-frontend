@@ -6,12 +6,15 @@
 }
 
 .add-queen {
-  display: inline;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   flex-flow: wrap;
   margin: 0;
-  background-color: #E372A3;
-  border-bottom: 3px solid #E372A3;
+  background-color: #e372a3 !important;
+  border-bottom: 5px solid hotpink;
 }
 
 .weekly-picks-link {
@@ -29,4 +32,13 @@ p {
 .sashay {
   display: inline;
   text-align: center;
+}
+
+.add-queen-form {
+  width: 200px !important;
+}
+
+.admin-title {
+  width: 1000px;
+  margin: auto;
 }
