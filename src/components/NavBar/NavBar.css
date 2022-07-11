@@ -3,39 +3,21 @@ nav {
   position: fixed;
 }
 
-.li {
-  color: hotpink;
-}
-
 .navbar-toggler  {
   color: rgb(252, 230, 187);
-}
-
-.navbar-toggler:hover {
-
 }
 
 .title {
   margin: 15px;
 }
 
-
 .navbar-brand {
   margin: 0;
   margin-left: 20px;
 }
 
-.container-fluid {
-
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-a:hover {
-  color: pink;
+#navlink {
+  color: #E372A3 !important;
 }
 
 .navbar {
@@ -43,5 +25,10 @@ a:hover {
   align-items: center;
   padding: 0;
   background-color: rgb(252, 230, 187);
+  border-bottom: 3px solid #E372A3;
+}
+
+.nav-title {
+  color: #E372A3;
 }
 

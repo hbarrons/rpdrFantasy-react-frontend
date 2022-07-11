@@ -10,6 +10,8 @@
   text-align: center;
   flex-flow: wrap;
   margin: 0;
+  background-color: #E372A3;
+  border-bottom: 3px solid #E372A3;
 }
 
 .weekly-picks-link {
