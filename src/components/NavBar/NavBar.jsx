@@ -34,6 +34,7 @@ const NavBar = ({ user, handleLogout }) => {
               return <>
               {console.log(profile.league.length)}
               <nav className="navbar navbar-expand-lg navbar-light ">
+                
                 <div className='container-fluid'>
                   <button
                     className="navbar-toggler"
@@ -59,7 +60,8 @@ const NavBar = ({ user, handleLogout }) => {
               </>
             } else {
              return <>
-                <nav className="navbar navbar-fixed-top navbar-expand-lg navbar-light ">               
+                <nav className="navbar navbar-fixed-top navbar-expand-lg navbar-light ">
+                           
                   <button
                     className="navbar-toggler"
                     type="button"
