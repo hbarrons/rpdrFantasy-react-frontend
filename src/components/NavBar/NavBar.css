@@ -3,10 +3,6 @@ nav {
   position: fixed;
 }
 
-.navbar-toggler  {
-  color: rgb(252, 230, 187);
-}
-
 .title {
   margin: 15px;
 }
@@ -24,8 +20,8 @@ nav {
   color: #E372A3 !important;
 }
 
-#navbutton {
-  color: 1px solid #5E1334;
+#burger-button {
+  color: 1px solid #5E1334 !important;
 }
 
 .navbar {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import * as queenService from '../../services/queenService'
 import * as profileService from '../../services/profileService'
 import * as episodeService from '../../services/eipsodeService.js'
-import styles from './Queens.css'
+import './Queens.css'
 import { Link } from "react-router-dom";
 
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import * as profileService from '../../services/profileService'
+import './Profile.css'
 
 const Profile = ({ user }) => {
   let location = useLocation()
@@ -66,13 +67,17 @@ const Profile = ({ user }) => {
             <li>{queen.queen}</li>
           </>
         })}
+        </div>
         {profiles.map(mapProfile => {
         if (mapProfile.league[0]?.leagueNo === leagueNumber && mapProfile.league[0]?.isAdmin === true) {
           console.log(profile.weeklyDrop)
             return <>
             {profile.weeklyDrop === true ?
             <>
-            <button className="btn" onClick={() => unlockRoster(profile._id, leagueNumber)}>Unlock Roster</button>
+            <div className="admin-unlock">
+              <p>Admin Feature: if player experienced an error with their roster, you can unlock it and allow them a new pick</p>
+              <button className="btn btn-warning unlock-btn" onClick={() => unlockRoster(profile._id, leagueNumber)}>Unlock Roster</button>
+            </div>
             </>
             :
             <></>
@@ -81,7 +86,7 @@ const Profile = ({ user }) => {
 
         }
       })}
-      </div>
+
       <div className="Weekly Picks">
         <h4>Weekly Guesses</h4>
         {profile.guessEpisode.map(guess => {

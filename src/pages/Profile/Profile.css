@@ -1,0 +1,22 @@
+.current-roster {
+  margin: auto;
+  text-align: center;
+}
+
+.unlock-btn {
+  margin: auto;
+  display: inline;
+}
+
+.admin-unlock{
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 300px;
+  border: 3px solid rgb(252, 230, 187);
+  background-color: rgb(252, 230, 187, 0.3);
+  border-radius: 20px;
+  padding-bottom: 5px;
+}

@@ -37,8 +37,8 @@ const NavBar = ({ user, handleLogout }) => {
                 <div className='container-fluid'>
                   <button
                     className="navbar-toggler"
-                    id="navbutton"
                     type="button"
+                    id="burger-button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarNav"
                     aria-controls="navbarNav"
