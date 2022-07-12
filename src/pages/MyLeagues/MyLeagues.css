@@ -1,7 +1,7 @@
 .myleague-main {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 5vh 20% 25%;
+  grid-template-rows: 20vh 32% 25%;
 }
 
 .myleague-title {
@@ -24,9 +24,14 @@
 
 .rules {
   grid-column: 1 / 4;
+  grid-row: 2 / 3;
   text-align: center;
-  margin-top: 30px;
-  margin-bottom: 280px;
+  margin: auto;
+  width: 500px;
+  border: 3px solid rgb(252, 230, 187);
+  background-color: rgb(252, 230, 187, 0.3);
+  border-radius: 20px;
+  padding-bottom: 5px;
 }
 
 .rule {
@@ -43,9 +48,11 @@
   font-size: 12px;
 }
 
-.recent-episode {
+.last-week {
   display: inline;
   text-align: center;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
 }
 
 .remaining-queens {

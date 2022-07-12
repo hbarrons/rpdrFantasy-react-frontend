@@ -8,7 +8,6 @@ import PlayerCard from "../../components/PlayerCard/PlayerCard"
 import AdminPlayerCard from "../../components/AdminPlayerCard/AdminplayerCard"
 import Rules from "../../components/Rules/Rules"
 import { Link } from "react-router-dom"
-
 import './MyLeagues.css'
 
 
@@ -55,25 +54,25 @@ const MyLeague = ({ user }) => {
   })
 
   //API call to /profile to remove queen from roster
-  const removeFromRoster = async (queen, user) => {
-    try {
-      const data = await profileService.removeFromRoster(queen, user)
-      console.log("remove from roster response: ", data)
-      for (let i=0; i < data.length; i++) {
-        if (data[i]._id === user) {
-          data[i].roster.forEach((rosterQueen, idx) => {
-            if (rosterQueen.queen === queen)  {
-              data[i].roster.splice(idx, 1)
-              console.log(data[i].roster)
-            }
-          })
-        }
-      }
-      setProfiles(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // const removeFromRoster = async (queen, user) => {
+  //   try {
+  //     const data = await profileService.removeFromRoster(queen, user)
+  //     console.log("remove from roster response: ", data)
+  //     for (let i=0; i < data.length; i++) {
+  //       if (data[i]._id === user) {
+  //         data[i].roster.forEach((rosterQueen, idx) => {
+  //           if (rosterQueen.queen === queen)  {
+  //             data[i].roster.splice(idx, 1)
+  //             console.log(data[i].roster)
+  //           }
+  //         })
+  //       }
+  //     }
+  //     setProfiles(data)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   //API call to /profile to grant admin rights
   const makeAdmin = async (profileId) => {
@@ -120,7 +119,7 @@ const MyLeague = ({ user }) => {
     console.log()
   
 
-  console.log("leagueEpisodes: ", leagueEpisodes)
+
 
 
   return ( 
@@ -139,9 +138,7 @@ const MyLeague = ({ user }) => {
           </>
         }
       </div>
-      <div className="rules">
-        <Rules />
-      </div>
+      <Rules />
       {/* <div className="myroster">
         <h3>My Roster</h3>
         {profiles?.length ?
@@ -159,16 +156,18 @@ const MyLeague = ({ user }) => {
       <div className="recent-episode">
         {leagueEpisodes.length === 0 ?
         <>
-          <h3>Last Week's Results</h3>
+          <h3 className="last-week">Last Week's Results</h3>
         </>
         :
         <>
-          <h3>Last Week's Results</h3>
-          <h3>Episode {leagueEpisodes[leagueEpisodes.length -1]?.number} </h3>
-          <h5>Winner (10 points):</h5> <p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.winner} </p>
-          <h5>Loser (-3 points): </h5><p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.loser} </p>
-          <h5>Tops (5 points): </h5><p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.tops[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[2]} </p>
-          <h5>Bottoms (-2 points):</h5> <p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[2]}</p>
+          <div className="last-week">
+            <h3>Last Week's Results</h3>
+            <h3>Episode {leagueEpisodes[leagueEpisodes.length -1]?.number} </h3>
+            <h5>Winner (10 points):</h5> <p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.winner} </p>
+            <h5>Loser (-3 points): </h5><p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.loser} </p>
+            <h5>Tops (5 points): </h5><p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.tops[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.tops[2]} </p>
+            <h5>Bottoms (-2 points):</h5> <p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[0]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[1]}, {leagueEpisodes[leagueEpisodes.length -1]?.bottoms[2]}</p>
+          </div>
         </>}
       </div>
       <div className="remaining-queens">
