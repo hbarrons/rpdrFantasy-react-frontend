@@ -87,15 +87,24 @@ const Profile = ({ user }) => {
         }
       })}
 
-      <div className="Weekly Picks">
-        <h4>Weekly Guesses</h4>
+      <h4 className="title">Weekly Guesses</h4>
+      <div className="guess-table">
+        <table>
+          <tr>
+            <th>Episode</th>
+            <th>Queen</th>
+            <th>Queen</th>
+          </tr>
         {profile.guessEpisode.map(guess => {
           return <>
-            <h5>Episode: {guess.episode}</h5>
-            <li>{guess.queen1}</li>
-            <li>{guess.queen2}</li>
+            <tr>
+              <td>{guess.episode}</td>
+              <td>{guess.queen1}</td>
+              <td>{guess.queen2}</td>
+            </tr>
           </>
         })}
+        </table>
       </div>
     </>
    );

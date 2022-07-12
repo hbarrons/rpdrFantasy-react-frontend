@@ -19,6 +19,10 @@ table {
   width: 80vh;
 }
 
+td {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 th, td {
   border: 3px solid rgb(252, 230, 187);
   margin: 10px;

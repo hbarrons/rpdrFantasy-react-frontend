@@ -1,6 +1,11 @@
 .current-roster {
   margin: auto;
   text-align: center;
+  width: 300px;
+  margin-bottom: 20px;
+  background-color: rgb(255, 105, 180, 0.4);
+  border: 3px solid hotpink;
+  border-radius: 20px;
 }
 
 .unlock-btn {
@@ -19,4 +24,11 @@
   background-color: rgb(252, 230, 187, 0.3);
   border-radius: 20px;
   padding-bottom: 5px;
+}
+
+.guess-table {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
 }
