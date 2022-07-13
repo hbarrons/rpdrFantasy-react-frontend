@@ -139,6 +139,31 @@ const MyLeague = ({ user }) => {
         }
       </div>
       <Rules />
+      <div className="players">
+        <h3 className="title">League Members</h3>
+        {profiles?.map(profile => {
+          if (user.profile === profile._id && profile.league[0]?.isAdmin === true) {
+            return <>
+              {profiles.map(profile => {
+                if (profile.league[0]?.leagueNo === leagueNumber) {
+                  return <AdminPlayerCard profile={profile} key={profile._id} makeAdmin={makeAdmin} removeAdmin={removeAdmin}/>
+                }
+              })}
+            </>
+          }
+        })}
+        {profiles?.map(profile => {
+          if (user.profile === profile._id && profile.league[0]?.isAdmin === false) {
+            return <>
+              {profiles.map(profile => {
+                if (profile.league[0]?.leagueNo === leagueNumber) {
+                  return <PlayerCard profile={profile} key={profile._id}/>
+                }
+              })}
+            </>
+          }
+        })}
+      </div>
       {/* <div className="myroster">
         <h3>My Roster</h3>
         {profiles?.length ?
@@ -161,7 +186,7 @@ const MyLeague = ({ user }) => {
         :
         <>
           <div className="last-week">
-            <h3>Last Week's Results</h3>
+            <h3 className="title">Last Week's Results</h3>
             <h3>Episode {leagueEpisodes[leagueEpisodes.length -1]?.number} </h3>
             <h5>Winner (10 points):</h5> <p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.winner} </p>
             <h5>Loser (-3 points): </h5><p className="result"> {leagueEpisodes[leagueEpisodes.length -1]?.loser} </p>
@@ -188,31 +213,7 @@ const MyLeague = ({ user }) => {
           })}
         </div>
       </div>
-      <div className="players">
-        <h3>League Members</h3>
-        {profiles?.map(profile => {
-          if (user.profile === profile._id && profile.league[0]?.isAdmin === true) {
-            return <>
-              {profiles.map(profile => {
-                if (profile.league[0]?.leagueNo === leagueNumber) {
-                  return <AdminPlayerCard profile={profile} key={profile._id} makeAdmin={makeAdmin} removeAdmin={removeAdmin}/>
-                }
-              })}
-            </>
-          }
-        })}
-        {profiles?.map(profile => {
-          if (user.profile === profile._id && profile.league[0]?.isAdmin === false) {
-            return <>
-              {profiles.map(profile => {
-                if (profile.league[0]?.leagueNo === leagueNumber) {
-                  return <PlayerCard profile={profile} key={profile._id}/>
-                }
-              })}
-            </>
-          }
-        })}
-      </div>
+      
     </main>
     </>
    );

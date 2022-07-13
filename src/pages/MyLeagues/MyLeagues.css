@@ -98,3 +98,100 @@
   color: rgb(252, 230, 187);
 }
 
+/* SMALL SCREEN/MOBILE VIEW */
+@media only screen and (max-width: 860px) {
+  .myleague-main {
+    display: flex;
+    flex-flow: wrap;
+  }
+  
+  .myleague-title {
+    text-align: center;
+    margin-top: 25px;
+  }
+  
+  .league-info {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    border: 3px solid hotpink;
+    width: 300px;
+    margin: auto;
+    border-radius: 20px;
+    background-color: rgb(255, 105, 180, 0.4);
+  }
+  
+  .rules {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 350px;
+    text-align: center;
+    padding: 5px;
+    border: 3px solid rgb(252, 230, 187);
+    background-color: rgb(252, 230, 187, 0.3);
+    border-radius: 20px;
+    padding-bottom: 5px;
+  }
+  
+  .rule {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+  }
+  
+  .btn {
+    font-size: 12px;
+  }
+  
+  .recent-episode {
+    margin-top: 20px;
+    border-top: 3px solid hotpink;
+    display: inline;
+    text-align: center;
+  }
+  
+  .remaining-queens {
+    margin-top: 20px;
+    border-top: 3px solid hotpink;
+    margin: auto;
+    width: 100vh;
+    display: inline;
+    text-align: center;
+  }
+  
+  .players {
+    display: inline;
+    text-align: center;
+    margin: auto;
+    width: 100vh;
+    border-top: 3px solid hotpink;
+  }
+  
+  .name, .number {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px 20px 0px 10px;
+  }
+  
+  .league-info {
+    padding-top: 10px;
+    padding-bottom: 3px;
+  }
+  
+  .result {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .queenlist {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .player-link {
+    color: hotpink !important;
+    text-decoration: underline;
+  }
+  
+  .playercard {
+    margin: auto;
+    color: rgb(252, 230, 187);
+  }
+
+}
