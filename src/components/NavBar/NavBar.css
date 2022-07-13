@@ -7,6 +7,10 @@ nav {
   margin: 15px;
 }
 
+.navtitle {
+  display: none;
+}
+
 .navbar-brand {
   margin: 0;
   margin-left: 20px;
@@ -34,5 +38,18 @@ nav {
 
 .nav-title {
   color: #E372A3;
+}
+
+
+
+/* SMALL SCREEN/MOBILE VIEW */
+@media only screen and (max-width: 860px) {
+  .navtitle {
+    display: flex;
+    font-size: 30px;
+    color: hotpink;
+    margin: auto;
+  }
+  
 }
 

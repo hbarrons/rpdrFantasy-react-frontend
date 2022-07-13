@@ -9,16 +9,13 @@ async function signup(user) {
       body: JSON.stringify(user),
     })
     const json = await res.json()
-    console.log(json)
     if (json.token) {
       tokenService.setToken(json.token)
     }
     if (json.err) {
-      console.log(json.err)
       throw new Error(json.err)
     }
   } catch (err) {
-    console.log(err)
     throw err
   }
 }
@@ -32,7 +29,6 @@ function logout() {
 }
 
 async function login(credentials) {
-  console.log("hit")
   try {
     const res = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
@@ -40,16 +36,13 @@ async function login(credentials) {
       body: JSON.stringify(credentials),
     })
     const json = await res.json()
-    console.log("JSON: ", json)
     if (json.token) {
       tokenService.setToken(json.token)
     }
     if (json.err) {
-      console.log(json.err)
       throw new Error(json.err)
     }
   } catch (err) {
-    console.log(err)
     throw err
   }
 }
