@@ -360,7 +360,7 @@ const Episodes = ({ user }) => {
           })
         }
       }
-      
+
       console.log("default roster response: ", data)
       setProfiles(data)
 
@@ -400,9 +400,12 @@ const Episodes = ({ user }) => {
               onSubmit={handleSubmit}
               className="add-episode-form"
               >
+                <div className='episode-input'>
                   <label htmlFor="episodeNum" className='epnum-input'>Episode #:</label>
                   <input type="text" autoComplete="off" id="episodeNum" name="episodeNum" value={episodeNum}
                   onChange={handleChange} className='epnum-input'/>
+                </div>
+                <div className='winner-select'>
                   <label htmlFor="winner" className='winner-form'>Winner:</label>
                   <select className='winner-form' type="text" autoComplete="off" id="winner" name="winner" value={winner}
                   onChange={handleChange}>
@@ -413,6 +416,7 @@ const Episodes = ({ user }) => {
                       }
                     })}
                   </select>
+                </div>
                   <label className='loser-form' htmlFor="loser">Loser:</label>
                   <select className='loser-form' type="text" autoComplete="off" id="loser" name="loser" value={loser}
                   onChange={handleChange}>

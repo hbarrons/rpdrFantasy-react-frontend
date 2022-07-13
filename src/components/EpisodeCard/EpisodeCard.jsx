@@ -25,7 +25,7 @@ const EpisodeCard = ({ episode, user, profiles, handleDelete}) => {
               <h5>Bottoms:</h5>
               <p className="outcome">{episode.bottoms[0]}, {episode.bottoms[1]}, {episode.bottoms[2]}</p>
             </div>
-            <button type="button" className="btn btn-danger" onClick={() => handleDelete(episode, profiles) }>Delete</button>
+            <button type="button" className="btn btn-danger delete-ep-btn" onClick={() => handleDelete(episode, profiles) }>Delete</button>
           </div>
         </>
       }
