@@ -197,7 +197,7 @@ const MyLeague = ({ user }) => {
       </div>
       <div className="remaining-queens">
         <div>
-          <h3>Remaining Queens:</h3>
+          <h3 className="title">Remaining Queens:</h3>
           {queens.map(queen => {
             if (queen.eliminated === false && queen.leagueNo === leagueNumber) {
               return <li className="queenlist" key={queen._id}>{queen.name}</li>
