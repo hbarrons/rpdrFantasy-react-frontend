@@ -165,7 +165,7 @@ const MyPicks = ({ user }) => {
       </div>
       <h1 className="title table-title">Weekly Guesses</h1>
       <div className="make-guess">
-        <table className="guess-table">
+        <table>
           <thead>
             <tr>
               <th>Episode</th>
