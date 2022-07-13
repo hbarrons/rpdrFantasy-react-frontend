@@ -99,7 +99,7 @@
 }
 
 /* SMALL SCREEN/MOBILE VIEW */
-@media only screen and (max-width: 860px) {
+@media only screen and (max-width: 700px) {
   .myleague-main {
     display: flex;
     flex-flow: wrap;
@@ -144,6 +144,8 @@
   
   .recent-episode {
     margin-top: 20px;
+    width: 100vh;
+    margin: auto;
     border-top: 3px solid hotpink;
     display: inline;
     text-align: center;

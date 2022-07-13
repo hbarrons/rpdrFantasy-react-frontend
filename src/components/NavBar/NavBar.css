@@ -43,11 +43,11 @@ nav {
 
 
 /* SMALL SCREEN/MOBILE VIEW */
-@media only screen and (max-width: 860px) {
+@media only screen and (max-width: 550px) {
   .navtitle {
     display: flex;
     font-size: 30px;
-    color: hotpink;
+    color: #5E1334;
     margin: auto;
   }
   
