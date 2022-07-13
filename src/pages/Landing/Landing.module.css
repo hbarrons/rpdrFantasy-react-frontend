@@ -16,3 +16,11 @@ body {
 .navbar-light .navbar-nav .nav-link {
   color: #E372A3;
 }
+
+
+/* SMALL SCREEN/MOBILE VIEW */
+@media only screen and (max-width: 860px) {
+  img {
+    height: 300px;
+  }
+}

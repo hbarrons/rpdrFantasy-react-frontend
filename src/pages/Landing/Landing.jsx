@@ -34,15 +34,15 @@ const Landing = ({ user }) => {
           }
         }
          })}
-         <h2>Start Your Engines</h2>
+         <h2 className='title'>Start Your Engines</h2>
          <img src={RuPaul} alt="RuPaul's Face" />
-         <h2>and may the Best Guesser, Win!</h2>
+         <h2 className='title'>and may the Best Guesser, Win!</h2>
         </>
         :
         <>
-         <h2>Start Your Engines</h2>
+         <h2 className='title'>Start Your Engines</h2>
          <img src={RuPaul} alt="RuPaul's Face" />
-         <h2>and may the Best Guesser, Win!</h2>
+         <h2 className='title'>and may the Best Guesser, Win!</h2>
         </>
       }
 
