@@ -3,10 +3,6 @@ nav {
   position: fixed;
 }
 
-.title {
-  margin: 15px;
-}
-
 .navtitle {
   display: none;
 }
@@ -46,7 +42,7 @@ nav {
 @media only screen and (max-width: 550px) {
   .navtitle {
     display: flex;
-    font-size: 30px;
+    font-size: 24px;
     color: #5E1334;
     margin: auto;
   }

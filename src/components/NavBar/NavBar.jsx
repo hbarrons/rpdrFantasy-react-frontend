@@ -73,7 +73,7 @@ const NavBar = ({ user, handleLogout }) => {
                   >
                     <span className="navbar-toggler-icon"></span>
                   </button>
-                  <h5 className='navtitle title'>RuPaul's Drag Race Fantasy</h5>
+                  <h5 className='navtitle'>RuPaul's Drag Race Fantasy</h5>
                   <div className="collapse navbar-collapse" id="navbarNav">
                     <div className='container-fluid' id="navbarNav">
                       <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
