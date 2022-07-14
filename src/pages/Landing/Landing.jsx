@@ -19,9 +19,6 @@ const Landing = ({ user }) => {
 
   return (
     <main className={styles.container}>
-      <h1 className='title'>RuPaul's Drag Race Fantasy</h1>
-      {console.log(profiles)}
-      {console.log("user",user)}
       {profiles?.length ? 
         <>
         {profiles?.map(profile => {
