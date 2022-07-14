@@ -76,10 +76,9 @@ const MyLeague = ({ user }) => {
 
   //API call to /profile to grant admin rights
   const makeAdmin = async (profileId) => {
-    console.log("makeAdmin profileId: ", profileId)
     try {
       const data = await profileService.makeAdmin(profileId)
-      console.log("makeAdmin response: ", data)
+      // console.log("makeAdmin response: ", data)
       for (let i=0; i<data.length; i++) {
         if (data[i]._id === profileId) {
           data[i].league[0].isAdmin = true
@@ -93,10 +92,9 @@ const MyLeague = ({ user }) => {
 
   //API call to /profile to remove admin rights
   const removeAdmin = async (profileId) => {
-    console.log("removeAdmin profileId: ", profileId)
     try {
       const data = await profileService.removeAdmin(profileId)
-      console.log("removeAdmin response: ", data)
+      // console.log("removeAdmin response: ", data)
       for (let i=0; i<data.length; i++) {
         if (data[i]._id === profileId) {
           data[i].league[0].isAdmin = false

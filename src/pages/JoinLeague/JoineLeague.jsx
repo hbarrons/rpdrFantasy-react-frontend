@@ -25,7 +25,7 @@ const JoinLeague = ({ user }) => {
       console.log(err)
     }
   }
-  console.log(user.profile)
+
 
   return ( 
     <>

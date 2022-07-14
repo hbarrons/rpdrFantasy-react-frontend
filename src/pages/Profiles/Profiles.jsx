@@ -36,7 +36,7 @@ const Profiles = ({ user }) => {
     getLeagueNumber({user}, profile)
   })
   :
-  console.log(profiles)
+  console.log()
 
   
   

@@ -4,36 +4,18 @@ import * as profileService from '../../services/profileService'
 import './NavBar.css'
 
 const NavBar = ({ profiles, user, handleLogout }) => {
-  // const [profiles, setProfiles] = useState([])
 
-  // useEffect(()=> {
-  //   profileService.getAllProfiles()
-  //   .then(profiles => {
-  //     setProfiles(profiles)
-  //   })
-  // }, [])
-
-  // function correctNav (profiles) {
-  //     if (profiles === {err: 'jwt malformed'}) {
-  //     console.log("hit: ", profiles)
-  //     setProfiles([])
-  //     console.log("hit2: ", profiles)
-  //   }
-  // }
-
-  // {correctNav(profiles)}
+  
   return (
     <>
       {user ?
       <>
-      {console.log("NAVBAR: ", profiles, profiles.length)}
-      {/* CURRENTLY GETTING A profiles.map ERROR ON LOGIN DUE TO  MALFORMED JWT - POTENTIAL SOLUTION IS TO CHECK FOR LENGTH SIMILAR TO BELOW */}
       {profiles.length ? <>
         {profiles?.map(profile => {
           if (user.profile === profile._id) {
             if (profile.league.length === 0) {
               return <>
-              
+
               <nav className="navbar navbar-expand-lg navbar-light ">
                 <div className='container-fluid'>
                   <button

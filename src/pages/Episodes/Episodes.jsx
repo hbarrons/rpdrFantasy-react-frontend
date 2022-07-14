@@ -76,12 +76,10 @@ const Episodes = ({ user }) => {
   }
 
   const handleSubmit = async evt => {
-    console.log("handle submit sanity check")
     //default no guess to last weeks guess
     profiles.map(profile => {
-      console.log("HIT", profile.guessEpisode.length + 1, formData.episodeNum)
+      // console.log("HIT", profile.guessEpisode.length + 1, formData.episodeNum)
       if (profile.guessEpisode.length + 1 === parseInt(formData.episodeNum)) {
-        console.log("EPISODE: ", parseInt(formData.episodeNum), profile.guessEpisode.length)
         defaultNoGuessQueens(profile, formData.episodeNum)
       }
     })
@@ -99,7 +97,7 @@ const Episodes = ({ user }) => {
           data.episodes[i].bottoms = data.episode.bottoms
         }
       }
-      console.log("create ep response: ", data)
+      // console.log("create ep response: ", data)
       setEpisodes(data.episodes)
     } catch (err) {
       console.log(err)
@@ -107,14 +105,14 @@ const Episodes = ({ user }) => {
 
     try {
       const data = await queenService.eliminateQueen(eliminatedQueen)
-      console.log("elim queen response: ", data)
+      // console.log("elim queen response: ", data)
     } catch (err) {
       console.log(err)
     }
 
     try {
       const data = await profileService.updateRoster(elimQueenName, leagueNumber)
-      console.log("elim queen response: ", data)
+      // console.log("elim queen response: ", data)
       setProfiles(data)
     } catch (err) {
       console.log(err)
@@ -122,7 +120,7 @@ const Episodes = ({ user }) => {
 
     try {
       const data = await profileService.updateWeeklyDrop(leagueNumber)
-      console.log("update weekly drop response: ", data)
+      // console.log("update weekly drop response: ", data)
       for (let i=0; i<data.length; i++){
         if (data[i].league[0].leagueNo === leagueNumber) {
 
@@ -137,13 +135,13 @@ const Episodes = ({ user }) => {
   }
 
   const handleDelete = async (episode, profiles) => {
-    console.log("episode.loser: ", episode.loser)
+    // console.log("episode.loser: ", episode.loser)
     getEliminatedQueen(episode.loser)
 
 
     try {
       const data = await episodeService.deleteEpisode(episode)
-      console.log("delete ep response: ", data)
+      // console.log("delete ep response: ", data)
       setEpisodes(data)
       getScoreInfo(data, profiles, "deleteScore")
     } catch (err) {
@@ -152,7 +150,7 @@ const Episodes = ({ user }) => {
 
     try {
       const data = await queenService.undoElim(eliminatedQueen)
-      console.log("undo elim response: ", data)
+      // console.log("undo elim response: ", data)
     } catch (err) {
       console.log(err)
     }
@@ -160,11 +158,6 @@ const Episodes = ({ user }) => {
 
 
   const submitScores = async (scores, episodeNum) => {
-
-    console.log("SUBMITTED SCORES", scores)
-
-    console.log("submitScores", episodeNum)
-
     let episodeCount = 0
     episodes.map(episode => {
       // console.log(leagueNumber, episode)
@@ -172,12 +165,12 @@ const Episodes = ({ user }) => {
         episodeCount += 1
       }
     })
-    console.log("episodeCount: ", episodeCount)
+    // console.log("episodeCount: ", episodeCount)
     if (episodeCount === episodeNum) {
-      console.log("SUBMIT SCORES", scores, leagueNumber)
+      // console.log("SUBMIT SCORES", scores, leagueNumber)
       try {
         const data = await profileService.submitScores(scores, episodeNum)
-        console.log("submitScores response: ", data)
+        // console.log("submitScores response: ", data)
         for (let i=0; i<data.length; i++) {
           if (data[i].league[0].leagueNo === leagueNumber){
             scores.map(score => {
@@ -190,7 +183,6 @@ const Episodes = ({ user }) => {
             })
           }
         }
-        console.log("post loop: ", data)
         setProfiles(data)
       } catch (err) {
         console.log(err)
@@ -199,21 +191,17 @@ const Episodes = ({ user }) => {
   }
 
   const deleteScores = async (scores, episodeNum) => {
-    console.log("deleteScores", episodeNum)
-    console.log("deleteScores", scores)
-  
-
     let episodeCount = 0
     episodes.map(episode => {
       if (episode.leagueNo === leagueNumber) {
         episodeCount += 1
       }
     })
-    console.log("episodeCount: ", episodeCount)
+    // console.log("episodeCount: ", episodeCount)
     if (episodeCount === episodeNum + 1) {
       try {
         const data = await profileService.deleteScores(episodeCount, leagueNumber, scores)
-        console.log("delete score response: ", data)
+        // console.log("delete score response: ", data)
         setProfiles(data)
       } catch (err) {
         console.log(err)
@@ -235,7 +223,7 @@ const Episodes = ({ user }) => {
   //helper function to get data needed in order to auto calculate score when episode data is submitted
   let leagueEpisodes = []
   function getScoreInfo (episodeData, profiles, deleteOrSubmit) {
-    console.log("GETSCOREINFO: ", episodeData, profiles, deleteOrSubmit)
+    // console.log("GETSCOREINFO: ", episodeData, profiles, deleteOrSubmit)
     episodeData?.map(episode => {
       if (episode.leagueNo === leagueNumber) {
         leagueEpisodes.push(episode)
@@ -250,13 +238,13 @@ const Episodes = ({ user }) => {
         let epNum = 0
         profiles.map(profile => {
           if (profile.league[0].leagueNo === leagueNumber) {
-            console.log(profile)
+            // console.log(profile)
             epNum = profile.score.length
           }
         })
-        console.log(episode.epNum, epNum, profiles)
+        // console.log(episode.epNum, epNum, profiles)
         if (episode.epNum === epNum + 1 || deleteOrSubmit === "deleteScore") {
-          console.log("getScoreInfo Profiles: ", profiles)
+          // console.log("getScoreInfo Profiles: ", profiles)
           getScore(profiles, episode, deleteOrSubmit)
         }
         safeQueens = []
@@ -277,7 +265,7 @@ const Episodes = ({ user }) => {
         // if player did not make a guess for this week, this calls the defaultGuess function to populate with their previous week guess
 
 
-        console.log("calculate score:", profile.guessEpisode, episode.epNum)
+        // console.log("calculate score:", profile.guessEpisode, episode.epNum)
         for (let i = 0; i < profile.guessEpisode.length; i++) {
           if (profile.guessEpisode[i].episode === episode.epNum) {
             // WINNER SCORE
@@ -320,7 +308,6 @@ const Episodes = ({ user }) => {
     })
 
     if (deleteOrSubmit === "submitScore") {
-      console.log("line 295")
       submitScores(leagueScores, episode.epNum)
     } else if (deleteOrSubmit === "deleteScore") {
       deleteScores(leagueScores, episode.epNum)
@@ -343,7 +330,7 @@ const Episodes = ({ user }) => {
           queen1: profile.guessEpisode[profile.guessEpisode.length - 1].queen1,
           queen2: profile.guessEpisode[profile.guessEpisode.length - 1].queen2
         }
-        console.log("defaultData: ", defaultData)
+        // console.log("defaultData: ", defaultData)
         defaultGuessAPI(defaultData, profile._id)
       }
   }
@@ -361,7 +348,7 @@ const Episodes = ({ user }) => {
         }
       }
 
-      console.log("default roster response: ", data)
+      // console.log("default roster response: ", data)
       setProfiles(data)
 
       setTimeout(getScoreInfo(episodes, data, "submitScore"), 5000)
@@ -374,7 +361,6 @@ const Episodes = ({ user }) => {
   let leagueEps = []
 
   function testScoreButton (profiles, episodes) {
-    console.log("HIT")
     getScoreInfo(episodes, profiles, "submitScore")
   }
 

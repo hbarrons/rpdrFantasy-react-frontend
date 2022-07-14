@@ -9,7 +9,6 @@ async function getAllEpisodes (){
 }
 
 async function createEpisode (episode, leagueNo) {
-  console.log(episode)
   return await fetch(`${BASE_URL}/addepisode/${episode.episodeNum}/${leagueNo}`, {
     method: 'POST',
     headers: {
@@ -22,7 +21,6 @@ async function createEpisode (episode, leagueNo) {
 }
 
 async function deleteEpisode (episode) {
-  console.log(episode)
   return await fetch(`${BASE_URL}/deleteepisode/${episode._id}`, {
     method: 'DELETE',
     headers: {

@@ -42,11 +42,9 @@ const Queens = ({ user }) => {
 
   let episodeNumber = 0
   function getEpisodeNumber (user) {
-    console.log("user: ", user)
     profiles.map(profile => {
       if (user === profile._id) {
         episodeNumber = profile.score[profile.score.length - 1]?.episodeNum
-        console.log("function episodeNumber",episodeNumber)
       }
     })
   }
@@ -66,7 +64,7 @@ const Queens = ({ user }) => {
   const handleDelete = async (queen) => {
     try {
       const data = await queenService.deleteQueen(queen)
-      console.log("delete response: ", data)
+      // console.log("delete response: ", data)
       setQueens(data)
     } catch (err) {
       console.log(err)
@@ -76,14 +74,13 @@ const Queens = ({ user }) => {
 
   profiles.length ?
     profiles.forEach(profile => {
-      // console.log({user})
       getLeagueNumber({user}, profile)
     })
     :
     console.log()
 
+  
   const handleSubmit = async evt => {
-    console.log("submit leagueNumber",leagueNumber)
     evt.preventDefault()
     try {
       const data = await queenService.createQueen(formData, leagueNumber)
@@ -92,7 +89,7 @@ const Queens = ({ user }) => {
           data.queens[i].name = data.queen.name
         }
       }
-      console.log("create response: ", data.queens)
+      // console.log("create response: ", data.queens)
       setQueens(data.queens)
     } catch (err) {
       console.log(err)
@@ -102,17 +99,14 @@ const Queens = ({ user }) => {
 
   const addToRoster = async (queen, user) => {
     getEpisodeNumber(user)
-    console.log({user})
-    console.log("user: ", user)
     try {
       const data = await profileService.addToRoster(queen, user)
-      console.log("add to roster response: ", data)
+      // console.log("add to roster response: ", data)
       for (let i=0; i < data.length; i++) {
         if (data[i]._id === user) {
           data[i].roster.push({queen: queen})
         }
       }
-      console.log("add roster set")
       setProfiles(data)
     } catch (err) {
       console.log(err)
@@ -121,27 +115,23 @@ const Queens = ({ user }) => {
 
 
   const removeFromRoster = async (queen, user) => {
-    console.log("queen: ", queen, "user: ", user)
-
     let rosterCount = 0
 
     profiles.map(profile => {
       if (profile._id === user) {
-        console.log("profile.roster.length: ", profile.roster.length)
+        // console.log("profile.roster.length: ", profile.roster.length)
         rosterCount = profile.roster.length
       }
     })
-    console.log("rosterCount: ", rosterCount)
 
     try {
       const data = await profileService.removeFromRoster(queen, user)
-      console.log("remove from roster response: ", data)
+      // console.log("remove from roster response: ", data)
       for (let i=0; i < data.length; i++) {
         if (data[i]._id === user) {
           data[i].roster.forEach((rosterQueen, idx) => {
             if (rosterQueen.queen === queen)  {
               data[i].roster.splice(idx, 1)
-              console.log(data[i].roster)
             }
           })
         }
@@ -154,10 +144,9 @@ const Queens = ({ user }) => {
     if (rosterCount === 4) {
       try {
         const data = await profileService.weeklyDrop(user)
-        console.log("weeklyDrop response: ", data)
+        // console.log("weeklyDrop response: ", data)
         for (let i=0; i<data.length; i++) {
           if (data[i]._id === user) {
-            console.log("data[i]: ", data[i])
             data[i].weeklyDrop = true
           }
         }

@@ -32,26 +32,24 @@ const Profile = ({ user }) => {
     getLeagueNumber({user}, profile)
   })
   :
-  console.log("")
+  console.log()
 
   const unlockRoster = async (profileId, leagueNum) => {
-    console.log("unlock: ", profileId, leagueNum)
+    // console.log("unlock: ", profileId, leagueNum)
     try {
       const data = await profileService.unlockRoster(profileId, leagueNumber)
       
       for (let i=0; i<data.length; i++){
         if (data[i]._id === profileId) {
-          console.log("HIT", data[i])
           data[i].weeklyDrop = false
           profile = data[i]
         }
       }
-      console.log("unlock response: ", data)
+      // console.log("unlock response: ", data)
       setProfiles(data)
     } catch (err) {
       console.log(err)
     }
-    console.log("THIS", profile)
   }
 
 
@@ -70,7 +68,6 @@ const Profile = ({ user }) => {
         </div>
         {profiles.map(mapProfile => {
         if (mapProfile.league[0]?.leagueNo === leagueNumber && mapProfile.league[0]?.isAdmin === true) {
-          console.log(profile.weeklyDrop)
             return <>
             {profile.weeklyDrop === true ?
             <>

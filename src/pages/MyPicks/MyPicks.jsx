@@ -14,10 +14,7 @@ const MyPicks = ({ user }) => {
   let leagueNumber = 0
   function getLeagueNumber (user, profile) {
     if (user.user.profile === profile._id) {
-      console.log("function profile: ", profile._id)
-      console.log("function user: ", user.user.profile)
       leagueNumber = profile.league[0].leagueNo
-      console.log("function leagueNumber",leagueNumber)
     }
   }
   profiles.forEach(profile => {
@@ -47,7 +44,6 @@ const MyPicks = ({ user }) => {
   useEffect(() => {
     episodeService.getAllEpisodes()
     .then(episodes => {
-      console.log("episodes: ", episodes)
       setEpisodes(episodes)
     })
   }, [])
@@ -62,10 +58,10 @@ const MyPicks = ({ user }) => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     formData.episodeNum = leagueEpisodes.length + 1
-    console.log("make guess data", formData)
+    // console.log("make guess data", formData)
     try {
       const data = await profileService.makeGuess(formData, user.profile)
-      console.log("add to roster response: ", data)
+      // console.log("add to roster response: ", data)
       for (let i = 0; i < data.length; i++) {
         if (data[i]._id === user.profile) {
           data[i].guessEpisode.push({
@@ -73,7 +69,7 @@ const MyPicks = ({ user }) => {
             queen2: formData.queen2,
             episode: leagueEpisodes.length + 1
           })
-          console.log("data[i]: ", data[i])
+          // console.log("data[i]: ", data[i])
         }
       }
       setProfiles(data)
@@ -83,12 +79,11 @@ const MyPicks = ({ user }) => {
   }
 
   const updateGuess = async evt => {
-    console.log(formData)
     evt.preventDefault()
     formData.episodeNum = leagueEpisodes.length + 1
     try {
       const data = await profileService.updateGuess(formData, user.profile)
-      console.log("add to roster response: ", data)
+      // console.log("add to roster response: ", data)
       for (let i = 0; i < data.length; i++) {
         if (data[i]._id === user.profile) {
           data[i].guessEpisode[data[i].guessEpisode.length - 1] = {
@@ -96,7 +91,7 @@ const MyPicks = ({ user }) => {
             queen2: formData.queen2,
             episode: leagueEpisodes.length + 1
           }
-          console.log("data[i]: ", data[i])
+          // console.log("data[i]: ", data[i])
         }
       }
       setProfiles(data)
@@ -118,14 +113,11 @@ const MyPicks = ({ user }) => {
   })
   :
   userProfile = {}
-  console.log("userProfile: ", userProfile)
 
   let guessInactive = false
   if (userProfile?.guessEpisode?.length === leagueEpisodes?.length + 1) {
     guessInactive = true
   } 
-  console.log("guessInactive: ", guessInactive)
-
   
   return ( 
     <>

@@ -9,7 +9,6 @@ async function getAllQueens (){
 }
 
 async function createQueen (queen, leagueNo) {
-  console.log("service fun:",leagueNo)
   return await fetch(`${BASE_URL}/addqueen/${queen.queen}/${leagueNo}`, {
     method: 'POST',
     headers: {
@@ -21,7 +20,6 @@ async function createQueen (queen, leagueNo) {
 }
 
 async function deleteQueen (queen) {
-  console.log("queen: ", queen)
   return await fetch(`${BASE_URL}/deletequeen/${queen}`, {
     method: 'DELETE',
     headers: {
@@ -35,7 +33,6 @@ async function deleteQueen (queen) {
 
 
 async function eliminateQueen (queen) {
-  console.log("eliminated queen: ", queen)
   return await fetch(`${BASE_URL}/eliminatequeen/${queen}`, {
     method: 'POST',
     headers: {
@@ -48,7 +45,6 @@ async function eliminateQueen (queen) {
 }
 
 async function undoElim (queen) {
-  console.log("eliminated queen: ", queen)
   return await fetch(`${BASE_URL}/undoelim/${queen}`, {
     method: 'POST',
     headers: {
