@@ -107,11 +107,12 @@ const Queens = ({ user }) => {
     try {
       const data = await profileService.addToRoster(queen, user)
       console.log("add to roster response: ", data)
-      // for (let i=0; i < data.length; i++) {
-      //   if (data[i]._id === user) {
-      //     data[i].roster.push({queen: queen})
-      //   }
-      // }
+      for (let i=0; i < data.length; i++) {
+        if (data[i]._id === user) {
+          data[i].roster.push({queen: queen})
+        }
+      }
+      console.log("add roster set")
       setProfiles(data)
     } catch (err) {
       console.log(err)

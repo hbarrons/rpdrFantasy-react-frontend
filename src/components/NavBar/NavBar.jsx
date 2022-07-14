@@ -14,12 +14,20 @@ const NavBar = ({ user, handleLogout }) => {
     })
   }, [])
 
+  function correctNav (profiles) {
+      if (profiles === {err: 'jwt malformed'}) {
+      console.log("hit: ", profiles)
+      setProfiles([])
+      console.log("hit2: ", profiles)
+    }
+  }
 
+  {correctNav(profiles)}
   return (
     <>
       {user ?
       <>
-      {console.log("NAVBAR: ", typeof(profiles), profiles.length)}
+      {console.log("NAVBAR: ", profiles, profiles.length)}
       {/* CURRENTLY GETTING A profiles.map ERROR ON LOGIN DUE TO  MALFORMED JWT - POTENTIAL SOLUTION IS TO CHECK FOR LENGTH SIMILAR TO BELOW */}
       {/* {profiles.length ? <>
       
@@ -106,7 +114,7 @@ const NavBar = ({ user, handleLogout }) => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <h5 className='navtitle title'>RuPaul's Drag Race Fantasy</h5>
+      <h5 className='navtitle'>RuPaul's Drag Race Fantasy</h5>
       <div className="collapse navbar-collapse" id="navbarNav">
         <div className='container-fluid'>
           <ul className='navbar-nav'>
