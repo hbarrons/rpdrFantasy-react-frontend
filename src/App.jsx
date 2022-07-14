@@ -34,11 +34,13 @@ const App = () => {
 
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
+    profileService.getAllProfiles()
+    .then(profiles => setProfiles(profiles))
   }
 
   return (
     <>
-      <NavBar  user={user} handleLogout={handleLogout}/>
+      <NavBar profiles={profiles} user={user} handleLogout={handleLogout}/>
       <Routes>
         <Route path="/" element={<Landing user={user}/>} />
         <Route

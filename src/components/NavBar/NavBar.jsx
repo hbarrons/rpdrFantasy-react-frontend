@@ -3,46 +3,38 @@ import { Link, useNavigate, Navigate  } from 'react-router-dom'
 import * as profileService from '../../services/profileService'
 import './NavBar.css'
 
-const NavBar = ({ user, handleLogout }) => {
-  const [profiles, setProfiles] = useState([])
+const NavBar = ({ profiles, user, handleLogout }) => {
+  // const [profiles, setProfiles] = useState([])
 
+  // useEffect(()=> {
+  //   profileService.getAllProfiles()
+  //   .then(profiles => {
+  //     setProfiles(profiles)
+  //   })
+  // }, [])
 
-  useEffect(()=> {
-    profileService.getAllProfiles()
-    .then(profiles => {
-      setProfiles(profiles)
-    })
-  }, [])
+  // function correctNav (profiles) {
+  //     if (profiles === {err: 'jwt malformed'}) {
+  //     console.log("hit: ", profiles)
+  //     setProfiles([])
+  //     console.log("hit2: ", profiles)
+  //   }
+  // }
 
-  function correctNav (profiles) {
-      if (profiles === {err: 'jwt malformed'}) {
-      console.log("hit: ", profiles)
-      setProfiles([])
-      console.log("hit2: ", profiles)
-    }
-  }
-
-  {correctNav(profiles)}
+  // {correctNav(profiles)}
   return (
     <>
       {user ?
       <>
       {console.log("NAVBAR: ", profiles, profiles.length)}
       {/* CURRENTLY GETTING A profiles.map ERROR ON LOGIN DUE TO  MALFORMED JWT - POTENTIAL SOLUTION IS TO CHECK FOR LENGTH SIMILAR TO BELOW */}
-      {/* {profiles.length ? <>
-      
-      </> : 
-      <>
-     
-      </>} */}
+      {profiles.length ? <>
         {profiles?.map(profile => {
           if (user.profile === profile._id) {
-            console.log(profile.league)
             if (profile.league.length === 0) {
               return <>
-              {console.log(profile.league.length)}
+              
               <nav className="navbar navbar-expand-lg navbar-light ">
-                
                 <div className='container-fluid'>
                   <button
                     className="navbar-toggler"
@@ -99,6 +91,32 @@ const NavBar = ({ user, handleLogout }) => {
             }
           }
         })}
+      </> : 
+      <>
+        <nav className='navbar navbar-fixed-top navbar-expand-lg navbar-dark navbar-custom'>
+        <button
+          className="navbar-toggler login-toggle-button"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <h5 className='navtitle'>RuPaul's Drag Race Fantasy</h5>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <div className='container-fluid'>
+            <ul className='navbar-nav'>
+              <li nav-item="true"><Link to="/login" className='nav-link active' id="navlink">Log In</Link></li>
+              <li nav-item="true"><Link to="/signup" className='nav-link active' id="navlink">Sign Up</Link></li>
+              <li nav-item="true"><Link to="/changePassword" className='nav-link active' id="navlink">Change Password</Link></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </>}
         
       </>
       :
