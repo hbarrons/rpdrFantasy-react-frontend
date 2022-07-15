@@ -540,7 +540,7 @@ const Episodes = ({ user }) => {
     }
     </>
       <div>
-        <h1 className='title'>Episode's</h1>
+        <h1 className='title'>Episodes</h1>
       </div>
       <div className='all-episodes'>
         {episodes?.length ? 

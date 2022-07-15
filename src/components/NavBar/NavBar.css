@@ -33,7 +33,11 @@ nav {
 }
 
 .navbar-toggler {
-  background-color: rgb(255, 105, 180, 0.7);
+  background-color: rgb(255, 105, 180, 0.3);
+}
+
+.navbar-toggler:hover {
+  background-color: rgb(255, 105, 180, 0.5);
 }
 
 
