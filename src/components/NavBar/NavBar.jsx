@@ -57,7 +57,7 @@ const NavBar = ({ profiles, user, handleLogout }) => {
                       <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                         <li nav-item="true" className='nav-item'><Link to="/myleague" className='nav-link active' id="navlink">My League</Link></li>
                         <li nav-item="true" className='nav-item'><Link to="/queens" className='nav-link active' id="navlink">Build Roster</Link></li>
-                        <li nav-item="true" className='nav-item'><Link to="/mypicks" className='nav-link active' id="navlink">Make Guess</Link></li>
+                        <li nav-item="true" className='nav-item'><Link to="/mypicks" className='nav-link active' id="navlink">Weekly Guess</Link></li>
                         <li nav-item="true" className='nav-item'><Link to="/episodes" className='nav-link active' id="navlink">Episodes</Link></li>
                         <li nav-item="true" className='nav-item'><Link to="/profiles" className='nav-link active' id="navlink">Scoreboard</Link></li>
                         <li nav-item="true" className='nav-item'><Link to="" onClick={handleLogout} className='nav-link active' id="navlink">LOG OUT</Link></li>

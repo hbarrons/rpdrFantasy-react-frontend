@@ -67,22 +67,22 @@ const Profile = ({ user }) => {
         })}
         </div>
         {profiles.map(mapProfile => {
-        if (mapProfile.league[0]?.leagueNo === leagueNumber && mapProfile.league[0]?.isAdmin === true) {
-            return <>
-            {profile.weeklyDrop === true ?
-            <>
-            <div className="admin-unlock">
-              <p>Admin Feature: if player experienced an error with their roster, you can unlock it and allow them a new pick</p>
-              <button className="btn btn-warning unlock-btn" onClick={() => unlockRoster(profile._id, leagueNumber)}>Unlock Roster</button>
-            </div>
-            </>
-            :
-            <></>
-            }
-            </>
+          if (mapProfile.league[0]?.leagueNo === leagueNumber && mapProfile.league[0]?.isAdmin === true && mapProfile._id === user.profile) {
+              return <>
+              {profile.weeklyDrop === true ?
+              <>
+              <div className="admin-unlock">
+                <p>Admin Feature: if player experienced an error with their roster, you can unlock it and allow them a new pick</p>
+                <button className="btn btn-warning unlock-btn" onClick={() => unlockRoster(profile._id, leagueNumber)}>Unlock Roster</button>
+              </div>
+              </>
+              :
+              <></>
+              }
+              </>
 
-        }
-      })}
+          }
+        })}
 
       <h4 className="title">Weekly Guesses</h4>
       <div className="guess-table">

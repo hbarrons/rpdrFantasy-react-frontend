@@ -15,7 +15,7 @@ const ProfileDetails = ({ profile }) => {
             return <><li className="rosterqueen">{queen.queen}</li>
             </>
           })}
-          <h5>Weekly Picks: Episode {profile.guessEpisode.length}</h5>
+          <h5>Weekly Guess: Episode {profile.guessEpisode.length}</h5>
           <li className="rosterqueen">{profile.guessEpisode[profile.guessEpisode.length-1]?.queen1}</li>
           <li className="rosterqueen">{profile.guessEpisode[profile.guessEpisode.length-1]?.queen2}</li>
         </div>

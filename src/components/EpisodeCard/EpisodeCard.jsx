@@ -3,7 +3,7 @@ const EpisodeCard = ({ episode, user, profiles, handleDelete}) => {
   return ( 
     <>
     {profiles.map(profile => {
-      if (profile.league[0].isAdmin === true && user.profile === profile._id) {
+      if (profile.league[0]?.isAdmin === true && user.profile === profile._id) {
         return <>
           <div className="container single-ep">
             <div className="ep-title">
@@ -31,7 +31,7 @@ const EpisodeCard = ({ episode, user, profiles, handleDelete}) => {
       }
     })}
         {profiles.map(profile => {
-      if (profile.league[0].isAdmin === false && user.profile === profile._id) {
+      if (profile.league[0]?.isAdmin === false && user.profile === profile._id) {
         return <>
           <div className="container single-ep">
             <div className="ep-title">

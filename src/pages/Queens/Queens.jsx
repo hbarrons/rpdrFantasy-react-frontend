@@ -89,7 +89,7 @@ const Queens = ({ user }) => {
           data.queens[i].name = data.queen.name
         }
       }
-      // console.log("create response: ", data.queens)
+      console.log("create response: ", data.queens)
       setQueens(data.queens)
     } catch (err) {
       console.log(err)
@@ -214,8 +214,9 @@ const Queens = ({ user }) => {
             return <>
               <div className="queens">
                 {queens?.map(queen => {
-                if (queen.leagueNo === leagueNumber && queen.eliminated === false)
-                return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/>
+                if (queen.leagueNo === leagueNumber && queen.eliminated === false) {
+                  return <QueenCard queen={queen} profile={profile} user={user} key={queen._id} handleDelete={handleDelete} addToRoster={addToRoster} removeFromRoster={removeFromRoster}/>
+                }
                 })}
               </div>
                </>
@@ -226,7 +227,6 @@ const Queens = ({ user }) => {
           }
           <div className="sashay">
             <h3 className="title">Sashay'd Away</h3>
-
               {profiles.map(profile => {
                 return <>
                   <div className="queens">
