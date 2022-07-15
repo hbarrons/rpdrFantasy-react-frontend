@@ -237,7 +237,7 @@ const Episodes = ({ user }) => {
         })
         let epNum = 0
         profiles.map(profile => {
-          if (profile.league[0].leagueNo === leagueNumber) {
+          if (profile.league[0]?.leagueNo === leagueNumber) {
             // console.log(profile)
             epNum = profile.score.length
           }

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import * as profileService from '../../services/profileService'
+import './JoinLeague.css'
 
 
 const JoinLeague = ({ user }) => {
@@ -36,17 +37,17 @@ const JoinLeague = ({ user }) => {
       onSubmit={handleSubmit}
       className="create-league-form"
       >
-        <label htmlFor="leagueName">Name: </label>
+        <label htmlFor="leagueName">League Name: </label>
         <input type="text" autoComplete="off" id="leagueName" name="leagueName" onChange={handleChange}/><br/>
         <label htmlFor="leagueNo">League Number: </label>
         <input type="text" autoComplete="off" id="legueNo" name="leagueNo"
         onChange={handleChange}/>
         <div>
-          <button className="create-league-btn">
+          <button className="create-league-btn btn btn-primary">
            Sign Up
           </button>
-          <Link to="/">
-            <button>Cancel</button>
+          <Link to="/" >
+            <button className="btn btn-warning">Cancel</button>
           </Link>
         </div>
       </form>

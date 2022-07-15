@@ -90,7 +90,7 @@ const Queens = ({ user }) => {
           data.queens[i].eliminated = false
         }
       }
-      console.log("create response: ", data, data.queens)
+      // console.log("create response: ", data, data.queens)
       setQueens(data.queens)
     } catch (err) {
       console.log(err)
