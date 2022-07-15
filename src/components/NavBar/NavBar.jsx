@@ -15,29 +15,27 @@ const NavBar = ({ profiles, user, handleLogout }) => {
           if (user.profile === profile._id) {
             if (profile.league.length === 0) {
               return <>
-              <nav className="navbar navbar-expand-lg navbar-light ">
-                <div className='container-fluid'>
-                  <button
-                    className="navbar-toggler"
-                    type="button"
-                    id="burger-button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                  >
-                    <span className="navbar-toggler-icon"></span>
-                  </button>
-                  <div className="collapse navbar-collapse" id="navbarNav">
-                    <div className='container-fluid'>
-                      <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                        <li nav-item="true" className='nav-item'><Link to="" onClick={handleLogout} className='nav-link active' id="navlink">LOG OUT</Link></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </nav>
+                <nav className='navbar navbar-fixed-top navbar-expand-lg navbar-dark navbar-custom'>
+                      <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                      >
+                        <span className="navbar-toggler-icon"></span>
+                      </button>
+                      <h5 className='navtitle'>RuPaul's Drag Race Fantasy</h5>
+                      <div className="collapse navbar-collapse" id="navbarNav">
+                        <div className='container-fluid'>
+                          <ul className='navbar-nav'>
+                            <li nav-item="true" className='nav-item'><Link to="" onClick={handleLogout} className='nav-link active' id="navlink">LOG OUT</Link></li>
+                          </ul>
+                        </div>
+                      </div>
+                      </nav>
               </>
             } else {
              return <>
@@ -122,8 +120,8 @@ const NavBar = ({ profiles, user, handleLogout }) => {
           </ul>
         </div>
       </div>
-    </nav>
-      }
+      </nav>
+    }
     </>
   )
 }

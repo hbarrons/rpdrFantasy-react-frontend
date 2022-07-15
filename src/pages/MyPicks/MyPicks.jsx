@@ -148,7 +148,7 @@ const MyPicks = ({ user }) => {
         </form>
         {guessInactive ? 
           <>
-          <button className="changepicks btn btn-warning" onClick={updateGuess}>Change Current Picks</button>
+          <button className="changepicks btn btn-warning" onClick={updateGuess}>Update Current Picks</button>
           <p className="note">Next guess will be available once the League Admin adds the most recent episode results!</p>
           </>
           : ""}

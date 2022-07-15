@@ -17,6 +17,10 @@ body {
   color: #E372A3;
 }
 
+a {
+  color: hotpink;
+}
+
 
 /* SMALL SCREEN/MOBILE VIEW */
 @media only screen and (max-width: 860px) {
