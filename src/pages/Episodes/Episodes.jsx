@@ -486,11 +486,19 @@ const Episodes = ({ user }) => {
                   </select>
 
                 </div>
-                <div>
+                {leagueEps.length === 0 ?
+                <>
+                  <div className='add-button'>
                   <button className="btn btn-primary add-ep-btn">
                   Add Episode
                   </button>
                 </div>
+                </>
+                :
+                <>
+                </>
+                }
+
               </form>
               {episodes.map(episode => {
                 if (episode.leagueNo === leagueNumber) {
@@ -503,7 +511,9 @@ const Episodes = ({ user }) => {
                 <></>
                 :
                 <>
-                  <button className='btn btn-warning' onClick={() => testScoreButton(profiles, episodes)}>Calculate Scores</button>
+                <div>
+                  <button className='btn btn-warning add-ep-btn' onClick={() => testScoreButton(profiles, episodes)}>Calculate Scores</button>
+                </div>
                 </>
                 }
               </>

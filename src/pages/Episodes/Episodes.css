@@ -1,6 +1,7 @@
 .add-episode {
   display: inline;
   text-align: center;
+  width: 400px !important;
 }
 
 .add-queen-form {
@@ -48,9 +49,9 @@ p {
 }
 
 .add-episode {
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 30% 30% 30% 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 800px;
   margin: auto;
   border: 3px solid rgb(247, 101, 174);
@@ -60,54 +61,14 @@ p {
   background-color: rgb(247, 101, 174, 0.4);
 }
 
-label[for="episodeNum"] {
-  grid-row: 3/4;
-  grid-column: 3/4;
-}
-
-label[for="winner"]{
-  grid-row: 1/2;
-  grid-column: 2/3;
-}
-
-label[for="top1"] {
-  grid-row: 3/4;
-  grid-column: 1/2;
-}
-
-.top2 {
-  grid-row: 3/4;
-  grid-column: 2/3;
-}
-
-.top3 {
-  grid-row: 3/4;
-  grid-column: 3/4;
-}
-
-.loser-form {
-  grid-row: 1/2;
-  grid-column: 3/4;
-}
-
-.bottom1 {
-  grid-row: ;
-  grid-column: ;
-}
-
-.bottom2 {
-  grid-row: ;
-  grid-column: ;
-}
-
-.bottom3 {
-  grid-row: ;
-  grid-column: ;
-}
-
 .add-ep-btn {
-  grid-row: 5/6;
-  grid-column: 1/7;
+  display: flex;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .outcome, .note {
