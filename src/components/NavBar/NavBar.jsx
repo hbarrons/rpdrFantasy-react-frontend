@@ -5,7 +5,7 @@ import './NavBar.css'
 
 const NavBar = ({ profiles, user, handleLogout }) => {
 
-  
+
   return (
     <>
       {user ?
@@ -15,7 +15,6 @@ const NavBar = ({ profiles, user, handleLogout }) => {
           if (user.profile === profile._id) {
             if (profile.league.length === 0) {
               return <>
-
               <nav className="navbar navbar-expand-lg navbar-light ">
                 <div className='container-fluid'>
                   <button
@@ -43,7 +42,6 @@ const NavBar = ({ profiles, user, handleLogout }) => {
             } else {
              return <>
                 <nav className="navbar navbar-fixed-top navbar-expand-lg navbar-light ">
-                           
                   <button
                     className="navbar-toggler"
                     type="button"
@@ -77,13 +75,14 @@ const NavBar = ({ profiles, user, handleLogout }) => {
       <>
         <nav className='navbar navbar-fixed-top navbar-expand-lg navbar-dark navbar-custom'>
         <button
-          className="navbar-toggler login-toggle-button"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          id="toggle-button"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -99,12 +98,11 @@ const NavBar = ({ profiles, user, handleLogout }) => {
         </div>
       </nav>
       </>}
-        
       </>
       :
       <nav className='navbar navbar-fixed-top navbar-expand-lg navbar-dark navbar-custom'>
       <button
-        className="navbar-toggler login-toggle-button"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNav"
