@@ -41,5 +41,9 @@ th {
 }
 
 .player-card:hover {
-  box-shadow: 0 0 20px rgba(33,33,33,.4); 
+  box-shadow: 0 0 20px rgba(194, 89, 179, 0.9); 
+}
+
+a:hover {
+  text-decoration: none;
 }
