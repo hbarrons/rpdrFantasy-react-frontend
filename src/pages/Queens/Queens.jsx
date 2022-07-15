@@ -173,7 +173,8 @@ const Queens = ({ user }) => {
             {profile.league[0]?.isAdmin ? 
               <>
               <div className="add-queen">
-                <h2 className='admin-title'>Admin Feature</h2>                
+                <h2 className='admin-title'>Admin Feature</h2> 
+                <p>Note: Add queens from the current season in order for league members to build their roster</p>               
                   <h3 className='admin-title'>Add A Queen</h3>
                   <form
                     autoComplete="off"
