@@ -87,9 +87,10 @@ const Queens = ({ user }) => {
       for (let i=0; i < data.queens.length; i++) {
         if (data.queens[i]._id === data.queen._id) {
           data.queens[i].name = data.queen.name
+          data.queens[i].eliminated = false
         }
       }
-      console.log("create response: ", data.queens)
+      console.log("create response: ", data, data.queens)
       setQueens(data.queens)
     } catch (err) {
       console.log(err)
@@ -174,7 +175,7 @@ const Queens = ({ user }) => {
               <>
               <div className="add-queen">
                 <h2 className='admin-title'>Admin Feature</h2> 
-                <p>Note: Add queens from the current season in order for league members to build their roster</p>               
+                <p className="note">Note: Add queens from the current season in order for league members to build their roster</p>               
                   <h3 className='admin-title'>Add A Queen</h3>
                   <form
                     autoComplete="off"
