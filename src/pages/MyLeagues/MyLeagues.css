@@ -1,7 +1,7 @@
 .myleague-main {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 20vh 35% 25%;
+  grid-template-columns: 30% 33% 33%;
+  grid-template-rows: 20vh 45% 25%;
 }
 
 .myleague-title {
