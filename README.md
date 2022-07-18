@@ -41,7 +41,7 @@ Note: this app is designed to be reusable. Once a season is over the admin can d
 
 ## Future Enhancements
 - Incorporate ability to join multiple leagues
-- Implement unit testing using Jest to limit bugs and enhance performance
+- Implement unit testing using Jest/Mocha to limit bugs and enhance performance
 - Allow personalization of profile view (ie. allow players to add a profile picture, their favorite queen/quotes, favorite season, etc.)
 - Add ability for admin to set a time for guesses/roster moves to be locked in
 
